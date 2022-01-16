@@ -40,38 +40,45 @@ import "./App.css";
 
 class Board extends React.Component {
   state = {
-    timesClicked: 1,
-    row: [this.renderSquare(0), this.renderSquare(1), this.renderSquare(2)],
+    numRows: 3,
   };
-  renderSquare(i) {
-    return <Square value={i} />;
-  }
+
   clickResult() {
-    console.log("Times clicked: " + this.state.timesClicked);
-    this.state.timesClicked += 1;
+    console.log("Times clicked: " + this.state.numRows);
+    this.state.numRows = this.state.numRows + 1 ;
   }
   render() {
-    const status = "Next player: X";
+
+    const children = [];
+
+    for (var i = 0; i < this.state.numRows; i += 1) {
+      children.push(<Grid key={i} numRows={this.state.numRows} />);
+    };
     return (
       <div>
-        <button
-          onClick={() => {
-            this.clickResult();
-            this.state.row.push(this.renderSquare(this.state.timesClicked));
-          }}
-        >
-          click me
-        </button>
-        <div className="status">{status}</div>
-        <Row value={0}></Row>
-        <Row value={3}></Row>
-        <Row value={6}></Row>
+        <button onClick={() => this.setState({numRows: this.state.numRows + 1})}>click me</button>
+        {children}
       </div>
     );
   }
 }
 
+function Grid(props) {
+  return (
+    <div>
+      <div className="status">{"" + JSON.stringify(props)}</div>
+      <Row value={0}></Row>
+      <Row value={3}></Row>
+      <Row value={6}></Row>
+    </div>
+  );
+}
+
 function Row(props) {
+  let squares = [];
+  for (var i = 0; i < props.value; i += 1) {
+    squares.push(<Square value={i}></Square>);
+  }
   return (
     <div className="board-row">
       <Square value={props.value}></Square>
@@ -85,7 +92,6 @@ function Square(props) {
 }
 
 function App() {
-  let board = new Board();
-  return board.render();
+  return <Board></Board>
 }
 export default App;
