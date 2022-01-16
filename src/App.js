@@ -8,39 +8,45 @@ let stats = {
   machamp: [90, 130, 80, 65, 85, 55],
 };
 
-class Board extends React.Component {
-  state = {
-    answer: "kingler",
+function startState (answer) {
+  return {
+    answer: answer,
     numRows: 2,
     currentGuess: "",
     lastGuess: "",
     guesses: [],
     guessDeltas: [],
+    gameOver: false,
   };
+}
+
+class Board extends React.Component {
+  state = startState("kingler")
   calculateCorrectness(lastGuess) {
     let answer = this.state.answer;
     console.log(lastGuess);
     console.log(answer);
+    let guessStats = stats[lastGuess];
+    let ansStats = stats[answer];
+    let delta = [];
+    for (var i = 0; i < guessStats.length; i += 1) {
+      let diff = ansStats[i] - guessStats[i];
+      if (diff > 0) {
+        delta.push(guessStats[i] + " (+)");
+      } else if (diff < 0) {
+        delta.push(guessStats[i] + " (-)");
+      } else {
+        delta.push(guessStats[i] + " (=)");
+      }
+    }
+    console.log(delta.toString());
+    console.log("Incorrect. Try again");
+
     if (lastGuess == answer) {
       console.log("Correct!");
-    } else {
-      let guessStats = stats[lastGuess];
-      let ansStats = stats[answer];
-      let delta = [];
-      for (var i = 0; i < guessStats.length; i += 1) {
-        let diff = ansStats[i] - guessStats[i];
-        if (diff > 0) {
-          delta.push("+");
-        } else if (diff < 0) {
-          delta.push("-");
-        } else {
-          delta.push("=");
-        }
-      }
-      console.log(delta.toString());
-      console.log("Incorrect. Try again");
-      return delta;
+      return [delta, true];
     }
+    return [delta, false];
   }
   onGuess() {
     // sanitise
@@ -52,7 +58,8 @@ class Board extends React.Component {
       });
       return;
     }
-    let delta = this.calculateCorrectness(lastGuess);
+    let delta, gameOver;
+    [delta, gameOver] = this.calculateCorrectness(lastGuess);
     this.setState(
       {
         numRows: this.state.numRows + 1,
@@ -60,6 +67,7 @@ class Board extends React.Component {
         guesses: this.state.guesses.concat(lastGuess),
         lastGuess: lastGuess,
         guessDeltas: this.state.guessDeltas.concat([delta]),
+        gameOver: gameOver,
       },
       () => {
         console.log("Guessed " + lastGuess);
@@ -75,13 +83,23 @@ class Board extends React.Component {
   render() {
     return (
       <div>
-        <form>
-          <button onClick={() => this.onGuess()}>Guess</button>
-          <input
-            onChange={(e) => this.onChange(e)}
-            value={this.state.currentGuess}
-          ></input>
-        </form>
+        {this.state.gameOver ? (
+          <button
+            onClick={() =>
+              this.setState(startState("kingler"))
+            }
+          >
+            Start over
+          </button>
+        ) : (
+          <form>
+            <button onClick={() => this.onGuess()}>Guess</button>
+            <input
+              onChange={(e) => this.onChange(e)}
+              value={this.state.currentGuess}
+            ></input>
+          </form>
+        )}
         <Grid values={this.state.guessDeltas}></Grid>
       </div>
     );
