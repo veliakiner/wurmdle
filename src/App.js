@@ -90,31 +90,38 @@ class Board extends React.Component {
   render() {
     return (
       <div>
-      <div className="status">
-        Welcome to Wurmdle! Try to guess the Pokemon based on its base stats!
-      </div>
-        {this.state.gameOver ? (
-          <div>
-          <button onClick={() => this.setState(startState("kingler"))}>
-            Start over
-          </button>
-            <GameState
-              values={{
-                answer: this.state.answer,
-                gameState: this.state.gameState,
-              }}
-            ></GameState>
-          </div>
-        ) : (
-          <form>
-            <button onClick={() => this.onGuess()}>Guess</button>
-            <input
-              onChange={(e) => this.onChange(e)}
-              value={this.state.currentGuess}
-            ></input>
-          </form>
-        )}
-        <Grid values={this.state.guessDeltas}></Grid>
+        <div className="subtitle">
+          Welcome to Wurmdle! Try to guess the Pokemon based on its base stats!
+        </div>
+        <div className="control">
+          {this.state.gameOver ? (
+            <div>
+              <button className="start-over" onClick={() => this.setState(startState("kingler"))}>
+                Start over
+              </button>
+              <GameState
+                values={{
+                  answer: this.state.answer,
+                  gameState: this.state.gameState,
+                }}
+              ></GameState>
+            </div>
+          ) : (
+            <form>
+              <button onClick={() => this.onGuess()}>Guess</button>
+              <input
+                onChange={(e) => this.onChange(e)}
+                value={this.state.currentGuess}
+              ></input>
+            </form>
+          )}
+        </div>
+        <Grid
+          values={{
+            deltas: this.state.guessDeltas,
+            guesses: this.state.guesses,
+          }}
+        ></Grid>
       </div>
     );
   }
@@ -124,37 +131,39 @@ function GameState(props) {
   let endgameString = "";
   let victory = props.values.gameState;
   if (victory) {
-    endgameString += "Game over - you won!"
+    endgameString += "Game over - you won!";
   } else {
-    endgameString += "Sorry you have lost the game :(."
+    endgameString += "Sorry you have lost the game :(.";
   }
-  endgameString += " The answer was " + props.values.answer
+  endgameString += " The answer was " + props.values.answer;
   return <div>{endgameString}</div>;
 }
 function Grid(props) {
   const rows = [];
-  let deltas = props.values;
+  let deltas = props.values.deltas;
+  let guesses = props.values.guesses;
   for (var i = 0; i < deltas.length; i += 1) {
-    rows.push(<Row key={i} value={deltas[i]} />);
+    rows.push(<Row key={i} value={deltas[i]} guess={guesses[i]} />);
   }
-  return (
-    <div>
-      {rows}
-    </div>
-  );
+  return <div>{rows}</div>;
 }
 
 function Row(props) {
   let numSquares = 6;
   let squares = [];
+  console.log(JSON.stringify(props))
   for (var i = 0; i < numSquares; i += 1) {
     let value = props.value[i];
     squares.push(<Square key={i} value={value}></Square>);
   }
+  squares.push(<Label value={props.guess}></Label>);
   return <div className="board-row">{squares}</div>;
 }
 function Square(props) {
   return <button className="square">{props.value} </button>;
+}
+function Label(props) {
+  return <button className="label">{props.value} </button>;
 }
 
 function App() {
