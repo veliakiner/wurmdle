@@ -4,7 +4,7 @@ import "./App.css";
 
 class Board extends React.Component {
   state = {
-    numRows: 0,
+    numRows: 2,
   };
 
   clickResult() {
