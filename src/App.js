@@ -1,14 +1,15 @@
 import React from "react";
 import "./App.css";
 
-let stats = {
+const stats = {
   kingler: [55, 130, 115, 50, 50, 75],
   mew: [100, 100, 100, 100, 100, 100],
   mewtwo: [106, 110, 90, 154, 90, 130],
   machamp: [90, 130, 80, 65, 85, 55],
 };
+const maxGuesses = 5;
 
-function startState (answer) {
+function startState(answer) {
   return {
     answer: answer,
     numRows: 2,
@@ -21,7 +22,7 @@ function startState (answer) {
 }
 
 class Board extends React.Component {
-  state = startState("kingler")
+  state = startState("kingler");
   calculateCorrectness(lastGuess) {
     let answer = this.state.answer;
     console.log(lastGuess);
@@ -58,8 +59,13 @@ class Board extends React.Component {
       });
       return;
     }
-    let delta, gameOver;
-    [delta, gameOver] = this.calculateCorrectness(lastGuess);
+    let delta, win, noMoreGuesses;
+    [delta, win] = this.calculateCorrectness(lastGuess);
+    if (this.state.guesses.length > maxGuesses - 2) {
+      noMoreGuesses = true;
+    }
+    let gameOver = noMoreGuesses || win;
+    console.log("Game over? " + gameOver);
     this.setState(
       {
         numRows: this.state.numRows + 1,
@@ -68,6 +74,7 @@ class Board extends React.Component {
         lastGuess: lastGuess,
         guessDeltas: this.state.guessDeltas.concat([delta]),
         gameOver: gameOver,
+        gameState: win,
       },
       () => {
         console.log("Guessed " + lastGuess);
@@ -83,14 +90,21 @@ class Board extends React.Component {
   render() {
     return (
       <div>
+      <div className="status">
+        Welcome to Wurmdle! Try to guess the Pokemon based on its base stats!
+      </div>
         {this.state.gameOver ? (
-          <button
-            onClick={() =>
-              this.setState(startState("kingler"))
-            }
-          >
+          <div>
+          <button onClick={() => this.setState(startState("kingler"))}>
             Start over
           </button>
+            <GameState
+              values={{
+                answer: this.state.answer,
+                gameState: this.state.gameState,
+              }}
+            ></GameState>
+          </div>
         ) : (
           <form>
             <button onClick={() => this.onGuess()}>Guess</button>
@@ -105,7 +119,18 @@ class Board extends React.Component {
     );
   }
 }
-
+function GameState(props) {
+  console.log(JSON.stringify(props));
+  let endgameString = "";
+  let victory = props.values.gameState;
+  if (victory) {
+    endgameString += "Game over - you won!"
+  } else {
+    endgameString += "Sorry you have lost the game :(."
+  }
+  endgameString += " The answer was " + props.values.answer
+  return <div>{endgameString}</div>;
+}
 function Grid(props) {
   const rows = [];
   let deltas = props.values;
@@ -114,7 +139,6 @@ function Grid(props) {
   }
   return (
     <div>
-      <div className="status">{"" + JSON.stringify(props)}</div>
       {rows}
     </div>
   );
