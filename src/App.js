@@ -28,7 +28,14 @@ class Board extends React.Component {
       let ansStats = stats[answer];
       let delta = [];
       for (var i = 0; i < guessStats.length; i += 1) {
-        delta.push(ansStats[i] - guessStats[i]);
+        let diff = ansStats[i] - guessStats[i];
+        if (diff > 0) {
+          delta.push("+");
+        } else if (diff < 0) {
+          delta.push("-");
+        } else {
+          delta.push("=");
+        }
       }
       console.log(delta.toString());
       console.log("Incorrect. Try again");
@@ -37,14 +44,21 @@ class Board extends React.Component {
   }
   onGuess() {
     // sanitise
-    let lastGuess = this.state.currentGuess;
+    let lastGuess = this.state.currentGuess.toLowerCase();
+    if (!(lastGuess in stats)) {
+      console.log("Invalid guess.");
+      this.setState({
+        currentGuess: "",
+      });
+      return;
+    }
     let delta = this.calculateCorrectness(lastGuess);
     this.setState(
       {
         numRows: this.state.numRows + 1,
         currentGuess: "",
         guesses: this.state.guesses.concat(lastGuess),
-        lastGuess: this.state.currentGuess,
+        lastGuess: lastGuess,
         guessDeltas: this.state.guessDeltas.concat([delta]),
       },
       () => {
@@ -63,9 +77,12 @@ class Board extends React.Component {
       <div>
         <form>
           <button onClick={() => this.onGuess()}>Guess</button>
-          <input onChange={(e) => this.onChange(e)}></input>
+          <input
+            onChange={(e) => this.onChange(e)}
+            value={this.state.currentGuess}
+          ></input>
         </form>
-        <Grid guessDeltas={this.state.guessDeltas}></Grid>
+        <Grid values={this.state.guessDeltas}></Grid>
       </div>
     );
   }
@@ -73,9 +90,9 @@ class Board extends React.Component {
 
 function Grid(props) {
   const rows = [];
-  let deltas = props.guessDeltas
+  let deltas = props.values;
   for (var i = 0; i < deltas.length; i += 1) {
-    rows.push(<Row key={i} value={deltas[i][0]} />);
+    rows.push(<Row key={i} value={deltas[i]} />);
   }
   return (
     <div>
@@ -89,7 +106,8 @@ function Row(props) {
   let numSquares = 6;
   let squares = [];
   for (var i = 0; i < numSquares; i += 1) {
-    squares.push(<Square key={i} value={i}></Square>);
+    let value = props.value[i];
+    squares.push(<Square key={i} value={value}></Square>);
   }
   return <div className="board-row">{squares}</div>;
 }
