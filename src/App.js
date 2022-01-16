@@ -4,7 +4,7 @@ import "./App.css";
 
 class Board extends React.Component {
   state = {
-    numRows: 3,
+    numRows: 0,
   };
 
   clickResult() {
@@ -13,41 +13,39 @@ class Board extends React.Component {
   }
   render() {
 
-    const children = [];
-
-    for (var i = 0; i < this.state.numRows; i += 1) {
-      children.push(<Grid key={i} numRows={this.state.numRows} />);
-    };
     return (
       <div>
         <button onClick={() => this.setState({numRows: this.state.numRows + 1})}>click me</button>
-        {children}
+        <Grid numRows={this.state.numRows}></Grid>
       </div>
     );
   }
 }
 
 function Grid(props) {
+
+  const rows = [];
+  
+  for (var i = 0; i < props.numRows; i += 1) {
+    rows.push(<Row key={i} value={props.numRows} />);
+  };
   return (
     <div>
       <div className="status">{"" + JSON.stringify(props)}</div>
-      <Row value={0}></Row>
-      <Row value={3}></Row>
-      <Row value={6}></Row>
+      {rows}
     </div>
   );
 }
 
 function Row(props) {
+  let numSquares = 6;
   let squares = [];
-  for (var i = 0; i < props.value; i += 1) {
-    squares.push(<Square value={i}></Square>);
+  for (var i = 0; i < numSquares; i += 1) {
+    squares.push(<Square key={i} value={i}></Square>);
   }
   return (
     <div className="board-row">
-      <Square value={props.value}></Square>
-      <Square value={props.value + 1}></Square>
-      <Square value={props.value + 2}></Square>
+      {squares}
     </div>
   );
 }
