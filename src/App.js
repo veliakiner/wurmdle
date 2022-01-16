@@ -15,7 +15,7 @@ class Board extends React.Component {
     currentGuess: "",
     lastGuess: "",
     guesses: [],
-    guessDeltas: []
+    guessDeltas: [],
   };
   calculateCorrectness(lastGuess) {
     let answer = this.state.answer;
@@ -32,24 +32,25 @@ class Board extends React.Component {
       }
       console.log(delta.toString());
       console.log("Incorrect. Try again");
-      return delta
+      return delta;
     }
   }
   onGuess() {
     // sanitise
-    let lastGuess = this.state.currentGuess
-    let delta = this.calculateCorrectness();
+    let lastGuess = this.state.currentGuess;
+    let delta = this.calculateCorrectness(lastGuess);
     this.setState(
       {
         numRows: this.state.numRows + 1,
         currentGuess: "",
         guesses: this.state.guesses.concat(lastGuess),
         lastGuess: this.state.currentGuess,
-        guessDeltas: this.state.guessDeltas.concat(delta)
+        guessDeltas: this.state.guessDeltas.concat([delta]),
       },
       () => {
         console.log("Guessed " + lastGuess);
         console.log("Guesses: " + this.state.guesses.toString());
+        console.log("Guesse deltas: " + this.state.guessDeltas.toString());
       }
     );
   }
@@ -64,7 +65,7 @@ class Board extends React.Component {
           <button onClick={() => this.onGuess()}>Guess</button>
           <input onChange={(e) => this.onChange(e)}></input>
         </form>
-        <Grid numRows={this.state.numRows}></Grid>
+        <Grid guessDeltas={this.state.guessDeltas}></Grid>
       </div>
     );
   }
@@ -72,9 +73,9 @@ class Board extends React.Component {
 
 function Grid(props) {
   const rows = [];
-
-  for (var i = 0; i < props.numRows; i += 1) {
-    rows.push(<Row key={i} value={props.numRows} />);
+  let deltas = props.guessDeltas
+  for (var i = 0; i < deltas.length; i += 1) {
+    rows.push(<Row key={i} value={deltas[i][0]} />);
   }
   return (
     <div>
