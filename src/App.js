@@ -1,15 +1,13 @@
 import React from "react";
 import "./App.css";
 
-const stats = {
-  kingler: [55, 130, 115, 50, 50, 75],
-  mew: [100, 100, 100, 100, 100, 100],
-  mewtwo: [106, 110, 90, 154, 90, 130],
-  machamp: [90, 130, 80, 65, 85, 55],
-};
+const stats = require("./pokemon.json");
 const maxGuesses = 5;
+let monsList = Object.keys(stats);
 
-function startState(answer) {
+function startState(defaultAns) {
+  let answer = defaultAns || monsList[(Math.random() * monsList.length) | 0]
+  console.log(answer)
   return {
     answer: answer,
     numRows: 2,
@@ -22,13 +20,13 @@ function startState(answer) {
 }
 
 class Board extends React.Component {
-  state = startState("kingler");
+  state = startState();
   calculateCorrectness(lastGuess) {
     let answer = this.state.answer;
     console.log(lastGuess);
     console.log(answer);
-    let guessStats = stats[lastGuess];
-    let ansStats = stats[answer];
+    let guessStats = stats[lastGuess].slice(3);
+    let ansStats = stats[answer].slice(3);
     let delta = [];
     for (var i = 0; i < guessStats.length; i += 1) {
       let diff = ansStats[i] - guessStats[i];
@@ -52,6 +50,7 @@ class Board extends React.Component {
   onGuess() {
     // sanitise
     let lastGuess = this.state.currentGuess.toLowerCase();
+    lastGuess = lastGuess.charAt(0).toUpperCase() + lastGuess.slice(1);
     if (!(lastGuess in stats)) {
       console.log("Invalid guess.");
       this.setState({
@@ -96,7 +95,10 @@ class Board extends React.Component {
         <div className="control">
           {this.state.gameOver ? (
             <div>
-              <button className="start-over" onClick={() => this.setState(startState("kingler"))}>
+              <button
+                className="start-over"
+                onClick={() => this.setState(startState())}
+              >
                 Start over
               </button>
               <GameState
@@ -151,7 +153,7 @@ function Grid(props) {
 function Row(props) {
   let numSquares = 6;
   let squares = [];
-  console.log(JSON.stringify(props))
+  console.log(JSON.stringify(props));
   for (var i = 0; i < numSquares; i += 1) {
     let value = props.value[i];
     squares.push(<Square key={i} value={value}></Square>);
