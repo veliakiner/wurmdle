@@ -12,8 +12,8 @@ with open('Pokemon.csv', newline='') as csvfile:
                continue
           type1, type2 = sorted((type1, type2))
           json_dump[name] = [generation, type1, type2, hp, attack, defense, sp_attack, sp_defense, speed]
-          if len(json_dump.keys()) > 10:
-               break
+          # if len(json_dump.keys()) > 10:
+          #      break
      with open("src/pokemon.json", "w") as f:
           f.write(json.dumps(json_dump))
 
