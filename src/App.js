@@ -31,9 +31,9 @@ class Board extends React.Component {
     for (var i = 0; i < guessStats.length; i += 1) {
       let diff = ansStats[i] - guessStats[i];
       if (diff > 0) {
-        delta.push(guessStats[i] + " (+)");
-      } else if (diff < 0) {
         delta.push(guessStats[i] + " (-)");
+      } else if (diff < 0) {
+        delta.push(guessStats[i] + " (+)");
       } else {
         delta.push(guessStats[i] + " (=)");
       }
@@ -144,6 +144,7 @@ function Grid(props) {
   const rows = [];
   let deltas = props.values.deltas;
   let guesses = props.values.guesses;
+  rows.push(<Row key={i} value={["HP", "ATK", "DEF", "SPA", "SPD", "SPE"]} guess={"Last Guess"} />)
   for (var i = 0; i < deltas.length; i += 1) {
     rows.push(<Row key={i} value={deltas[i]} guess={guesses[i]} />);
   }
