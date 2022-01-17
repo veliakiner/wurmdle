@@ -109,7 +109,7 @@ class Board extends React.Component {
               ></GameState>
             </div>
           ) : (
-            <form>
+            <form onSubmit={(evt) =>{evt.preventDefault()}}>
               <button onClick={() => this.onGuess()}>Guess</button>
               <input
                 onChange={(e) => this.onChange(e)}
