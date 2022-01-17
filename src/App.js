@@ -41,7 +41,7 @@ class Board extends React.Component {
     console.log(delta.toString());
     console.log("Incorrect. Try again");
 
-    if (lastGuess == answer) {
+    if (lastGuess === answer) {
       console.log("Correct!");
       return [delta, true];
     }
@@ -144,7 +144,7 @@ function Grid(props) {
   const rows = [];
   let deltas = props.values.deltas;
   let guesses = props.values.guesses;
-  rows.push(<Row key={i} value={["HP", "ATK", "DEF", "SPA", "SPD", "SPE"]} guess={"Last Guess"} />)
+  rows.push(<Row value={["HP", "ATK", "DEF", "SPA", "SPD", "SPE"]} guess={"Last Guess"} />)
   for (var i = 0; i < deltas.length; i += 1) {
     rows.push(<Row key={i} value={deltas[i]} guess={guesses[i]} />);
   }
