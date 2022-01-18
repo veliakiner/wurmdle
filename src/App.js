@@ -191,10 +191,6 @@ function Square(props) {
   }
   return <button className={buttonClass}>{value} </button>;
 }
-function Label(props) {
-  return <button className="label square">{props.value} </button>;
-}
-
 function App() {
   return <Board></Board>;
 }
