@@ -6,8 +6,8 @@ const maxGuesses = 5;
 let monsList = Object.keys(stats);
 
 function startState(defaultAns) {
-  let answer = defaultAns || monsList[(Math.random() * monsList.length) | 0]
-  console.log(answer)
+  let answer = defaultAns || monsList[(Math.random() * monsList.length) | 0];
+  console.log(answer);
   return {
     answer: answer,
     numRows: 2,
@@ -18,6 +18,13 @@ function startState(defaultAns) {
     gameOver: false,
   };
 }
+const toTitleCase = (phrase) => {
+  return phrase
+    .toLowerCase()
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+};
 
 class Board extends React.Component {
   state = startState();
@@ -31,11 +38,11 @@ class Board extends React.Component {
     for (var i = 0; i < guessStats.length; i += 1) {
       let diff = ansStats[i] - guessStats[i];
       if (diff > 0) {
-        delta.push(guessStats[i] + " (-)");
+        delta.push(guessStats[i] + "-");
       } else if (diff < 0) {
-        delta.push(guessStats[i] + " (+)");
+        delta.push(guessStats[i] + "+");
       } else {
-        delta.push(guessStats[i] + " (=)");
+        delta.push(guessStats[i] + "=");
       }
     }
     console.log(delta.toString());
@@ -50,7 +57,7 @@ class Board extends React.Component {
   onGuess() {
     // sanitise
     let lastGuess = this.state.currentGuess.toLowerCase();
-    lastGuess = lastGuess.charAt(0).toUpperCase() + lastGuess.slice(1);
+    lastGuess = toTitleCase(lastGuess);
     if (!(lastGuess in stats)) {
       console.log("Invalid guess.");
       this.setState({
@@ -90,7 +97,8 @@ class Board extends React.Component {
     return (
       <div>
         <div className="subtitle">
-          Welcome to Wurmdle! Try to guess the Pokemon based on its base stats!
+          Welcome to Wurmdle! Try to guess the Pokemon based on its base stats! You have five guesses, Gens 1-3 only.
+          <div>Key:  Red - too low / Blue - too high / Green - correct</div>
         </div>
         <div className="control">
           {this.state.gameOver ? (
@@ -109,7 +117,11 @@ class Board extends React.Component {
               ></GameState>
             </div>
           ) : (
-            <form onSubmit={(evt) =>{evt.preventDefault()}}>
+            <form
+              onSubmit={(evt) => {
+                evt.preventDefault();
+              }}
+            >
               <button onClick={() => this.onGuess()}>Guess</button>
               <input
                 onChange={(e) => this.onChange(e)}
@@ -144,7 +156,13 @@ function Grid(props) {
   const rows = [];
   let deltas = props.values.deltas;
   let guesses = props.values.guesses;
-  rows.push(<Row value={["HP", "ATK", "DEF", "SPA", "SPD", "SPE"]} guess={"Last Guess"} />)
+  rows.push(
+    <Row
+      key={-1}
+      value={["HP", "ATK", "DEF", "SPA", "SPD", "SPE"]}
+      guess={"Guess"}
+    />
+  );
   for (var i = 0; i < deltas.length; i += 1) {
     rows.push(<Row key={i} value={deltas[i]} guess={guesses[i]} />);
   }
@@ -159,14 +177,22 @@ function Row(props) {
     let value = props.value[i];
     squares.push(<Square key={i} value={value}></Square>);
   }
-  squares.push(<Label value={props.guess}></Label>);
+  squares.push(<Square key={-1} value={props.guess}></Square>);
   return <div className="board-row">{squares}</div>;
 }
 function Square(props) {
-  return <button className="square">{props.value} </button>;
+  let value = props.value;
+  let sign = props.value.slice(-1);
+  let classes = { "-": " toolow", "+": " toohigh", "=": " correct" };
+  let buttonClass = "square";
+  if ("=-+".includes(sign)) {
+    value = value.slice(0, -1);
+    buttonClass += classes[sign] || "";
+  }
+  return <button className={buttonClass}>{value} </button>;
 }
 function Label(props) {
-  return <button className="label">{props.value} </button>;
+  return <button className="label square">{props.value} </button>;
 }
 
 function App() {

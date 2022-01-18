@@ -1,36 +1,51 @@
 .square {
   background: #fff;
+  overflow-wrap: break-word;
   border: 1px solid #999;
-  /* float: left; */
-  font-size: 24px;
+  font-size: 12px;
   font-weight: bold;
-  line-height: 34px;
-  height: 80px;
+  /* line-height: 34px; */
+  height: 50px;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
   text-align: center;
-  width: 80px;
+  max-width: 50px;
+  width: 50px;
+  vertical-align:top;
 }
-.label {
+.toolow {
+  background: #c00;
+  border: 1px solid #999;
+}
+.toohigh {
+  background: #0cc;
+  border: 1px solid #999;
+}
+.correct {
+  background: #0c0;
+  border: 1px solid #999;
+}
+/* .label {
   background: #fff;
   border: 1px solid #999;
-  /* float: left; */
+  float: left;
   font-size: 12px;
   font-weight: bold;
   line-height: 34px;
-  height: 80px;
+  height: 60px;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
   text-align: center;
-  width: 120px;
+  width: 60px;
   float: right
-}
+} */
 .board-row {
   display: table;
   margin: auto;
-  /* width: 100%; */
+  width: flex;
+  height: 50px;
   /* border: 3px solid green; */
   padding: 10px;
 }
@@ -43,7 +58,7 @@
 .subtitle{
   display: table;
   margin: auto;
-  /* width: 100%; */
+  width: 75%;
   padding: 10px;
 }
 
