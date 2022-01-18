@@ -1,10 +1,10 @@
 import React from "react";
 import "./App.css";
+import FadeIn from 'react-fade-in';
 
 const stats = require("./gen3.json");
 const maxGuesses = 5;
 let monsList = Object.keys(stats);
-
 function startState(defaultAns) {
   let answer = defaultAns || monsList[(Math.random() * monsList.length) | 0];
   console.log(answer);
@@ -201,7 +201,7 @@ function Row(props) {
     squares.push(<Square key={i} value={value}></Square>);
   }
   squares.push(<Square key={-1} value={props.guess}></Square>);
-  return <div className="board-row">{squares}</div>;
+  return <FadeIn><div className="board-row">{squares}</div></FadeIn>;
 }
 function Square(props) {
   let value = props.value;
