@@ -132,6 +132,7 @@ class Board extends React.Component {
             >
               <button onClick={() => this.onGuess()}>Guess</button>
               <input
+              placeholder="Graveler, Pikachu, etc.."
                 onChange={(e) => this.onChange(e)}
                 value={this.state.currentGuess}
               ></input>
