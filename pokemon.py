@@ -11,7 +11,7 @@ with open('Pokemon.csv', newline='') as csvfile:
           if (any(f in name.split(" ") for f in formes_to_ignore)):
                continue
           type1, type2 = sorted((type1, type2))
-          if int(generation) > 1:
+          if int(generation) > 3:
                continue
           json_dump[name] = [generation, type1, type2, hp, attack, defense, sp_attack, sp_defense, speed]
           # if len(json_dump.keys()) > 10:

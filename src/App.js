@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 
-const stats = require("./pokemon.json");
+const stats = require("./gen3.json");
 const maxGuesses = 5;
 let monsList = Object.keys(stats);
 
