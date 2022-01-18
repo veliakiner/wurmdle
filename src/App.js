@@ -97,9 +97,17 @@ class Board extends React.Component {
     return (
       <div>
         <div className="subtitle">
-          Welcome to Wurmdle! Try to guess the Pokemon based on its base stats! You have five guesses, Gens 1-3 only.
-          <div>Key:  Red - too low / Blue - too high / Green - correct</div>
+          Welcome to Wurmdle! Try to guess the Pokemon based on its base stats!
+          You have five guesses, Gens 1-3 only.
         </div>
+          <div className="key">
+            <div className="key-elem">Key:</div>
+            <div className="keys">
+              <span className="key-elem"><Square key="toolow" value="0-"></Square> Too low</span>
+              <span className="key-elem"><Square key="toohigh" value="999+"></Square> Too high</span>
+              <span className="key-elem"><Square key="correct" value="100="></Square> Correct</span>
+            </div>
+          </div>
         <div className="control">
           {this.state.gameOver ? (
             <div>

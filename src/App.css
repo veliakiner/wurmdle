@@ -12,7 +12,7 @@
   text-align: center;
   max-width: 50px;
   width: 50px;
-  vertical-align:top;
+  vertical-align:inherit;
 }
 .toolow {
   background: #c00;
@@ -48,6 +48,7 @@
   height: 50px;
   /* border: 3px solid green; */
   padding: 10px;
+  vertical-align:top;
 }
 .control{
   display: table;
@@ -61,6 +62,21 @@
   width: 75%;
   padding: 10px;
   text-align: center;
+}
+.key{
+  display: table;
+  margin: auto;
+  padding: 10px;
+  text-align: center;
+}
+
+.key-elem{
+  margin: auto;
+  padding-right: 5px;
+  padding-bottom: 20px;
+  text-align: left;
+  line-height: 0;
+  vertical-align:center;
 }
 
 .start-over{
