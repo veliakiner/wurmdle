@@ -57,7 +57,7 @@ class Board extends React.Component {
   onGuess() {
     // sanitise
     let lastGuess = this.state.currentGuess.toLowerCase();
-    lastGuess = toTitleCase(lastGuess);
+    lastGuess = toTitleCase(lastGuess).trim();
     if (!(lastGuess in stats)) {
       console.log("Invalid guess.");
       this.setState({
