@@ -197,7 +197,7 @@ function GameState(props) {
   } else {
     endgameString += "Sorry you have lost the game :(.";
   }
-  endgameString += " The answer was " + props.values.answer;
+  endgameString += " The answer was " + props.values.answer + ". Type enter to start a new game!";
   return <span className="game-over-msg">{endgameString}</span>;
 }
 function Grid(props) {
