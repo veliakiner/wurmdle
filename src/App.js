@@ -25,10 +25,24 @@ const toTitleCase = (phrase) => {
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
 };
-console.log("No cheating!")
-console.log = (process.env.NODE_ENV === "development") ? console.log: () => {} // implement better logging solution
+console.log("No cheating!");
+console.log = process.env.NODE_ENV === "development" ? console.log : () => {}; // implement better logging solution
 class Board extends React.Component {
   state = startState();
+  resetOnEnter(event) {
+    console.log(event.keyCode)
+    if (event.keyCode === 13 && this.state.gameOver) {
+      this.setState(startState());
+    }
+  }
+
+  componentDidMount() {
+    this.resetOnEnter_ = (evt) =>  {this.resetOnEnter(evt)} //hopefully guarantees that I'm removing the event listener...
+    document.addEventListener("keydown", this.resetOnEnter_, false);
+  }
+  componentWillUnmount() {
+    console.log(document.removeEventListener("keydown", this.resetOnEnter_, false))
+  }
   calculateCorrectness(lastGuess) {
     let answer = this.state.answer;
     console.log(lastGuess);
