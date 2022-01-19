@@ -30,18 +30,21 @@ console.log = process.env.NODE_ENV === "development" ? console.log : () => {}; /
 class Board extends React.Component {
   state = startState();
   resetOnEnter(event) {
-    console.log(event.keyCode)
     if (event.keyCode === 13 && this.state.gameOver) {
       this.setState(startState());
     }
   }
 
   componentDidMount() {
-    this.resetOnEnter_ = (evt) =>  {this.resetOnEnter(evt)} //hopefully guarantees that I'm removing the event listener...
+    this.resetOnEnter_ = (evt) => {
+      this.resetOnEnter(evt);
+    }; //hopefully guarantees that I'm removing the event listener...
     document.addEventListener("keydown", this.resetOnEnter_, false);
   }
   componentWillUnmount() {
-    console.log(document.removeEventListener("keydown", this.resetOnEnter_, false))
+    console.log(
+      document.removeEventListener("keydown", this.resetOnEnter_, false)
+    );
   }
   calculateCorrectness(lastGuess) {
     let answer = this.state.answer;
@@ -121,35 +124,33 @@ class Board extends React.Component {
       <div>
         <Instructions></Instructions>
         <div className="control">
-          {this.state.gameOver ? (
-            <div>
-              <GameState
-                values={{
-                  answer: this.state.answer,
-                  gameState: this.state.gameState,
-                }}
-              ></GameState>
-              <button
-                className="start-over"
-                onClick={() => this.setState(startState())}
-              >
-                Start over
-              </button>
-            </div>
-          ) : (
-            <form
-              onSubmit={(evt) => {
-                evt.preventDefault();
+          <div className={this.state.gameOver ? "": "hide"}>
+            <GameState
+              values={{
+                answer: this.state.answer,
+                gameState: this.state.gameState,
               }}
+            ></GameState>
+            <button
+              className="start-over"
+              onClick={() => this.setState(startState())}
             >
-              <button onClick={() => this.onGuess()}>Guess</button>
-              <input
-                placeholder="Graveler, Pikachu, etc.."
-                onChange={(e) => this.onChange(e)}
-                value={this.state.currentGuess}
-              ></input>
-            </form>
-          )}
+              Start over
+            </button>
+          </div>
+
+          <form className={this.state.gameOver ? "hide" : ""}
+            onSubmit={(evt) => {
+              evt.preventDefault();
+            }}
+          >
+            <button onClick={() => this.onGuess()}>Guess</button>
+            <input
+              placeholder="Graveler, Pikachu, etc.."
+              onChange={(e) => this.onChange(e)}
+              value={this.state.currentGuess}
+            ></input>
+          </form>
         </div>
         <Grid
           values={{

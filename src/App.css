@@ -87,3 +87,7 @@
 .game-over-msg {
   padding: 10px
 }
+
+.hide{
+  display: none;
+}
