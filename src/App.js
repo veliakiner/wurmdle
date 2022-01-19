@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import FadeIn from 'react-fade-in';
+import FadeIn from "react-fade-in";
 
 const stats = require("./gen3.json");
 const maxGuesses = 5;
@@ -104,39 +104,22 @@ class Board extends React.Component {
   render() {
     return (
       <div>
-        <div className="subtitle">
-          Welcome to Wurmdle! Try to guess the Pokemon based on its base stats!
-          You have five guesses, Gens 1-3 only.
-        </div>
-        <div className="key">
-          <div className="key-elem">Key:</div>
-          <div className="keys">
-            <span className="key-elem">
-              <Square key="toolow" value="0-"></Square> Too low
-            </span>
-            <span className="key-elem">
-              <Square key="toohigh" value="999+"></Square> Too high
-            </span>
-            <span className="key-elem">
-              <Square key="correct" value="100="></Square> Correct
-            </span>
-          </div>
-        </div>
+        <Instructions></Instructions>
         <div className="control">
           {this.state.gameOver ? (
             <div>
-              <button
-                className="start-over"
-                onClick={() => this.setState(startState())}
-              >
-                Start over
-              </button>
               <GameState
                 values={{
                   answer: this.state.answer,
                   gameState: this.state.gameState,
                 }}
               ></GameState>
+              <button
+                className="start-over"
+                onClick={() => this.setState(startState())}
+              >
+                Start over
+              </button>
             </div>
           ) : (
             <form
@@ -163,6 +146,32 @@ class Board extends React.Component {
     );
   }
 }
+
+function Instructions() {
+  return (
+    <div>
+      <div className="subtitle">
+        Welcome to Wurmdle! Try to guess the Pokemon based on its base stats!
+        You have five guesses, Gens 1-3 only.
+      </div>
+      <div className="key">
+        <div className="key-elem">Key:</div>
+        <div className="keys">
+          <span className="key-elem">
+            <Square key="toolow" value="0-"></Square> Too low
+          </span>
+          <span className="key-elem">
+            <Square key="toohigh" value="999+"></Square> Too high
+          </span>
+          <span className="key-elem">
+            <Square key="correct" value="100="></Square> Correct
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function GameState(props) {
   console.log(JSON.stringify(props));
   let endgameString = "";
@@ -173,7 +182,7 @@ function GameState(props) {
     endgameString += "Sorry you have lost the game :(.";
   }
   endgameString += " The answer was " + props.values.answer;
-  return <div>{endgameString}</div>;
+  return <span className="game-over-msg">{endgameString}</span>;
 }
 function Grid(props) {
   const rows = [];
@@ -201,7 +210,11 @@ function Row(props) {
     squares.push(<Square key={i} value={value}></Square>);
   }
   squares.push(<Square key={-1} value={props.guess}></Square>);
-  return <FadeIn><div className="board-row">{squares}</div></FadeIn>;
+  return (
+    <FadeIn>
+      <div className="board-row">{squares}</div>
+    </FadeIn>
+  );
 }
 function Square(props) {
   let value = props.value;
