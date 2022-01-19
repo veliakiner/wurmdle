@@ -25,7 +25,8 @@ const toTitleCase = (phrase) => {
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
 };
-
+console.log("No cheating!")
+console.log = (process.env.NODE_ENV === "development") ? console.log: () => {} // implement better logging solution
 class Board extends React.Component {
   state = startState();
   calculateCorrectness(lastGuess) {
