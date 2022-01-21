@@ -18,7 +18,7 @@ function startState(defaultAns) {
     guesses: [],
     guessDeltas: [],
     gameOver: false,
-    gameState: false,
+    gameWon: false,
   };
 }
 const toTitleCase = (phrase) => phrase
@@ -81,7 +81,7 @@ class Board extends React.Component {
         guesses: guesses.concat(lastGuess),
         guessDeltas: guessDeltas.concat([delta]),
         gameOver,
-        gameState: win,
+        gameWon: win,
       },
       () => {
         console.log(`Guessed ${lastGuess}`);
@@ -135,7 +135,7 @@ class Board extends React.Component {
 
   render() {
     const {
-      gameOver, gameState, answer, currentGuess, guesses, guessDeltas,
+      gameOver, gameWon, answer, currentGuess, guesses, guessDeltas,
     } = this.state;
     return (
       <div>
@@ -144,7 +144,7 @@ class Board extends React.Component {
           <div className={gameOver ? '' : 'hide'}>
             <GameState
               answer={answer}
-              gameState={gameState}
+              gameWon={gameWon}
             />
             <button
               type="submit"
@@ -214,9 +214,8 @@ function Instructions() {
 function GameState(props) {
   console.log(JSON.stringify(props));
   let endgameString = '';
-  const { answer, gameState } = props;
-  const victory = gameState;
-  if (victory) {
+  const { answer, gameWon } = props;
+  if (gameWon) {
     endgameString += 'Game over - you won!';
   } else {
     endgameString += 'Sorry you have lost the game :(.';
@@ -224,7 +223,7 @@ function GameState(props) {
   endgameString += ` The answer was ${answer}. Type enter to start a new game!`;
   return <span className="game-over-msg">{endgameString}</span>;
 }
-GameState.propTypes = { answer: string.isRequired, gameState: bool.isRequired };
+GameState.propTypes = { answer: string.isRequired, gameWon: bool.isRequired };
 
 function Grid(props) {
   const rows = [];
