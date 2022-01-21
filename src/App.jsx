@@ -7,7 +7,8 @@ const stats = require('./gen3.json');
 const maxGuesses = 5;
 const monsList = Object.keys(stats);
 function startState(defaultAns) {
-  const answer = defaultAns || monsList[(Math.random() * monsList.length) | 0];
+  const monsIndex = Math.round(Math.random() * monsList.length);
+  const answer = defaultAns || monsList[monsIndex];
   console.log(answer);
   return {
     answer,
