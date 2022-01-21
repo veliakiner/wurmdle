@@ -244,6 +244,6 @@ function Square(props) {
   return <button className={buttonClass}>{value} </button>;
 }
 function App() {
-  return <Board></Board>;
+  return <Board />;
 }
 export default App;
