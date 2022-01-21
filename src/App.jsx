@@ -28,7 +28,10 @@ const toTitleCase = (phrase) => phrase
 console.log('No cheating!');
 console.log = process.env.NODE_ENV === 'development' ? console.log : () => {}; // implement better logging solution
 class Board extends React.Component {
-  state = startState();
+  constructor() {
+    super();
+    this.state = startState();
+  }
 
   resetOnEnter(event) {
     if (event.keyCode === 13 && this.state.gameOver) {
