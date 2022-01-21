@@ -227,9 +227,13 @@ function GameState(props) {
     }. Type enter to start a new game!`;
   return <span className="game-over-msg">{endgameString}</span>;
 }
+
 function Grid(props) {
   const rows = [];
-  const { guessDeltas, guesses } = props.values;
+  let { guessDeltas, guesses } = props;
+  // Empty arrays end up undefined after destructuring
+  guessDeltas = guessDeltas || [];
+  guesses = guesses || [];
   console.log(guessDeltas);
   rows.push(
     <Row
