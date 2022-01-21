@@ -142,6 +142,7 @@ class Board extends React.Component {
               }}
             />
             <button
+              type="submit"
               className="start-over"
               onClick={() => this.setState(startState())}
             >
@@ -155,7 +156,7 @@ class Board extends React.Component {
               evt.preventDefault();
             }}
           >
-            <button onClick={() => this.onGuess()}>Guess</button>
+            <button type="submit" onClick={() => this.onGuess()}>Guess</button>
             <input
               placeholder="Graveler, Pikachu, etc.."
               onChange={(e) => this.onChange(e)}
@@ -262,7 +263,7 @@ function Square(props) {
     buttonClass += classes[sign] || '';
   }
   return (
-    <button className={buttonClass}>
+    <button type="button" className={buttonClass}>
       {value}
       {' '}
     </button>
