@@ -33,22 +33,64 @@ class Board extends React.Component {
     this.state = startState();
   }
 
-  resetOnEnter(event) {
-    if (event.keyCode === 13 && this.state.gameOver) {
-      this.setState(startState());
-    }
-  }
-
   componentDidMount() {
-    this.resetOnEnter_ = (evt) => {
+    this.resetOnEnterWrapped = (evt) => {
       this.resetOnEnter(evt);
     }; // hopefully guarantees that I'm removing the event listener...
-    document.addEventListener('keydown', this.resetOnEnter_, false);
+    document.addEventListener('keydown', this.resetOnEnterWrapped, false);
   }
 
   componentWillUnmount() {
     console.log(
-      document.removeEventListener('keydown', this.resetOnEnter_, false),
+      document.removeEventListener('keydown', this.resetOnEnterWrapped, false),
+    );
+  }
+
+  onChange(evt) {
+    const input = evt.target.value;
+    this.setState({ currentGuess: input });
+  }
+
+  onGuess() {
+    // sanitise
+    let lastGuess = this.state.currentGuess.toLowerCase();
+    lastGuess = toTitleCase(lastGuess).trim();
+    if (!(lastGuess in stats)) {
+      console.log('Invalid guess.');
+      this.setState({
+        currentGuess: '',
+      });
+      return;
+    }
+    let noMoreGuesses;
+    const [delta, win] = this.calculateCorrectness(lastGuess);
+    if (this.state.guesses.length > maxGuesses - 2) {
+      noMoreGuesses = true;
+    }
+    const gameOver = noMoreGuesses || win;
+    console.log(`Game over? ${gameOver}`);
+    this.setState(
+      {
+        numRows: this.state.numRows + 1,
+        currentGuess: '',
+        guesses: this.state.guesses.concat(lastGuess),
+        guessDeltas: this.state.guessDeltas.concat([delta]),
+        gameOver,
+        gameState: win,
+      },
+      () => {
+        console.log(`Guessed ${lastGuess}`);
+        console.log(`Guesses: ${this.state.guesses.toString()}`);
+        console.log(`Guesse deltas: ${this.state.guessDeltas.toString()}`);
+        if (noMoreGuesses && !win) {
+          this.setState({
+            guesses: this.state.guesses.concat(this.state.answer),
+            guessDeltas: this.state.guessDeltas.concat([
+              this.calculateCorrectness(this.state.answer)[0],
+            ]),
+          });
+        }
+      },
     );
   }
 
@@ -79,54 +121,10 @@ class Board extends React.Component {
     return [delta, false];
   }
 
-  onGuess() {
-    // sanitise
-    let lastGuess = this.state.currentGuess.toLowerCase();
-    lastGuess = toTitleCase(lastGuess).trim();
-    if (!(lastGuess in stats)) {
-      console.log('Invalid guess.');
-      this.setState({
-        currentGuess: '',
-      });
-      return;
+  resetOnEnter(event) {
+    if (event.keyCode === 13 && this.state.gameOver) {
+      this.setState(startState());
     }
-    let delta; let win; let
-      noMoreGuesses;
-    [delta, win] = this.calculateCorrectness(lastGuess);
-    if (this.state.guesses.length > maxGuesses - 2) {
-      noMoreGuesses = true;
-    }
-    const gameOver = noMoreGuesses || win;
-    console.log(`Game over? ${gameOver}`);
-    this.setState(
-      {
-        numRows: this.state.numRows + 1,
-        currentGuess: '',
-        guesses: this.state.guesses.concat(lastGuess),
-        lastGuess,
-        guessDeltas: this.state.guessDeltas.concat([delta]),
-        gameOver,
-        gameState: win,
-      },
-      () => {
-        console.log(`Guessed ${lastGuess}`);
-        console.log(`Guesses: ${this.state.guesses.toString()}`);
-        console.log(`Guesse deltas: ${this.state.guessDeltas.toString()}`);
-        if (noMoreGuesses && !win) {
-          this.setState({
-            guesses: this.state.guesses.concat(this.state.answer),
-            guessDeltas: this.state.guessDeltas.concat([
-              this.calculateCorrectness(this.state.answer)[0],
-            ]),
-          });
-        }
-      },
-    );
-  }
-
-  onChange(evt) {
-    const input = evt.target.value;
-    this.setState({ currentGuess: input });
   }
 
   render() {
