@@ -18,6 +18,7 @@ function startState(defaultAns) {
     guesses: [],
     guessDeltas: [],
     gameOver: false,
+    gameState: false,
   };
 }
 const toTitleCase = (phrase) => phrase
@@ -142,10 +143,8 @@ class Board extends React.Component {
         <div className="control">
           <div className={gameOver ? '' : 'hide'}>
             <GameState
-              props={{
-                answer,
-                gameState,
-              }}
+              answer={answer}
+              gameState={gameState}
             />
             <button
               type="submit"
@@ -173,10 +172,8 @@ class Board extends React.Component {
           </form>
         </div>
         <Grid
-          values={{
-            guessDeltas,
-            guesses,
-          }}
+          guessDeltas={guessDeltas}
+          guesses={guesses}
         />
       </div>
     );
@@ -231,10 +228,7 @@ GameState.propTypes = { answer: string.isRequired, gameState: bool.isRequired };
 
 function Grid(props) {
   const rows = [];
-  let { guessDeltas, guesses } = props;
-  // Empty arrays end up undefined after destructuring
-  guessDeltas = guessDeltas || [];
-  guesses = guesses || [];
+  const { guessDeltas, guesses } = props;
   console.log(guessDeltas);
   rows.push(
     <Row
@@ -270,7 +264,7 @@ function Row(props) {
   );
 }
 Row.propTypes = {
-  guess: arrayOf(string).isRequired,
+  guess: string.isRequired,
   values: arrayOf(string).isRequired,
 };
 
