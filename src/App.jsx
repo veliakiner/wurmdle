@@ -1,4 +1,5 @@
 import React from 'react';
+import { string, bool, arrayOf } from 'prop-types';
 import './App.css';
 import FadeIn from 'react-fade-in';
 
@@ -161,7 +162,9 @@ class Board extends React.Component {
               evt.preventDefault();
             }}
           >
-            <button type="submit" onClick={() => this.onGuess(this.state)}>Guess</button>
+            <button type="submit" onClick={() => this.onGuess(this.state)}>
+              Guess
+            </button>
             <input
               placeholder="Graveler, Pikachu, etc.."
               onChange={(e) => this.onChange(e)}
@@ -221,12 +224,10 @@ function GameState(props) {
   } else {
     endgameString += 'Sorry you have lost the game :(.';
   }
-  endgameString
-    += ` The answer was ${
-      answer
-    }. Type enter to start a new game!`;
+  endgameString += ` The answer was ${answer}. Type enter to start a new game!`;
   return <span className="game-over-msg">{endgameString}</span>;
 }
+GameState.propTypes = { answer: string.isRequired, gameState: bool.isRequired };
 
 function Grid(props) {
   const rows = [];
@@ -247,6 +248,10 @@ function Grid(props) {
   }
   return <div>{rows}</div>;
 }
+Grid.propTypes = {
+  guessDeltas: arrayOf(arrayOf(string)).isRequired,
+  guesses: arrayOf(arrayOf(string)).isRequired,
+};
 
 function Row(props) {
   const numSquares = 6;
@@ -264,6 +269,11 @@ function Row(props) {
     </FadeIn>
   );
 }
+Row.propTypes = {
+  guess: arrayOf(string).isRequired,
+  values: arrayOf(string).isRequired,
+};
+
 function Square(props) {
   let { value } = props;
   const sign = value.slice(-1);
@@ -280,6 +290,8 @@ function Square(props) {
     </button>
   );
 }
+Square.propTypes = { value: string.isRequired };
+
 function App() {
   return <Board />;
 }
