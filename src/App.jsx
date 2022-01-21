@@ -34,6 +34,8 @@ class Board extends React.Component {
   }
 
   componentDidMount() {
+    /* Don't fully understand why this works. I think it's creating a closure to
+    retain reference to the correct "this" */
     this.resetOnEnterWrapped = (evt) => {
       this.resetOnEnter(evt);
     }; // hopefully guarantees that I'm removing the event listener...
