@@ -5,6 +5,9 @@ import FadeIn from 'react-fade-in';
 
 const stats = require('./gen3.json');
 
+console.log('No cheating!');
+console.log = process.env.NODE_ENV === 'development' ? console.log : () => {}; // implement better logging solution
+
 const maxGuesses = 5;
 const monsList = Object.keys(stats);
 function startState(defaultAns) {
@@ -26,8 +29,6 @@ const toTitleCase = (phrase) => phrase
   .split(' ')
   .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
   .join(' ');
-console.log('No cheating!');
-console.log = process.env.NODE_ENV === 'development' ? console.log : () => {}; // implement better logging solution
 class Board extends React.Component {
   constructor() {
     super();
