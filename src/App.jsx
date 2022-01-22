@@ -279,6 +279,9 @@ function Square(props) {
     value = value.slice(0, -1);
     buttonClass += classes[sign] || '';
   }
+  if (value === 'Wurmple') {
+    value = 'Wurmdle';
+  }
   return (
     <button type="button" className={buttonClass}>
       {value}
