@@ -12,7 +12,7 @@
   text-align: center;
   max-width: 50px;
   width: 50px;
-  vertical-align:inherit;
+  vertical-align: inherit;
 }
 .toolow {
   background: #c00;
@@ -48,46 +48,63 @@
   height: 50px;
   /* border: 3px solid green; */
   padding: 10px;
-  vertical-align:top;
+  vertical-align: top;
 }
-.control{
+.control {
   display: table;
   margin: auto;
   /* width: 100%; */
   padding: 10px;
 }
-.subtitle{
+.subtitle {
   display: table;
   margin: auto;
   width: 75%;
   padding: 10px;
   text-align: center;
 }
-.key{
+.key {
   display: table;
   margin: auto;
   padding: 10px;
   text-align: center;
 }
 
-.key-elem{
+.key-elem {
   margin: auto;
   padding-right: 5px;
   padding-bottom: 20px;
   text-align: left;
   line-height: 0;
-  vertical-align:center;
+  vertical-align: center;
 }
 
-.start-over{
+.start-over {
   margin: auto;
   /* width: 100%; */
   /* padding: 10px; */
 }
 .game-over-msg {
-  padding: 10px
+  padding: 10px;
 }
 
-.hide{
+.hide {
+  display: none;
+}
+.no-glow {
+  outline: none;
+}
+.glow {
+  background-color: #fff;
+  transition: box-shadow 0s ease-in-out;
+  box-shadow: 0px 0px 2px 3px #f00;
+  /* in order: x offset, y offset, blur size, spread size, color */
+  /* blur size and spread size are optional (they default to 0) */
+}
+/* .glow-fade {
+  background-color: #fff;
+  transition: box-shadow 0.3s ease-out;
+} */
+iframe {
   display: none;
 }

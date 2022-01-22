@@ -22,6 +22,7 @@ function startState(defaultAns) {
     guessDeltas: [],
     gameOver: false,
     gameWon: false,
+    glow: false,
   };
 }
 const toTitleCase = (phrase) => phrase
@@ -52,7 +53,7 @@ class Board extends React.Component {
 
   onChange(evt) {
     const input = evt.target.value;
-    this.setState({ currentGuess: input });
+    this.setState({ currentGuess: input, glow: false });
   }
 
   onGuess(state) {
@@ -63,10 +64,15 @@ class Board extends React.Component {
     let lastGuess = currentGuess.toLowerCase();
     lastGuess = toTitleCase(lastGuess).trim();
     if (!(lastGuess in stats)) {
-      console.log('Invalid guess.');
-      this.setState({
-        currentGuess: '',
-      });
+      this.setState(
+        {
+          currentGuess: '',
+        },
+        () => {
+          this.setState({ glow: true });
+          console.log('Invalid guess - do something here.');
+        },
+      );
       return;
     }
     let noMoreGuesses;
@@ -136,17 +142,14 @@ class Board extends React.Component {
 
   render() {
     const {
-      gameOver, gameWon, answer, currentGuess, guesses, guessDeltas,
+      gameOver, gameWon, answer, currentGuess, guesses, guessDeltas, glow,
     } = this.state;
     return (
       <div>
         <Instructions />
         <div className="control">
           <div className={gameOver ? '' : 'hide'}>
-            <GameState
-              answer={answer}
-              gameWon={gameWon}
-            />
+            <GameState answer={answer} gameWon={gameWon} />
             <button
               type="submit"
               className="start-over"
@@ -165,17 +168,16 @@ class Board extends React.Component {
             <button type="submit" onClick={() => this.onGuess(this.state)}>
               Guess
             </button>
+
             <input
+              className={glow ? 'glow' : 'no-glow'}
               placeholder="Graveler, Pikachu, etc.."
               onChange={(e) => this.onChange(e)}
               value={currentGuess}
             />
           </form>
         </div>
-        <Grid
-          guessDeltas={guessDeltas}
-          guesses={guesses}
-        />
+        <Grid guessDeltas={guessDeltas} guesses={guesses} />
       </div>
     );
   }
