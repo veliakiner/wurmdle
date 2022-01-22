@@ -104,3 +104,7 @@
 iframe {
   display: none;
 }
+
+* {
+  outline: none;
+}
