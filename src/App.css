@@ -91,3 +91,13 @@
 .hide{
   display: none;
 }
+.glow {
+  background-color: #fff;
+  transition: box-shadow 0.3s ease-in-out;
+  box-shadow: 0px 0px 5px 5px #f00;
+  /* in order: x offset, y offset, blur size, spread size, color */
+  /* blur size and spread size are optional (they default to 0) */
+}
+iframe {
+  display: none;
+}

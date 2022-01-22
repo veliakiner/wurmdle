@@ -22,6 +22,7 @@ function startState(defaultAns) {
     guessDeltas: [],
     gameOver: false,
     gameWon: false,
+    glow: false,
   };
 }
 const toTitleCase = (phrase) => phrase
@@ -63,10 +64,15 @@ class Board extends React.Component {
     let lastGuess = currentGuess.toLowerCase();
     lastGuess = toTitleCase(lastGuess).trim();
     if (!(lastGuess in stats)) {
-      console.log('Invalid guess.');
-      this.setState({
-        currentGuess: '',
-      });
+      this.setState(
+        {
+          currentGuess: '',
+        },
+        () => {
+          this.setState({glow: true})
+          console.log('Invalid guess - do something here.');
+        },
+      );
       return;
     }
     let noMoreGuesses;
@@ -143,10 +149,7 @@ class Board extends React.Component {
         <Instructions />
         <div className="control">
           <div className={gameOver ? '' : 'hide'}>
-            <GameState
-              answer={answer}
-              gameWon={gameWon}
-            />
+            <GameState answer={answer} gameWon={gameWon} />
             <button
               type="submit"
               className="start-over"
@@ -165,22 +168,25 @@ class Board extends React.Component {
             <button type="submit" onClick={() => this.onGuess(this.state)}>
               Guess
             </button>
-            <input
-              placeholder="Graveler, Pikachu, etc.."
-              onChange={(e) => this.onChange(e)}
-              value={currentGuess}
-            />
+            <UserInput boardRef={this} currentGuess={currentGuess} glow={this.state.glow} />
           </form>
         </div>
-        <Grid
-          guessDeltas={guessDeltas}
-          guesses={guesses}
-        />
+        <Grid guessDeltas={guessDeltas} guesses={guesses} />
       </div>
     );
   }
 }
-
+function UserInput(props) {
+  const { boardRef, currentGuess, glow } = props;
+  return (
+    <input
+      className={glow ? 'glow' : 'none'}
+      placeholder="Graveler, Pikachu, etc.."
+      onChange={(e) => boardRef.onChange(e)}
+      value={currentGuess}
+    />
+  );
+}
 function Instructions() {
   return (
     <div>
