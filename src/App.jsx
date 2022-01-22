@@ -1,12 +1,12 @@
-import React from 'react';
-import { string, bool, arrayOf } from 'prop-types';
-import './App.css';
-import FadeIn from 'react-fade-in';
+import React from "react";
+import { string, bool, arrayOf } from "prop-types";
+import "./App.css";
+import FadeIn from "react-fade-in";
 
-const stats = require('./gen3.json');
+const stats = require("./gen3.json");
 
-console.log('No cheating!');
-console.log = process.env.NODE_ENV === 'development' ? console.log : () => {}; // implement better logging solution
+console.log("No cheating!");
+console.log = process.env.NODE_ENV === "development" ? console.log : () => {}; // implement better logging solution
 
 const maxGuesses = 5;
 const monsList = Object.keys(stats);
@@ -16,8 +16,8 @@ function startState(defaultAns) {
   console.log(answer);
   return {
     answer,
-    currentGuess: '',
-    lastGuess: '',
+    currentGuess: "",
+    lastGuess: "",
     guesses: [],
     guessDeltas: [],
     gameOver: false,
@@ -25,11 +25,12 @@ function startState(defaultAns) {
     glow: false,
   };
 }
-const toTitleCase = (phrase) => phrase
-  .toLowerCase()
-  .split(' ')
-  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-  .join(' ');
+const toTitleCase = (phrase) =>
+  phrase
+    .toLowerCase()
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
 class Board extends React.Component {
   constructor() {
     super();
@@ -42,12 +43,12 @@ class Board extends React.Component {
     this.resetOnEnterWrapped = (evt) => {
       this.resetOnEnter(evt);
     }; // hopefully guarantees that I'm removing the event listener...
-    document.addEventListener('keydown', this.resetOnEnterWrapped, false);
+    document.addEventListener("keydown", this.resetOnEnterWrapped, false);
   }
 
   componentWillUnmount() {
     console.log(
-      document.removeEventListener('keydown', this.resetOnEnterWrapped, false),
+      document.removeEventListener("keydown", this.resetOnEnterWrapped, false)
     );
   }
 
@@ -58,20 +59,18 @@ class Board extends React.Component {
 
   onGuess(state) {
     // sanitise
-    const {
-      currentGuess, guesses, guessDeltas, answer,
-    } = state;
+    const { currentGuess, guesses, guessDeltas, answer } = state;
     let lastGuess = currentGuess.toLowerCase();
     lastGuess = toTitleCase(lastGuess).trim();
     if (!(lastGuess in stats)) {
       this.setState(
         {
-          currentGuess: '',
+          currentGuess: "",
         },
         () => {
-          this.setState({glow: true})
-          console.log('Invalid guess - do something here.');
-        },
+          this.setState({ glow: true });
+          console.log("Invalid guess - do something here.");
+        }
       );
       return;
     }
@@ -84,7 +83,7 @@ class Board extends React.Component {
     console.log(`Game over? ${gameOver}`);
     this.setState(
       {
-        currentGuess: '',
+        currentGuess: "",
         guesses: guesses.concat(lastGuess),
         guessDeltas: guessDeltas.concat([delta]),
         gameOver,
@@ -102,7 +101,7 @@ class Board extends React.Component {
             ]),
           });
         }
-      },
+      }
     );
   }
 
@@ -124,10 +123,10 @@ class Board extends React.Component {
       }
     }
     console.log(delta.toString());
-    console.log('Incorrect. Try again');
+    console.log("Incorrect. Try again");
 
     if (lastGuess === answer) {
-      console.log('Correct!');
+      console.log("Correct!");
       return [delta, true];
     }
     return [delta, false];
@@ -141,14 +140,13 @@ class Board extends React.Component {
   }
 
   render() {
-    const {
-      gameOver, gameWon, answer, currentGuess, guesses, guessDeltas,
-    } = this.state;
+    const { gameOver, gameWon, answer, currentGuess, guesses, guessDeltas } =
+      this.state;
     return (
       <div>
         <Instructions />
         <div className="control">
-          <div className={gameOver ? '' : 'hide'}>
+          <div className={gameOver ? "" : "hide"}>
             <GameState answer={answer} gameWon={gameWon} />
             <button
               type="submit"
@@ -160,7 +158,7 @@ class Board extends React.Component {
           </div>
 
           <form
-            className={gameOver ? 'hide' : ''}
+            className={gameOver ? "hide" : ""}
             onSubmit={(evt) => {
               evt.preventDefault();
             }}
@@ -168,7 +166,13 @@ class Board extends React.Component {
             <button type="submit" onClick={() => this.onGuess(this.state)}>
               Guess
             </button>
-            <UserInput boardRef={this} currentGuess={currentGuess} glow={this.state.glow} />
+
+            <input
+              className={this.state.glow ? "glow" : "none"}
+              placeholder="Graveler, Pikachu, etc.."
+              onChange={(e) => this.onChange(e)}
+              value={currentGuess}
+            />
           </form>
         </div>
         <Grid guessDeltas={guessDeltas} guesses={guesses} />
@@ -180,7 +184,7 @@ function UserInput(props) {
   const { boardRef, currentGuess, glow } = props;
   return (
     <input
-      className={glow ? 'glow' : 'none'}
+      className={glow ? "glow" : "none"}
       placeholder="Graveler, Pikachu, etc.."
       onChange={(e) => boardRef.onChange(e)}
       value={currentGuess}
@@ -198,19 +202,13 @@ function Instructions() {
         <div className="key-elem">Key:</div>
         <div className="keys">
           <span className="key-elem">
-            <Square key="toolow" value="0-" />
-            {' '}
-            Too low
+            <Square key="toolow" value="0-" /> Too low
           </span>
           <span className="key-elem">
-            <Square key="toohigh" value="999+" />
-            {' '}
-            Too high
+            <Square key="toohigh" value="999+" /> Too high
           </span>
           <span className="key-elem">
-            <Square key="correct" value="100=" />
-            {' '}
-            Correct
+            <Square key="correct" value="100=" /> Correct
           </span>
         </div>
       </div>
@@ -220,12 +218,12 @@ function Instructions() {
 
 function GameState(props) {
   console.log(JSON.stringify(props));
-  let endgameString = '';
+  let endgameString = "";
   const { answer, gameWon } = props;
   if (gameWon) {
-    endgameString += 'Game over - you won!';
+    endgameString += "Game over - you won!";
   } else {
-    endgameString += 'Sorry you have lost the game :(.';
+    endgameString += "Sorry you have lost the game :(.";
   }
   endgameString += ` The answer was ${answer}. Type enter to start a new game!`;
   return <span className="game-over-msg">{endgameString}</span>;
@@ -239,9 +237,9 @@ function Grid(props) {
   rows.push(
     <Row
       key={-1}
-      values={['HP', 'ATK', 'DEF', 'SPA', 'SPD', 'SPE']}
+      values={["HP", "ATK", "DEF", "SPA", "SPD", "SPE"]}
       guess="Guess"
-    />,
+    />
   );
   for (let i = 0; i < guessDeltas.length; i += 1) {
     rows.push(<Row key={i} values={guessDeltas[i]} guess={guesses[i]} />);
@@ -277,16 +275,15 @@ Row.propTypes = {
 function Square(props) {
   let { value } = props;
   const sign = value.slice(-1);
-  const classes = { '-': ' toolow', '+': ' toohigh', '=': ' correct' };
-  let buttonClass = 'square';
-  if ('=-+'.includes(sign)) {
+  const classes = { "-": " toolow", "+": " toohigh", "=": " correct" };
+  let buttonClass = "square";
+  if ("=-+".includes(sign)) {
     value = value.slice(0, -1);
-    buttonClass += classes[sign] || '';
+    buttonClass += classes[sign] || "";
   }
   return (
     <button type="button" className={buttonClass}>
-      {value}
-      {' '}
+      {value}{" "}
     </button>
   );
 }
