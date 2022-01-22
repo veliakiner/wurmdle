@@ -54,7 +54,7 @@ class Board extends React.Component {
 
   onChange(evt) {
     const input = evt.target.value;
-    this.setState({ currentGuess: input });
+    this.setState({ currentGuess: input, glow: false });
   }
 
   onGuess(state) {
@@ -68,8 +68,14 @@ class Board extends React.Component {
           currentGuess: "",
         },
         () => {
-          this.setState({ glow: true });
-          console.log("Invalid guess - do something here.");
+          if (this.state.glow ) {
+            console.log("Set false")
+            this.setState({ glow: false });
+          } else {
+            console.log("Set true")
+            this.setState({ glow: true });
+          }
+          console.log("Invalid guess - do something here." + this.glow);
         }
       );
       return;
@@ -168,7 +174,7 @@ class Board extends React.Component {
             </button>
 
             <input
-              className={this.state.glow ? "glow" : "none"}
+              className={this.state.glow ? "glow" : "no-glow"}
               placeholder="Graveler, Pikachu, etc.."
               onChange={(e) => this.onChange(e)}
               value={currentGuess}
