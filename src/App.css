@@ -98,13 +98,13 @@
   background-color: #fff;
   transition: box-shadow 0s ease-in-out;
   box-shadow: 0px 0px 2px 3px #f00;
-  /* in order: x offset, y offset, blur size, spread size, color */
-  /* blur size and spread size are optional (they default to 0) */
 }
-/* .glow-fade {
-  background-color: #fff;
-  transition: box-shadow 0.3s ease-out;
-} */
+/*Temporary solution to hiding  errorview in development.*/
+
 iframe {
   display: none;
+}
+
+* {
+  outline: none;
 }
