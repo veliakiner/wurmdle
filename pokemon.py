@@ -5,6 +5,8 @@ from dataclasses import dataclass, asdict
 
 from typing import List
 
+from distutils.util import strtobool
+
 
 @dataclass
 class Stats:
@@ -58,7 +60,7 @@ if __name__ == "__main__":
                 int(total),
                 Stats(*map(int, (hp, attack, defense, sp_attack, sp_defense, speed))),
                 int(generation),
-                bool(legendary),
+                bool(strtobool(legendary)),
             )
             formes_to_ignore = "Gigantamax", "Mega"
             if any(f in pokemon.name.split(" ") for f in formes_to_ignore):
