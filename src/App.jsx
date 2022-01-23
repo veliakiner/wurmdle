@@ -2,8 +2,9 @@ import React from 'react';
 import { string, bool, arrayOf } from 'prop-types';
 import './App.css';
 import FadeIn from 'react-fade-in';
+import genData from './PokemonData';
 
-const stats = require('./gen3.json');
+const stats = genData([1, 2, 3]);
 
 console.log('No cheating!');
 console.log = process.env.NODE_ENV === 'development' ? console.log : () => {}; // implement better logging solution
@@ -110,9 +111,13 @@ class Board extends React.Component {
     const { answer } = this.state;
     console.log(lastGuess);
     console.log(answer);
-    const guessStats = stats[lastGuess].slice(3);
-    const ansStats = stats[answer].slice(3);
+    let guessStats = stats[lastGuess].stats;
+    let ansStats = stats[answer].stats;
     const delta = [];
+    // TODO: Refactor into function to test, and make less shit
+    guessStats = Object.values(guessStats)
+    ansStats = Object.values(ansStats)
+    console.log(guessStats)
     for (let i = 0; i < guessStats.length; i += 1) {
       const diff = ansStats[i] - guessStats[i];
       if (diff > 0) {
