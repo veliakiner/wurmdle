@@ -1,4 +1,4 @@
-import allData from "./allGens.json";
+import allData from './allGens.json';
 
 function genData(genList) {
   let requiredData = {};
