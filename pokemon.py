@@ -1,22 +1,76 @@
-import json
 import csv
+import json
 from collections import defaultdict
-with open('Pokemon.csv', newline='') as csvfile:
-     reader = csv.reader(csvfile, delimiter=',', quotechar='|')
-     json_dump = {}
-     next(reader)
-     for row in reader:
-          number, name, type1, type2, total, hp, attack, defense, sp_attack, sp_defense, speed, generation, legendary = row
-          formes_to_ignore = "Gigantamax", "Mega"
-          if (any(f in name.split(" ") for f in formes_to_ignore)):
-               continue
-          type1, type2 = sorted((type1, type2))
-          if int(generation) > 3:
-               continue
-          json_dump[name] = [generation, type1, type2, hp, attack, defense, sp_attack, sp_defense, speed]
-          # if len(json_dump.keys()) > 10:
-          #      break
-     with open("src/pokemon.json", "w") as f:
-          f.write(json.dumps(json_dump))
+from dataclasses import dataclass, asdict
+
+from typing import List
+
+from distutils.util import strtobool
 
 
+@dataclass
+class Stats:
+    hp: int
+    attack: int
+    defense: int
+    sp_attack: int
+    sp_defense: int
+    speed: int
+
+
+@dataclass
+class Pokemon:
+    # Reflects the ordering from the original CSV file.
+    number: int
+    name: str
+    types: List[str]
+    total: int
+    stats: Stats
+    generation: int
+    legendary: bool
+    # 0/1/2 are basic/stage 1/stage 2
+    # -1 is baby of basic
+    stage: int
+
+
+if __name__ == "__main__":
+    with open("Pokemon.csv", newline="") as csvfile:
+        reader = csv.reader(csvfile, delimiter=",", quotechar="|")
+        all_gens = defaultdict(dict)
+        next(reader)
+        for row in reader:
+            (
+                number,
+                name,
+                type1,
+                type2,
+                total,
+                hp,
+                attack,
+                defense,
+                sp_attack,
+                sp_defense,
+                speed,
+                generation,
+                legendary,
+                evo_stage
+            ) = row
+            # Nobody cares if Armaldo is Rock/Bug rather than Bug/Rock.
+            types = sorted([t for t in (type1, type2) if t != ""])
+            pokemon = Pokemon(
+                int(number),
+                name,
+                types,
+                int(total),
+                Stats(*map(int, (hp, attack, defense, sp_attack, sp_defense, speed))),
+                int(generation),
+                bool(strtobool(legendary)),
+                int(evo_stage) if evo_stage else None
+            )
+            formes_to_ignore = "Gigantamax", "Mega"
+            if any(f in pokemon.name.split(" ") for f in formes_to_ignore):
+                continue
+
+            all_gens[pokemon.generation][pokemon.name] = asdict(pokemon)
+        with open("src/allGens.json", "w") as f:
+            f.write(json.dumps(all_gens, indent=4))
