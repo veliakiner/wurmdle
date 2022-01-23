@@ -249,7 +249,7 @@ function Grid(props) {
 }
 Grid.propTypes = {
   guessDeltas: arrayOf(arrayOf(string)).isRequired,
-  guesses: arrayOf(arrayOf(string)).isRequired,
+  guesses: arrayOf(string).isRequired,
 };
 
 function Row(props) {
