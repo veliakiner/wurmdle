@@ -3,6 +3,8 @@ import json
 from collections import defaultdict
 from dataclasses import dataclass, asdict
 
+from typing import List
+
 
 @dataclass
 class Stats:
@@ -19,8 +21,7 @@ class Pokemon:
     # Reflects the ordering from the original CSV file.
     number: int
     name: str
-    type1: str
-    type2: str
+    types: List[str]
     total: int
     stats: Stats
     generation: int
@@ -49,12 +50,11 @@ if __name__ == "__main__":
                 legendary,
             ) = row
             # Nobody cares if Armaldo is Rock/Bug rather than Bug/Rock.
-            type1, type2 = sorted((type1, type2))
+            types = sorted([t for t in (type1, type2) if t != ""])
             pokemon = Pokemon(
                 int(number),
                 name,
-                type1,
-                type2,
+                types,
                 int(total),
                 Stats(*map(int, (hp, attack, defense, sp_attack, sp_defense, speed))),
                 int(generation),
