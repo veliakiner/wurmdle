@@ -3,6 +3,7 @@ import { string, bool, arrayOf } from 'prop-types';
 import './App.css';
 import FadeIn from 'react-fade-in';
 import genData from './PokemonData';
+import ReactSlider from 'react-slider';
 
 const stats = genData([1, 2, 3]);
 
@@ -161,6 +162,7 @@ class Board extends React.Component {
               Start over
             </button>
           </div>
+          <SelectGens></SelectGens>
 
           <form
             className={gameOver ? 'hide' : ''}
@@ -293,6 +295,24 @@ function Square(props) {
   );
 }
 Square.propTypes = { value: string.isRequired };
+
+
+function SelectGens() {
+  return <ReactSlider
+  className="horizontal-slider"
+  thumbClassName="example-thumb"
+  trackClassName="example-track"
+  defaultValue={[1,3]}
+  ariaLabel={['Lower thumb', 'Upper thumb']}
+  ariaValuetext={state => `Thumb value ${state.valueNow}`}
+  renderThumb={(props, state) => <div {...props}>{state.valueNow - state.index}</div>}
+  pearling
+  minDistance={1}
+  min={1}
+  max={9}
+  marks
+/>
+}
 
 function App() {
   return <Board />;
