@@ -1,10 +1,10 @@
-import allData from './allGens.json';
+import allData from "./allGens.json";
 
 function genData(genList) {
   let requiredData = {};
-  for (const gen of genList) {
+  genList.forEach((gen) => {
     requiredData = { ...requiredData, ...allData[gen] };
-  }
+  });
   return requiredData;
 }
 

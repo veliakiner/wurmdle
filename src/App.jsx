@@ -110,14 +110,12 @@ class Board extends React.Component {
   calculateCorrectness(lastGuess) {
     const { answer } = this.state;
     console.log(lastGuess);
-    console.log(answer);
     let guessStats = stats[lastGuess].stats;
     let ansStats = stats[answer].stats;
     const delta = [];
     // TODO: Refactor into function to test, and make less shit
-    guessStats = Object.values(guessStats)
-    ansStats = Object.values(ansStats)
-    console.log(guessStats)
+    guessStats = Object.values(guessStats);
+    ansStats = Object.values(ansStats);
     for (let i = 0; i < guessStats.length; i += 1) {
       const diff = ansStats[i] - guessStats[i];
       if (diff > 0) {
