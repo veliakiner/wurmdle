@@ -28,6 +28,9 @@ class Pokemon:
     stats: Stats
     generation: int
     legendary: bool
+    # 0/1/2 are basic/stage 1/stage 2
+    # -1 is baby of basic
+    stage: int
 
 
 if __name__ == "__main__":
@@ -50,6 +53,7 @@ if __name__ == "__main__":
                 speed,
                 generation,
                 legendary,
+                evo_stage
             ) = row
             # Nobody cares if Armaldo is Rock/Bug rather than Bug/Rock.
             types = sorted([t for t in (type1, type2) if t != ""])
@@ -61,6 +65,7 @@ if __name__ == "__main__":
                 Stats(*map(int, (hp, attack, defense, sp_attack, sp_defense, speed))),
                 int(generation),
                 bool(strtobool(legendary)),
+                int(evo_stage) if evo_stage else None
             )
             formes_to_ignore = "Gigantamax", "Mega"
             if any(f in pokemon.name.split(" ") for f in formes_to_ignore):
@@ -68,4 +73,4 @@ if __name__ == "__main__":
 
             all_gens[pokemon.generation][pokemon.name] = asdict(pokemon)
         with open("src/allGens.json", "w") as f:
-            f.write(json.dumps(all_gens, indent=4, sort_keys=True))
+            f.write(json.dumps(all_gens, indent=4))
