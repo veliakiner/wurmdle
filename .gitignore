@@ -24,3 +24,4 @@ yarn-error.log*
 .idea/
 .~lock.Pokemon.csv#
 TODO
+__pycache__
