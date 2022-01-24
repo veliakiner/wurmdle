@@ -144,6 +144,12 @@ iframe {
   border: 2px solid #96dbfa;
   background-color: #fff;
   touch-action: pan-x;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 .example-track.example-track-1 {
   background: #abe2fb none repeat scroll 0% 0%;

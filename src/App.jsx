@@ -185,6 +185,11 @@ class Board extends React.Component {
       <div>
         <Instructions />
         <div className="control">
+            <SelectGens
+              boardRef={this}
+              genRange={genRange}
+              gameStarted={guesses.length > 0 && !gameOver}
+            />
           <div className={gameOver ? '' : 'hide'}>
             <GameState answer={answer} gameWon={gameWon} />
             <button
@@ -195,11 +200,6 @@ class Board extends React.Component {
               Start over
             </button>
           </div>
-          <SelectGens
-            boardRef={this}
-            genRange={genRange}
-            gameStarted={guesses.length > 0 && !gameOver}
-          />
 
           <form
             className={gameOver ? 'hide' : ''}
