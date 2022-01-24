@@ -1,12 +1,11 @@
 import React from 'react';
-import {
+import propTypes, {
   string, bool, arrayOf, number,
 } from 'prop-types';
 import './App.css';
 import FadeIn from 'react-fade-in';
 import ReactSlider from 'react-slider';
 import genData from './PokemonData';
-import propTypes from 'prop-types';
 
 function getGens(genRange) {
   const [minGen, maxGen] = genRange;
@@ -81,8 +80,11 @@ class Board extends React.Component {
   constructor() {
     super();
     this.state = startState();
-    this.state.genRange = defaultGenRange;
-    this.state.monsList = getMonsList(this.state.genRange);
+    const rawGenRange = localStorage.getItem('gens');
+    const genRange = rawGenRange ? rawGenRange.split(',').map((x) => parseInt(x, 10)) : defaultGenRange;
+    this.state.monsList = getMonsList(genRange);
+    this.state.genRange = genRange;
+    localStorage.setItem('gens', genRange);
   }
 
   componentDidMount() {
@@ -185,11 +187,11 @@ class Board extends React.Component {
       <div>
         <Instructions />
         <div className="control">
-            <SelectGens
-              boardRef={this}
-              genRange={genRange}
-              gameStarted={guesses.length > 0 && !gameOver}
-            />
+          <SelectGens
+            boardRef={this}
+            genRange={genRange}
+            gameStarted={guesses.length > 0 && !gameOver}
+          />
           <div className={gameOver ? '' : 'hide'}>
             <GameState answer={answer} gameWon={gameWon} />
             <button
@@ -333,6 +335,15 @@ function Square(props) {
 }
 Square.propTypes = { value: string.isRequired };
 
+function setSliderState(values, boardRef) {
+  const genRange = [values[0], values[1] - 1];
+  boardRef.setState({
+    genRange,
+    monsList: getMonsList(genRange),
+  });
+  localStorage.setItem('gens', genRange);
+}
+
 function SelectGens(props) {
   const { boardRef, genRange, gameStarted } = props;
   console.log(gameStarted);
@@ -350,10 +361,7 @@ function SelectGens(props) {
       )}
       pearling
       onAfterChange={(values) => {
-        boardRef.setState({
-          genRange: [values[0], values[1] - 1],
-          monsList: getMonsList([values[0], values[1] - 1]),
-        });
+        setSliderState(values, boardRef);
       }}
       minDistance={1}
       min={1}
