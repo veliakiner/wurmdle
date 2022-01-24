@@ -18,6 +18,8 @@
         "react"
     ],
     "rules": {
-        "no-console": "off"
+        "no-console": "off",
+        "react/jsx-props-no-spreading": "off",
+        "react/forbid-prop-types": "off" // TODO: remove need for this
     }
 }
