@@ -5,27 +5,32 @@ import FadeIn from 'react-fade-in';
 import ReactSlider from 'react-slider';
 import genData from './PokemonData';
 
-const stats = genData([1, 2, 3]);
-const defaultGenRange = [1, 3];
 function getGens(genRange) {
-  let [minGen, maxGen] = genRange
-  let gens = []
-  for (let i = minGen; i < maxGen; i++) {
-    gens.push(i)
+  const [minGen, maxGen] = genRange;
+  const gens = [];
+  for (let i = minGen; i <= maxGen; i++) {
+    gens.push(i);
   }
-  return gens
+  return gens;
 }
+
+const stats = genData(getGens([1, 8]));
+const defaultGenRange = [1, 3];
+
+function getMonsList(genRange) {
+  console.log('Getting list for gens ', genRange);
+  const gens = getGens(genRange);
+  const stats = genData(gens); // can just filter stats by gens or something
+  return Object.keys(stats);
+}
+
 console.log('No cheating!');
 console.log = process.env.NODE_ENV === 'development' ? console.log : () => {}; // implement better logging solution
 
 const maxGuesses = 5;
-const monsList = Object.keys(stats);
-function startState(defaultAns) {
-  const monsIndex = Math.round(Math.random() * monsList.length);
-  const answer = defaultAns || monsList[monsIndex];
-  console.log(answer);
+function startState() {
   return {
-    answer,
+    answer: '',
     currentGuess: '',
     lastGuess: '',
     guesses: [],
@@ -33,7 +38,6 @@ function startState(defaultAns) {
     gameOver: false,
     gameWon: false,
     glow: false,
-    genRange: defaultGenRange,
   };
 }
 const toTitleCase = (phrase) => phrase
@@ -45,6 +49,8 @@ class Board extends React.Component {
   constructor() {
     super();
     this.state = startState();
+    this.state.monsList = getMonsList(defaultGenRange);
+    this.state.genRange = defaultGenRange;
   }
 
   componentDidMount() {
@@ -69,12 +75,16 @@ class Board extends React.Component {
 
   onGuess(state) {
     // sanitise
-    const {
-      currentGuess, guesses, guessDeltas, answer,
+    let {
+      currentGuess, guesses, guessDeltas, answer, monsList,
     } = state;
+    if (answer === '') {
+      const monsIndex = Math.round(Math.random() * monsList.length);
+      answer = monsList[monsIndex];
+    }
     let lastGuess = currentGuess.toLowerCase();
     lastGuess = toTitleCase(lastGuess).trim();
-    if (!(lastGuess in stats)) {
+    if (!(monsList.includes(lastGuess))) {
       this.setState(
         {
           currentGuess: '',
@@ -87,7 +97,7 @@ class Board extends React.Component {
       return;
     }
     let noMoreGuesses;
-    const [delta, win] = this.calculateCorrectness(lastGuess);
+    const [delta, win] = this.calculateCorrectness(lastGuess, answer);
     if (guesses.length > maxGuesses - 2) {
       noMoreGuesses = true;
     }
@@ -100,6 +110,7 @@ class Board extends React.Component {
         guessDeltas: guessDeltas.concat([delta]),
         gameOver,
         gameWon: win,
+        answer,
       },
       () => {
         console.log(`Guessed ${lastGuess}`);
@@ -109,7 +120,7 @@ class Board extends React.Component {
           this.setState({
             guesses: guesses.concat(answer),
             guessDeltas: guessDeltas.concat([
-              this.calculateCorrectness(answer)[0],
+              this.calculateCorrectness(answer, answer)[0],
             ]),
           });
         }
@@ -117,8 +128,7 @@ class Board extends React.Component {
     );
   }
 
-  calculateCorrectness(lastGuess) {
-    const { answer } = this.state;
+  calculateCorrectness(lastGuess, answer) {
     console.log(lastGuess);
     let guessStats = stats[lastGuess].stats;
     let ansStats = stats[answer].stats;
@@ -155,10 +165,17 @@ class Board extends React.Component {
 
   render() {
     const {
-      gameOver, gameWon, answer, currentGuess, guesses, guessDeltas, glow, genRange,
+      gameOver,
+      gameWon,
+      answer,
+      currentGuess,
+      guesses,
+      guessDeltas,
+      glow,
+      genRange,
     } = this.state;
-    
-    console.log("Guesses: ", guesses)
+
+    console.log('Guesses: ', guesses);
     return (
       <div>
         <Instructions />
@@ -173,7 +190,11 @@ class Board extends React.Component {
               Start over
             </button>
           </div>
-          <SelectGens boardRef={this} genRange={genRange} gameStarted={guesses.length > 0 && ! gameOver} />
+          <SelectGens
+            boardRef={this}
+            genRange={genRange}
+            gameStarted={guesses.length > 0 && !gameOver}
+          />
 
           <form
             className={gameOver ? 'hide' : ''}
@@ -204,7 +225,8 @@ function Instructions() {
     <div>
       <div className="subtitle">
         Welcome to Wurmdle! Try to guess the Pokemon based on its base stats!
-        You have five guesses. Adjust the slider to change which generations to play with.
+        You have five guesses. Adjust the slider to change which generations to
+        play with.
       </div>
       <div className="key">
         <div className="key-elem">Key:</div>
@@ -309,7 +331,7 @@ Square.propTypes = { value: string.isRequired };
 
 function SelectGens(props) {
   const { boardRef, genRange, gameStarted } = props;
-  console.log(gameStarted)
+  console.log(gameStarted);
   return (
     <ReactSlider
       disabled={gameStarted}
@@ -319,9 +341,13 @@ function SelectGens(props) {
       defaultValue={[genRange[0], genRange[1] + 1]}
       ariaLabel={['Lower thumb', 'Upper thumb']}
       ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
-      renderThumb={(props, state) => <div {...props}>{state.valueNow - state.index}</div>}
+      renderThumb={(props, state) => (
+        <div {...props}>{state.valueNow - state.index}</div>
+      )}
       pearling
-      onAfterChange={(values) => { boardRef.setState({ genRange: [values[0], values[1] - 1] }); }}
+      onAfterChange={(values) => {
+        boardRef.setState({ genRange: [values[0], values[1] - 1], monsList: getMonsList([values[0], values[1] - 1]) });
+      }}
       minDistance={1}
       min={1}
       max={9}
