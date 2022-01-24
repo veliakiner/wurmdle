@@ -6,7 +6,7 @@ import ReactSlider from 'react-slider';
 import genData from './PokemonData';
 
 const stats = genData([1, 2, 3]);
-
+const defaultGenRange = [1, 3];
 console.log('No cheating!');
 console.log = process.env.NODE_ENV === 'development' ? console.log : () => {}; // implement better logging solution
 
@@ -25,6 +25,7 @@ function startState(defaultAns) {
     gameOver: false,
     gameWon: false,
     glow: false,
+    genRange: defaultGenRange,
   };
 }
 const toTitleCase = (phrase) => phrase
@@ -146,7 +147,7 @@ class Board extends React.Component {
 
   render() {
     const {
-      gameOver, gameWon, answer, currentGuess, guesses, guessDeltas, glow,
+      gameOver, gameWon, answer, currentGuess, guesses, guessDeltas, glow, genRange,
     } = this.state;
     return (
       <div>
@@ -162,7 +163,7 @@ class Board extends React.Component {
               Start over
             </button>
           </div>
-          <SelectGens />
+          <SelectGens boardRef={this} genRange={genRange} />
 
           <form
             className={gameOver ? 'hide' : ''}
@@ -296,17 +297,19 @@ function Square(props) {
 }
 Square.propTypes = { value: string.isRequired };
 
-function SelectGens() {
+function SelectGens(props) {
+  const { boardRef, genRange } = props;
   return (
     <ReactSlider
       className="horizontal-slider"
       thumbClassName="example-thumb"
       trackClassName="example-track"
-      defaultValue={[1, 3]}
+      defaultValue={[genRange[0], genRange[1] + 1]}
       ariaLabel={['Lower thumb', 'Upper thumb']}
       ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
       renderThumb={(props, state) => <div {...props}>{state.valueNow - state.index}</div>}
       pearling
+      onAfterChange={(values) => { boardRef.setState({ genRange: [values[0], values[1] - 1] }); }}
       minDistance={1}
       min={1}
       max={9}
