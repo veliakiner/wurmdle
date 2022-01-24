@@ -1,20 +1,23 @@
 import React from 'react';
-import { string, bool, arrayOf } from 'prop-types';
+import {
+  string, bool, arrayOf, number,
+} from 'prop-types';
 import './App.css';
 import FadeIn from 'react-fade-in';
 import ReactSlider from 'react-slider';
 import genData from './PokemonData';
+import propTypes from 'prop-types';
 
 function getGens(genRange) {
   const [minGen, maxGen] = genRange;
   const gens = [];
-  for (let i = minGen; i <= maxGen; i++) {
+  for (let i = minGen; i <= maxGen; i += 1) {
     gens.push(i);
   }
   return gens;
 }
 
-const stats = genData(getGens([1, 8]));
+const allStats = genData(getGens([1, 8]));
 const defaultGenRange = [1, 3];
 
 function getMonsList(genRange) {
@@ -45,12 +48,41 @@ const toTitleCase = (phrase) => phrase
   .split(' ')
   .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
   .join(' ');
+
+function calculateCorrectness(lastGuess, answer) {
+  console.log(lastGuess);
+  let guessStats = allStats[lastGuess].stats;
+  let ansStats = allStats[answer].stats;
+  const delta = [];
+  // TODO: Refactor into function to test, and make less shit
+  guessStats = Object.values(guessStats);
+  ansStats = Object.values(ansStats);
+  for (let i = 0; i < guessStats.length; i += 1) {
+    const diff = ansStats[i] - guessStats[i];
+    if (diff > 0) {
+      delta.push(`${guessStats[i]}-`);
+    } else if (diff < 0) {
+      delta.push(`${guessStats[i]}+`);
+    } else {
+      delta.push(`${guessStats[i]}=`);
+    }
+  }
+  console.log(delta.toString());
+  console.log('Incorrect. Try again');
+
+  if (lastGuess === answer) {
+    console.log('Correct!');
+    return [delta, true];
+  }
+  return [delta, false];
+}
+
 class Board extends React.Component {
   constructor() {
     super();
     this.state = startState();
-    this.state.monsList = getMonsList(defaultGenRange);
     this.state.genRange = defaultGenRange;
+    this.state.monsList = getMonsList(this.state.genRange);
   }
 
   componentDidMount() {
@@ -75,16 +107,17 @@ class Board extends React.Component {
 
   onGuess(state) {
     // sanitise
-    let {
-      currentGuess, guesses, guessDeltas, answer, monsList,
+    const {
+      currentGuess, guesses, guessDeltas, monsList,
     } = state;
+    let { answer } = state;
     if (answer === '') {
       const monsIndex = Math.round(Math.random() * monsList.length);
       answer = monsList[monsIndex];
     }
     let lastGuess = currentGuess.toLowerCase();
     lastGuess = toTitleCase(lastGuess).trim();
-    if (!(monsList.includes(lastGuess))) {
+    if (!monsList.includes(lastGuess)) {
       this.setState(
         {
           currentGuess: '',
@@ -97,7 +130,7 @@ class Board extends React.Component {
       return;
     }
     let noMoreGuesses;
-    const [delta, win] = this.calculateCorrectness(lastGuess, answer);
+    const [delta, win] = calculateCorrectness(lastGuess, answer);
     if (guesses.length > maxGuesses - 2) {
       noMoreGuesses = true;
     }
@@ -126,34 +159,6 @@ class Board extends React.Component {
         }
       },
     );
-  }
-
-  calculateCorrectness(lastGuess, answer) {
-    console.log(lastGuess);
-    let guessStats = stats[lastGuess].stats;
-    let ansStats = stats[answer].stats;
-    const delta = [];
-    // TODO: Refactor into function to test, and make less shit
-    guessStats = Object.values(guessStats);
-    ansStats = Object.values(ansStats);
-    for (let i = 0; i < guessStats.length; i += 1) {
-      const diff = ansStats[i] - guessStats[i];
-      if (diff > 0) {
-        delta.push(`${guessStats[i]}-`);
-      } else if (diff < 0) {
-        delta.push(`${guessStats[i]}+`);
-      } else {
-        delta.push(`${guessStats[i]}=`);
-      }
-    }
-    console.log(delta.toString());
-    console.log('Incorrect. Try again');
-
-    if (lastGuess === answer) {
-      console.log('Correct!');
-      return [delta, true];
-    }
-    return [delta, false];
   }
 
   resetOnEnter(event) {
@@ -219,7 +224,6 @@ class Board extends React.Component {
     );
   }
 }
-
 function Instructions() {
   return (
     <div>
@@ -341,12 +345,15 @@ function SelectGens(props) {
       defaultValue={[genRange[0], genRange[1] + 1]}
       ariaLabel={['Lower thumb', 'Upper thumb']}
       ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
-      renderThumb={(props, state) => (
-        <div {...props}>{state.valueNow - state.index}</div>
+      renderThumb={(props2, state) => (
+        <div {...props2}>{state.valueNow - state.index}</div>
       )}
       pearling
       onAfterChange={(values) => {
-        boardRef.setState({ genRange: [values[0], values[1] - 1], monsList: getMonsList([values[0], values[1] - 1]) });
+        boardRef.setState({
+          genRange: [values[0], values[1] - 1],
+          monsList: getMonsList([values[0], values[1] - 1]),
+        });
       }}
       minDistance={1}
       min={1}
@@ -355,6 +362,11 @@ function SelectGens(props) {
     />
   );
 }
+SelectGens.propTypes = {
+  boardRef: propTypes.any.isRequired, // This suggests passing in a state object is frowned upon
+  genRange: arrayOf(number).isRequired,
+  gameStarted: bool.isRequired,
+};
 
 function App() {
   return <Board />;
