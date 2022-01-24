@@ -163,7 +163,7 @@ class Board extends React.Component {
               Start over
             </button>
           </div>
-          <SelectGens boardRef={this} genRange={genRange} />
+          <SelectGens boardRef={this} genRange={genRange} gameStarted={guesses.length > 0 && ! gameOver} />
 
           <form
             className={gameOver ? 'hide' : ''}
@@ -298,9 +298,11 @@ function Square(props) {
 Square.propTypes = { value: string.isRequired };
 
 function SelectGens(props) {
-  const { boardRef, genRange } = props;
+  const { boardRef, genRange, gameStarted } = props;
+  console.log(gameStarted)
   return (
     <ReactSlider
+      disabled={gameStarted}
       className="horizontal-slider"
       thumbClassName="example-thumb"
       trackClassName="example-track"
