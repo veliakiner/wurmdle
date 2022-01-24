@@ -7,6 +7,14 @@ import genData from './PokemonData';
 
 const stats = genData([1, 2, 3]);
 const defaultGenRange = [1, 3];
+function getGens(genRange) {
+  let [minGen, maxGen] = genRange
+  let gens = []
+  for (let i = minGen; i < maxGen; i++) {
+    gens.push(i)
+  }
+  return gens
+}
 console.log('No cheating!');
 console.log = process.env.NODE_ENV === 'development' ? console.log : () => {}; // implement better logging solution
 
@@ -149,6 +157,8 @@ class Board extends React.Component {
     const {
       gameOver, gameWon, answer, currentGuess, guesses, guessDeltas, glow, genRange,
     } = this.state;
+    
+    console.log("Guesses: ", guesses)
     return (
       <div>
         <Instructions />
