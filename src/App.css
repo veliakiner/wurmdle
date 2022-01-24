@@ -66,7 +66,7 @@
 .key {
   display: table;
   margin: auto;
-  padding: 10px;
+  padding-top: 10px;
   text-align: center;
 }
 
@@ -112,34 +112,39 @@ iframe {
 .horizontal-slider {
   position: relative;
   height: 14px;
-  padding: 5px 0;
+  padding: 40px;
   width: 100%;
   border-radius: 6px;
   touch-action: none;
   box-sizing: border-box;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 .horizontal-slider .example-track {
   position: absolute;
   background-color: #e9e9e9;
   height: 4px;
+  /* margin-top: 3px; */
   border-radius: 6px;
 }
 .example-thumb {
   position: absolute;
-  width: 14px;
-  height: 14px;
+  vertical-align: middle;
+  width: 20px;
+  height: 40px;
   cursor: pointer;
   cursor: -webkit-grab;
-  margin-top: -5px;
+  text-align: center;
+  line-height: 40px;
+  margin-top: -20px;
   cursor: grab;
-  border-radius: 50%;
+  border-radius: 15%;
   border: 2px solid #96dbfa;
   background-color: #fff;
   touch-action: pan-x;
-
 }
 .example-track.example-track-1 {
   background: #abe2fb none repeat scroll 0% 0%;
+  padding: 5px;
+  margin-top: -5px;
+  height: 5px;
 }
-
