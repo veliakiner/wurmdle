@@ -28,7 +28,6 @@ function getMonsList(genRange) {
 
 console.log('No cheating!');
 console.log = process.env.NODE_ENV === 'development' ? console.log : () => {}; // implement better logging solution
-
 const maxGuesses = 5;
 function startState() {
   return {
@@ -114,8 +113,13 @@ class Board extends React.Component {
     } = state;
     let { answer } = state;
     if (answer === '') {
-      const monsIndex = Math.round(Math.random() * monsList.length);
-      answer = monsList[monsIndex];
+      const testAnswer = process.env.REACT_APP_ANSWER
+      if (process.env.REACT_APP_ANSWER !== undefined) {
+        answer = toTitleCase(testAnswer)
+      } else {
+        const monsIndex = Math.round(Math.random() * monsList.length);
+        answer = monsList[monsIndex];
+      }
     }
     let lastGuess = currentGuess.toLowerCase();
     lastGuess = toTitleCase(lastGuess).trim();
