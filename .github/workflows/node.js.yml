@@ -31,3 +31,6 @@ jobs:
     - run: npm ci
     - run: npm run build
     - run: npx eslint src/*.jsx
+    - run:
+      - npm run start&
+      - npx run cypress
