@@ -78,8 +78,8 @@ function calculateCorrectness(lastGuess, answer) {
 class Board extends React.Component {
   constructor(props) {
     super();
-    console.log(JSON.stringify(props))
     this.state = startState();
+    this.state.answer = toTitleCase(props.answer) || ""
     const rawGenRange = localStorage.getItem("gens");
     const genRange = rawGenRange
       ? rawGenRange.split(",").map((x) => parseInt(x, 10))
@@ -187,10 +187,6 @@ class Board extends React.Component {
       genRange,
     } = this.state;
 
-    // const {
-    //   text,
-    //   match: { params },
-    // } = this.props;
     console.log("Guesses: ", guesses);
     return (
         <div>
@@ -379,18 +375,22 @@ SelectGens.propTypes = {
 };
 
 function BoardWrapper() {
-  const { id } = useParams();
-  console.log(id)
-  return <Board id={id}/>
+  const { answer } = useParams()  
+  console.log(answer)
+  return <Board answer={answer || ""}/>
 }
 
 function App() {
   return (
+    // Helps hardcode answer when testing
+    process.env.NODE_ENV === "development" ?
     <BrowserRouter>
       <Routes>
-        <Route path="/:id" element={<BoardWrapper></BoardWrapper>}  />
+        <Route path="/:answer" element={<BoardWrapper></BoardWrapper>}  />
+        <Route path="/" element={<BoardWrapper></BoardWrapper>}  />
       </Routes>
-    </BrowserRouter>
+    </BrowserRouter> :
+        <Route path="/:answer" element={<BoardWrapper></BoardWrapper>}  />
   );
 }
 export default App;
