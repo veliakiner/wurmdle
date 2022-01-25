@@ -1,11 +1,10 @@
-import React from 'react';
-import propTypes, {
-  string, bool, arrayOf, number,
-} from 'prop-types';
-import './App.css';
-import FadeIn from 'react-fade-in';
-import ReactSlider from 'react-slider';
-import genData from './PokemonData';
+import React from "react";
+import propTypes, { string, bool, arrayOf, number } from "prop-types";
+import "./App.css";
+import FadeIn from "react-fade-in";
+import ReactSlider from "react-slider";
+import genData from "./PokemonData";
+import { Route, Routes, BrowserRouter } from "react-router-dom";
 
 function getGens(genRange) {
   const [minGen, maxGen] = genRange;
@@ -20,20 +19,20 @@ const allStats = genData(getGens([1, 8]));
 const defaultGenRange = [1, 3];
 
 function getMonsList(genRange) {
-  console.log('Getting list for gens ', genRange);
+  console.log("Getting list for gens ", genRange);
   const gens = getGens(genRange);
   const stats = genData(gens); // can just filter stats by gens or something
   return Object.keys(stats);
 }
 
-console.log('No cheating!');
-console.log = process.env.NODE_ENV === 'development' ? console.log : () => {}; // implement better logging solution
+console.log("No cheating!");
+console.log = process.env.NODE_ENV === "development" ? console.log : () => {}; // implement better logging solution
 const maxGuesses = 5;
 function startState() {
   return {
-    answer: '',
-    currentGuess: '',
-    lastGuess: '',
+    answer: "",
+    currentGuess: "",
+    lastGuess: "",
     guesses: [],
     guessDeltas: [],
     gameOver: false,
@@ -41,11 +40,12 @@ function startState() {
     glow: false,
   };
 }
-const toTitleCase = (phrase) => phrase
-  .toLowerCase()
-  .split(' ')
-  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-  .join(' ');
+const toTitleCase = (phrase) =>
+  phrase
+    .toLowerCase()
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
 
 function calculateCorrectness(lastGuess, answer) {
   console.log(lastGuess);
@@ -66,24 +66,27 @@ function calculateCorrectness(lastGuess, answer) {
     }
   }
   console.log(delta.toString());
-  console.log('Incorrect. Try again');
+  console.log("Incorrect. Try again");
 
   if (lastGuess === answer) {
-    console.log('Correct!');
+    console.log("Correct!");
     return [delta, true];
   }
   return [delta, false];
 }
 
 class Board extends React.Component {
-  constructor() {
+  constructor(props) {
     super();
+    console.log(props)
     this.state = startState();
-    const rawGenRange = localStorage.getItem('gens');
-    const genRange = rawGenRange ? rawGenRange.split(',').map((x) => parseInt(x, 10)) : defaultGenRange;
+    const rawGenRange = localStorage.getItem("gens");
+    const genRange = rawGenRange
+      ? rawGenRange.split(",").map((x) => parseInt(x, 10))
+      : defaultGenRange;
     this.state.monsList = getMonsList(genRange);
     this.state.genRange = genRange;
-    localStorage.setItem('gens', genRange);
+    localStorage.setItem("gens", genRange);
   }
 
   componentDidMount() {
@@ -92,12 +95,12 @@ class Board extends React.Component {
     this.resetOnEnterWrapped = (evt) => {
       this.resetOnEnter(evt);
     }; // hopefully guarantees that I'm removing the event listener...
-    document.addEventListener('keydown', this.resetOnEnterWrapped, false);
+    document.addEventListener("keydown", this.resetOnEnterWrapped, false);
   }
 
   componentWillUnmount() {
     console.log(
-      document.removeEventListener('keydown', this.resetOnEnterWrapped, false),
+      document.removeEventListener("keydown", this.resetOnEnterWrapped, false)
     );
   }
 
@@ -108,14 +111,12 @@ class Board extends React.Component {
 
   onGuess(state) {
     // sanitise
-    const {
-      currentGuess, guesses, guessDeltas, monsList,
-    } = state;
+    const { currentGuess, guesses, guessDeltas, monsList } = state;
     let { answer } = state;
-    if (answer === '') {
-      const testAnswer = process.env.REACT_APP_ANSWER
+    if (answer === "") {
+      const testAnswer = process.env.REACT_APP_ANSWER;
       if (process.env.REACT_APP_ANSWER !== undefined) {
-        answer = toTitleCase(testAnswer)
+        answer = toTitleCase(testAnswer);
       } else {
         const monsIndex = Math.round(Math.random() * monsList.length);
         answer = monsList[monsIndex];
@@ -126,12 +127,12 @@ class Board extends React.Component {
     if (!monsList.includes(lastGuess)) {
       this.setState(
         {
-          currentGuess: '',
+          currentGuess: "",
         },
         () => {
           this.setState({ glow: true });
-          console.log('Invalid guess - do something here.');
-        },
+          console.log("Invalid guess - do something here.");
+        }
       );
       return;
     }
@@ -144,7 +145,7 @@ class Board extends React.Component {
     console.log(`Game over? ${gameOver}`);
     this.setState(
       {
-        currentGuess: '',
+        currentGuess: "",
         guesses: guesses.concat(lastGuess),
         guessDeltas: guessDeltas.concat([delta]),
         gameOver,
@@ -163,7 +164,7 @@ class Board extends React.Component {
             ]),
           });
         }
-      },
+      }
     );
   }
 
@@ -186,47 +187,51 @@ class Board extends React.Component {
       genRange,
     } = this.state;
 
-    console.log('Guesses: ', guesses);
+    // const {
+    //   text,
+    //   match: { params },
+    // } = this.props;
+    console.log("Guesses: ", guesses);
     return (
-      <div>
-        <Instructions />
-        <div className="control">
-          <SelectGens
-            boardRef={this}
-            genRange={genRange}
-            gameStarted={guesses.length > 0 && !gameOver}
-          />
-          <div className={gameOver ? '' : 'hide'}>
-            <GameState answer={answer} gameWon={gameWon} />
-            <button
-              type="submit"
-              className="start-over"
-              onClick={() => this.setState(startState())}
-            >
-              Start over
-            </button>
-          </div>
-
-          <form
-            className={gameOver ? 'hide' : ''}
-            onSubmit={(evt) => {
-              evt.preventDefault();
-            }}
-          >
-            <button type="submit" onClick={() => this.onGuess(this.state)}>
-              Guess
-            </button>
-
-            <input
-              className={glow ? 'glow' : 'no-glow'}
-              placeholder="Graveler, Pikachu, etc.."
-              onChange={(e) => this.onChange(e)}
-              value={currentGuess}
+        <div>
+          <Instructions />
+          <div className="control">
+            <SelectGens
+              boardRef={this}
+              genRange={genRange}
+              gameStarted={guesses.length > 0 && !gameOver}
             />
-          </form>
+            <div className={gameOver ? "" : "hide"}>
+              <GameState answer={answer} gameWon={gameWon} />
+              <button
+                type="submit"
+                className="start-over"
+                onClick={() => this.setState(startState())}
+              >
+                Start over
+              </button>
+            </div>
+
+            <form
+              className={gameOver ? "hide" : ""}
+              onSubmit={(evt) => {
+                evt.preventDefault();
+              }}
+            >
+              <button type="submit" onClick={() => this.onGuess(this.state)}>
+                Guess
+              </button>
+
+              <input
+                className={glow ? "glow" : "no-glow"}
+                placeholder="Graveler, Pikachu, etc.."
+                onChange={(e) => this.onChange(e)}
+                value={currentGuess}
+              />
+            </form>
+          </div>
+          <Grid guessDeltas={guessDeltas} guesses={guesses} />
         </div>
-        <Grid guessDeltas={guessDeltas} guesses={guesses} />
-      </div>
     );
   }
 }
@@ -242,19 +247,13 @@ function Instructions() {
         <div className="key-elem">Key:</div>
         <div className="keys">
           <span className="key-elem">
-            <Square key="toolow" value="0-" />
-            {' '}
-            Too low
+            <Square key="toolow" value="0-" /> Too low
           </span>
           <span className="key-elem">
-            <Square key="toohigh" value="999+" />
-            {' '}
-            Too high
+            <Square key="toohigh" value="999+" /> Too high
           </span>
           <span className="key-elem">
-            <Square key="correct" value="100=" />
-            {' '}
-            Correct
+            <Square key="correct" value="100=" /> Correct
           </span>
         </div>
       </div>
@@ -264,12 +263,12 @@ function Instructions() {
 
 function GameState(props) {
   console.log(JSON.stringify(props));
-  let endgameString = '';
+  let endgameString = "";
   const { answer, gameWon } = props;
   if (gameWon) {
-    endgameString += 'Game over - you won!';
+    endgameString += "Game over - you won!";
   } else {
-    endgameString += 'Sorry you have lost the game :(.';
+    endgameString += "Sorry you have lost the game :(.";
   }
   endgameString += ` The answer was ${answer}. Type enter to start a new game!`;
   return <span className="game-over-msg">{endgameString}</span>;
@@ -283,9 +282,9 @@ function Grid(props) {
   rows.push(
     <Row
       key={-1}
-      values={['HP', 'ATK', 'DEF', 'SPA', 'SPD', 'SPE']}
+      values={["HP", "ATK", "DEF", "SPA", "SPD", "SPE"]}
       guess="Guess"
-    />,
+    />
   );
   for (let i = 0; i < guessDeltas.length; i += 1) {
     rows.push(<Row key={i} values={guessDeltas[i]} guess={guesses[i]} />);
@@ -321,19 +320,18 @@ Row.propTypes = {
 function Square(props) {
   let { value } = props;
   const sign = value.slice(-1);
-  const classes = { '-': ' toolow', '+': ' toohigh', '=': ' correct' };
-  let buttonClass = 'square';
-  if ('=-+'.includes(sign)) {
+  const classes = { "-": " toolow", "+": " toohigh", "=": " correct" };
+  let buttonClass = "square";
+  if ("=-+".includes(sign)) {
     value = value.slice(0, -1);
-    buttonClass += classes[sign] || '';
+    buttonClass += classes[sign] || "";
   }
-  if (value === 'Wurmple') {
-    value = 'Wurmdle';
+  if (value === "Wurmple") {
+    value = "Wurmdle";
   }
   return (
     <button type="button" className={buttonClass}>
-      {value}
-      {' '}
+      {value}{" "}
     </button>
   );
 }
@@ -345,7 +343,7 @@ function setSliderState(values, boardRef) {
     genRange,
     monsList: getMonsList(genRange),
   });
-  localStorage.setItem('gens', genRange);
+  localStorage.setItem("gens", genRange);
 }
 
 function SelectGens(props) {
@@ -358,7 +356,7 @@ function SelectGens(props) {
       thumbClassName="example-thumb"
       trackClassName="example-track"
       defaultValue={[genRange[0], genRange[1] + 1]}
-      ariaLabel={['Lower thumb', 'Upper thumb']}
+      ariaLabel={["Lower thumb", "Upper thumb"]}
       ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
       renderThumb={(props2, state) => (
         <div {...props2}>{state.valueNow - state.index}</div>
@@ -381,6 +379,12 @@ SelectGens.propTypes = {
 };
 
 function App() {
-  return <Board />;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/:id" element={<Board authed={true}/>} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 export default App;
