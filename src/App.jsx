@@ -165,7 +165,7 @@ class Board extends React.Component {
           this.setState({
             guesses: guesses.concat(answer),
             guessDeltas: guessDeltas.concat([
-              this.calculateCorrectness(answer, answer)[0],
+              calculateCorrectness(answer, answer)[0],
             ]),
           });
         }
