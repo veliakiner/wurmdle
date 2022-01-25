@@ -53,6 +53,9 @@ describe("Cypress", () => {
   it("Guesses a Pokemon", () => {
     cy.get("input").type("Mew").type("{enter}");
   });
+  it("Starts a new game", () => {
+    cy.get(".start-over").click();
+  });
 });
 
 describe("Cypress", () => {
