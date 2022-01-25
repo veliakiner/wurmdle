@@ -4,7 +4,7 @@ import "./App.css";
 import FadeIn from "react-fade-in";
 import ReactSlider from "react-slider";
 import genData from "./PokemonData";
-import { Route, Routes, BrowserRouter } from "react-router-dom";
+import { Route, Routes, BrowserRouter, useParams } from "react-router-dom";
 
 function getGens(genRange) {
   const [minGen, maxGen] = genRange;
@@ -78,7 +78,7 @@ function calculateCorrectness(lastGuess, answer) {
 class Board extends React.Component {
   constructor(props) {
     super();
-    console.log(props)
+    console.log(JSON.stringify(props))
     this.state = startState();
     const rawGenRange = localStorage.getItem("gens");
     const genRange = rawGenRange
@@ -378,11 +378,17 @@ SelectGens.propTypes = {
   gameStarted: bool.isRequired,
 };
 
+function BoardWrapper() {
+  const { id } = useParams();
+  console.log(id)
+  return <Board id={id}/>
+}
+
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/:id" element={<Board authed={true}/>} />
+        <Route path="/:id" element={<BoardWrapper></BoardWrapper>}  />
       </Routes>
     </BrowserRouter>
   );
