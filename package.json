@@ -20,7 +20,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "REACT_APP_ANSWER=$ANS react-scripts start",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -42,11 +42,16 @@
     ]
   },
   "devDependencies": {
+    "cypress": "^9.3.1",
     "eslint": "^8.7.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0"
-  }
+  },
+  "config": {
+    "myPort": "8080"
+}
+
 }
