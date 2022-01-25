@@ -10,37 +10,72 @@
 // what makes it such an awesome testing tool,
 // please read our getting started guide:
 // https://on.cypress.io/introduction-to-cypress
-describe('Cypress', () => {   
-  it('is working', () => {     
-      expect(true).to.equal(true)   
-  }) 
-  
-  it('opens the app', () => {   
-    cy.visit('http://localhost:3000') 
-})
-it('Guesses a Pokemon', () => {   
-  
-  cy.get('input')
-    .type('Mew').type("{enter}")
-})
-it('Guesses a Pokemon', () => {   
-  
-  cy.get('input')
-    .type('Mew').type("{enter}")
-})
-it('Guesses a Pokemon', () => {   
-  
-  cy.get('input')
-    .type('Mew').type("{enter}")
-})
-it('Guesses a Pokemon', () => {   
-  
-  cy.get('input')
-    .type('Mew').type("{enter}")
-})
-it('Guesses a Pokemon', () => {   
-  
-  cy.get('input')
-    .type('Mew').type("{enter}")
-})
-})
+
+afterEach(function () {
+  if (this.currentTest.state === "failed") {
+    Cypress.runner.stop();
+  }
+});
+
+describe("Cypress", () => {
+  it("is working", () => {
+    expect(true).to.equal(true);
+  });
+
+  it("opens the app", () => {
+    cy.visit("http://localhost:3000/Pikachu");
+  });
+  it("Guesses a Pokemon", () => {
+    cy.get("input").type("Mew").type("{enter}");
+  });
+  it("Guesses a Pokemon", () => {
+    cy.get("input").type("Mew").type("{enter}");
+  });
+  it("Guesses a Pokemon", () => {
+    cy.get("input").type("Mew").type("{enter}");
+  });
+  it("Guesses a Pokemon", () => {
+    cy.get("input").type("Mew").type("{enter}");
+  });
+  it("Guesses a Pokemon", () => {
+    cy.get("input").type("Mew").type("{enter}");
+  });
+});
+
+describe("Cypress", () => {
+  it("is working", () => {
+    expect(true).to.equal(true);
+  });
+
+  it("opens the app", () => {
+    cy.visit("http://localhost:3000/Mew");
+  });
+  it("Guesses a Pokemon", () => {
+    cy.get("input").type("Mew").type("{enter}");
+  });
+});
+
+describe("Cypress", () => {
+  it("is working", () => {
+    expect(true).to.equal(true);
+  });
+
+  it("opens the app", () => {
+    cy.visit("http://localhost:3000/Pikachu");
+  });
+  it("Guesses a Pokemon", () => {
+    cy.get("input").type("Mew").type("{enter}");
+  });
+  it("Guesses a Pokemon", () => {
+    cy.get("input").type("Mew").type("{enter}");
+  });
+  it("Guesses a Pokemon", () => {
+    cy.get("input").type("Mew").type("{enter}");
+  });
+  it("Guesses a Pokemon", () => {
+    cy.get("input").type("Mew").type("{enter}");
+  });
+  it("Guesses a Pokemon", () => {
+    cy.get("input").type("Pikachu").type("{enter}");
+  });
+});
