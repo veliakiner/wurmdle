@@ -22,7 +22,7 @@
   "scripts": {
     "start": "BROWSER=none react-scripts start",
     "build": "react-scripts build",
-    "test": "BROWSER=none react-scripts start & npx cypress run",
+    "test": "./cypress/test.sh",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
