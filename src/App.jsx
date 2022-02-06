@@ -242,8 +242,9 @@ function Instructions() {
         Welcome to Wurmdle! Try to guess the Pokemon based on its base stats!
         You have five guesses. Adjust the slider to change which generations to
         play with. Report issues
-          {' '}
-          <a href="https://github.com/veliakiner/wurmdle/issues">here</a>.
+        {' '}
+        <a href="https://github.com/veliakiner/wurmdle/issues">here</a>
+        .
 
       </div>
       <div className="key">
