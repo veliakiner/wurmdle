@@ -5,9 +5,6 @@ import propTypes, {
 import './App.css';
 import FadeIn from 'react-fade-in';
 import ReactSlider from 'react-slider';
-import {
-  Route, Routes, BrowserRouter, useParams,
-} from 'react-router-dom';
 import genData from './PokemonData';
 
 function getGens(genRange) {
@@ -31,6 +28,7 @@ function getMonsList(genRange) {
 
 console.log('No cheating!');
 console.log = process.env.NODE_ENV === 'development' ? console.log : () => {}; // implement better logging solution
+
 const maxGuesses = 5;
 function startState() {
   return {
@@ -79,14 +77,11 @@ function calculateCorrectness(lastGuess, answer) {
 }
 
 class Board extends React.Component {
-  constructor(props) {
+  constructor() {
     super();
     this.state = startState();
-    this.state.answer = toTitleCase(props.answer) || '';
     const rawGenRange = localStorage.getItem('gens');
-    const genRange = rawGenRange
-      ? rawGenRange.split(',').map((x) => parseInt(x, 10))
-      : defaultGenRange;
+    const genRange = rawGenRange ? rawGenRange.split(',').map((x) => parseInt(x, 10)) : defaultGenRange;
     this.state.monsList = getMonsList(genRange);
     this.state.genRange = genRange;
     localStorage.setItem('gens', genRange);
@@ -119,13 +114,8 @@ class Board extends React.Component {
     } = state;
     let { answer } = state;
     if (answer === '') {
-      const testAnswer = process.env.REACT_APP_ANSWER;
-      if (process.env.REACT_APP_ANSWER !== undefined) {
-        answer = toTitleCase(testAnswer);
-      } else {
-        const monsIndex = Math.round(Math.random() * monsList.length);
-        answer = monsList[monsIndex];
-      }
+      const monsIndex = Math.round(Math.random() * monsList.length);
+      answer = monsList[monsIndex];
     }
     let lastGuess = currentGuess.toLowerCase();
     lastGuess = toTitleCase(lastGuess).trim();
@@ -267,7 +257,6 @@ function Instructions() {
     </div>
   );
 }
-Board.propTypes = { answer: string.isRequired };
 
 function GameState(props) {
   console.log(JSON.stringify(props));
@@ -387,25 +376,7 @@ SelectGens.propTypes = {
   gameStarted: bool.isRequired,
 };
 
-function BoardWrapper() {
-  const { answer } = useParams();
-  console.log(answer);
-  return <Board answer={answer || ''} />;
-}
-
 function App() {
-  return (
-    // Helps hardcode answer when testing
-    process.env.NODE_ENV === 'development' ? (
-      <BrowserRouter>
-        <Routes>
-          <Route path="/:answer" element={<BoardWrapper />} />
-          <Route path="/" element={<BoardWrapper />} />
-        </Routes>
-      </BrowserRouter>
-    ) : (
-      <Route path="/:answer" element={<BoardWrapper />} />
-    )
-  );
+  return <Board />;
 }
 export default App;
