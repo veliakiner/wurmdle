@@ -50,6 +50,9 @@ describe("Player wins the game on the first guess", () => {
   it("Guesses correctly", () => {
     GamePage.input().type("Pikachu").type("{enter}");
   });
+  it("There should be two rows (1 label row, and 1 guess row", () => {
+    GamePage.row().should('have.length', 2)
+  });
   it("Starts a new game", () => {
     GamePage.startOver().click();
   });
