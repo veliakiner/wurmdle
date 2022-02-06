@@ -152,7 +152,7 @@ class Board extends React.Component {
     let lastGuess = currentGuess.toLowerCase();
     lastGuess = toTitleCase(lastGuess).trim();
     if (!monsList.includes(lastGuess)) {
-      this.setStateAndUpdateLocalStorage(
+      this.setState(
         {
           currentGuess: '',
         },
