@@ -41,12 +41,12 @@ describe("Player loses the game", () => {
   });
 });
 
-describe("Player wins the game", () => {
+describe("Player wins the game on the first guess", () => {
   it("opens the app", () => {
-    cy.visit("http://localhost:3000/Mew");
+    cy.visit("http://localhost:3000/Pikachu");
   });
   it("Guesses correctly", () => {
-    cy.get("input").type("Mew").type("{enter}");
+    cy.get("input").type("Pikachu").type("{enter}");
   });
   it("Starts a new game", () => {
     cy.get(".start-over").click();
