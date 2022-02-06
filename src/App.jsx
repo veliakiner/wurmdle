@@ -78,10 +78,27 @@ function calculateCorrectness(lastGuess, answer) {
   return [delta, false];
 }
 
+function retrieveLocalStorageGameState() {
+  console.log('Updating???');
+  const savedState = localStorage.getItem('gameState');
+  try {
+    const parsedState = JSON.parse(savedState);
+    // We don't want to set the state to a finished game
+    if (parsedState.gameOver) {
+      console.log('Old game finished - discarding state.');
+      return false;
+    }
+    console.log('Restoring old game state.');
+    return parsedState;
+  } catch {
+    console.log('Something went wrong.');
+    return false;
+  }
+}
 class Board extends React.Component {
   constructor(props) {
     super();
-    const parsedState = this.updateStateFromLocalStorage();
+    const parsedState = retrieveLocalStorageGameState();
     if (parsedState) {
       this.state = parsedState;
     } else {
@@ -96,29 +113,6 @@ class Board extends React.Component {
     localStorage.setItem('gens', genRange);
     this.setStateAndUpdateLocalStorage(this.state);
     this.state.monsList = getMonsList(genRange);
-  }
-
-  updateStateFromLocalStorage() {
-    console.log('Updating???');
-    const savedState = localStorage.getItem('gameState');
-    try {
-      const parsedState = JSON.parse(savedState);
-      // We don't want to set the state to a finished game
-      if (parsedState.gameOver) {
-        console.log('Old game finished - discarding state.');
-        return false;
-      }
-      console.log('Restoring old game state.');
-      return parsedState;
-    } catch {
-      console.log('Something went wrong.');
-      return false;
-    }
-  }
-
-  setStateAndUpdateLocalStorage(props) {
-    localStorage.setItem('gameState', JSON.stringify(props));
-    this.setState(props);
   }
 
   componentDidMount() {
@@ -199,6 +193,11 @@ class Board extends React.Component {
         console.log(`Guesse deltas: ${guessDeltas.toString()}`);
       },
     );
+  }
+
+  setStateAndUpdateLocalStorage(props) {
+    localStorage.setItem('gameState', JSON.stringify(props));
+    this.setState(props);
   }
 
   resetOnEnter(event) {
