@@ -40,6 +40,9 @@ describe("Cypress", () => {
   it("Guesses a Pokemon", () => {
     cy.get("input").type("Mew").type("{enter}");
   });
+  it("Should have the number of expected rows", () => {
+    cy.get('.board-row').should('have.length', 7)
+  });
 });
 
 describe("Cypress", () => {
