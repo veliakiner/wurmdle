@@ -115,8 +115,9 @@ class Board extends React.Component {
   onGuess(state) {
     // sanitise
     const {
-      currentGuess, guesses, guessDeltas, monsList,
+      currentGuess, monsList,
     } = state;
+    let { guesses, guessDeltas } = state;
     let { answer } = state;
     if (answer === '') {
       const testAnswer = process.env.REACT_APP_ANSWER;
@@ -148,11 +149,17 @@ class Board extends React.Component {
     }
     const gameOver = noMoreGuesses || win;
     console.log(`Game over? ${gameOver}`);
+    guesses = guesses.concat(lastGuess);
+    guessDeltas = guessDeltas.concat([delta]);
+    if (gameOver) {
+      guesses = guesses.concat(answer);
+      guessDeltas = guessDeltas.concat([calculateCorrectness(answer, answer)[0]]);
+    }
     this.setState(
       {
         currentGuess: '',
-        guesses: guesses.concat(lastGuess),
-        guessDeltas: guessDeltas.concat([delta]),
+        guesses,
+        guessDeltas,
         gameOver,
         gameWon: win,
         answer,
@@ -161,14 +168,6 @@ class Board extends React.Component {
         console.log(`Guessed ${lastGuess}`);
         console.log(`Guesses: ${guesses.toString()}`);
         console.log(`Guesse deltas: ${guessDeltas.toString()}`);
-        if (noMoreGuesses && !win) {
-          this.setState({
-            guesses: guesses.concat(answer),
-            guessDeltas: guessDeltas.concat([
-              calculateCorrectness(answer, answer)[0],
-            ]),
-          });
-        }
       },
     );
   }
