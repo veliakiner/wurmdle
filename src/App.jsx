@@ -151,7 +151,7 @@ class Board extends React.Component {
     console.log(`Game over? ${gameOver}`);
     guesses = guesses.concat(lastGuess);
     guessDeltas = guessDeltas.concat([delta]);
-    if (gameOver) {
+    if (gameOver && !win) {
       guesses = guesses.concat(answer);
       guessDeltas = guessDeltas.concat([calculateCorrectness(answer, answer)[0]]);
     }
