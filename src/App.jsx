@@ -81,15 +81,44 @@ function calculateCorrectness(lastGuess, answer) {
 class Board extends React.Component {
   constructor(props) {
     super();
-    this.state = startState();
-    this.state.answer = toTitleCase(props.answer) || '';
+    const parsedState = this.updateStateFromLocalStorage();
+    if (parsedState) {
+      this.state = parsedState;
+    } else {
+      this.state = startState();
+      this.state.answer = toTitleCase(props.answer) || '';
+    }
     const rawGenRange = localStorage.getItem('gens');
     const genRange = rawGenRange
       ? rawGenRange.split(',').map((x) => parseInt(x, 10))
       : defaultGenRange;
-    this.state.monsList = getMonsList(genRange);
     this.state.genRange = genRange;
     localStorage.setItem('gens', genRange);
+    this.setStateAndUpdateLocalStorage(this.state);
+    this.state.monsList = getMonsList(genRange);
+  }
+
+  updateStateFromLocalStorage() {
+    console.log('Updating???');
+    const savedState = localStorage.getItem('gameState');
+    try {
+      const parsedState = JSON.parse(savedState);
+      // We don't want to set the state to a finished game
+      if (parsedState.gameOver) {
+        console.log('Old game finished - discarding state.');
+        return false;
+      }
+      console.log('Restoring old game state.');
+      return parsedState;
+    } catch {
+      console.log('Something went wrong.');
+      return false;
+    }
+  }
+
+  setStateAndUpdateLocalStorage(props) {
+    localStorage.setItem('gameState', JSON.stringify(props));
+    this.setState(props);
   }
 
   componentDidMount() {
@@ -129,7 +158,7 @@ class Board extends React.Component {
     let lastGuess = currentGuess.toLowerCase();
     lastGuess = toTitleCase(lastGuess).trim();
     if (!monsList.includes(lastGuess)) {
-      this.setState(
+      this.setStateAndUpdateLocalStorage(
         {
           currentGuess: '',
         },
@@ -155,7 +184,7 @@ class Board extends React.Component {
         calculateCorrectness(answer, answer)[0],
       ]);
     }
-    this.setState(
+    this.setStateAndUpdateLocalStorage(
       {
         currentGuess: '',
         guesses,
@@ -388,7 +417,6 @@ SelectGens.propTypes = {
 
 function BoardWrapper() {
   const { answer } = useParams();
-  console.log(answer);
   return <Board answer={answer || ''} />;
 }
 
