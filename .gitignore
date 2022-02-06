@@ -25,3 +25,5 @@ yarn-error.log*
 .~lock.Pokemon.csv#
 TODO
 __pycache__
+cypress/screenshots
+cypress/videos
