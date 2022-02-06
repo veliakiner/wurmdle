@@ -196,7 +196,12 @@ class Board extends React.Component {
   }
 
   setStateAndUpdateLocalStorage(props) {
-    const localStorageState = JSON.parse(localStorage.getItem('gameState')) || {};
+    let localStorageState;
+    try {
+      localStorageState = JSON.parse(localStorage.getItem('gameState')) || {};
+    } catch (err) {
+      localStorageState = {};
+    }
     const updatedState = Object.assign(localStorageState, props);
     localStorage.setItem('gameState', JSON.stringify(updatedState));
     this.setState(props);
