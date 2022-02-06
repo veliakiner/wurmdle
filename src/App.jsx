@@ -404,7 +404,11 @@ function App() {
         </Routes>
       </BrowserRouter>
     ) : (
-      <Route path="/:answer" element={<BoardWrapper />} />
+      <BrowserRouter>
+        <Routes>
+      <Route path="/" element={<BoardWrapper />} />
+        </Routes>
+      </BrowserRouter>
     )
   );
 }
