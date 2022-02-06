@@ -8,6 +8,7 @@ import ReactSlider from 'react-slider';
 import {
   Route, Routes, BrowserRouter, useParams,
 } from 'react-router-dom';
+import cryptoJs from 'crypto-js';
 import genData from './PokemonData';
 
 function getGens(genRange) {
@@ -78,18 +79,45 @@ function calculateCorrectness(lastGuess, answer) {
   return [delta, false];
 }
 
+function retrieveLocalStorageGameState() {
+  console.log('Updating???');
+  const localStorageString = localStorage.getItem('gameState');
+  const checkSum = localStorage.getItem('id');
+  if (cryptoJs.SHA256(localStorageString).toString() !== checkSum) {
+    return false;
+  }
+  try {
+    const parsedState = JSON.parse(localStorageString);
+    // We don't want to set the state to a finished game
+    if (parsedState.gameOver) {
+      console.log('Old game finished - discarding state.');
+      return false;
+    }
+    console.log('Restoring old game state.');
+    return parsedState;
+  } catch {
+    console.log('Something went wrong.');
+    return false;
+  }
+}
 class Board extends React.Component {
   constructor(props) {
     super();
-    this.state = startState();
-    this.state.answer = toTitleCase(props.answer) || '';
+    const parsedState = retrieveLocalStorageGameState();
+    if (parsedState) {
+      this.state = parsedState;
+    } else {
+      this.state = startState();
+      this.state.answer = toTitleCase(props.answer) || '';
+    }
     const rawGenRange = localStorage.getItem('gens');
     const genRange = rawGenRange
       ? rawGenRange.split(',').map((x) => parseInt(x, 10))
       : defaultGenRange;
-    this.state.monsList = getMonsList(genRange);
     this.state.genRange = genRange;
     localStorage.setItem('gens', genRange);
+    this.setStateAndUpdateLocalStorage(this.state);
+    this.state.monsList = getMonsList(genRange);
   }
 
   componentDidMount() {
@@ -155,7 +183,7 @@ class Board extends React.Component {
         calculateCorrectness(answer, answer)[0],
       ]);
     }
-    this.setState(
+    this.setStateAndUpdateLocalStorage(
       {
         currentGuess: '',
         guesses,
@@ -170,6 +198,26 @@ class Board extends React.Component {
         console.log(`Guesse deltas: ${guessDeltas.toString()}`);
       },
     );
+  }
+
+  setStateAndUpdateLocalStorage(props) {
+    let localStorageState;
+    try {
+      const localStorageString = localStorage.getItem('gameState');
+      const checkSum = localStorage.getItem('id');
+      if (cryptoJs.SHA256(localStorageString).toString() === checkSum) {
+        localStorageState = JSON.parse(localStorageString) || {};
+      } else {
+        localStorageState = {};
+      }
+    } catch (err) {
+      localStorageState = {};
+    }
+    const updatedState = Object.assign(localStorageState, props);
+    const updatedStateString = JSON.stringify(updatedState);
+    localStorage.setItem('gameState', updatedStateString);
+    localStorage.setItem('id', cryptoJs.SHA256(updatedStateString).toString());
+    this.setState(props);
   }
 
   resetOnEnter(event) {
@@ -392,7 +440,6 @@ SelectGens.propTypes = {
 
 function BoardWrapper() {
   const { answer } = useParams();
-  console.log(answer);
   return <Board answer={answer || ''} />;
 }
 

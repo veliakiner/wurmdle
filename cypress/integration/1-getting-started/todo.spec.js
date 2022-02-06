@@ -78,3 +78,6 @@ describe("Player wins the game on the last guess", () => {
     GamePage.input().type("Pikachu").type("{enter}");
   });
 });
+
+
+
