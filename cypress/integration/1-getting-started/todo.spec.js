@@ -78,3 +78,19 @@ describe("Player wins the game on the last guess", () => {
     GamePage.input().type("Pikachu").type("{enter}");
   });
 });
+
+
+describe("Player can resume their game when they navigate away", () => {
+  it("opens the app", () => {
+    cy.visit("http://localhost:3000/Pikachu");
+  });
+  it("Guesses incorrectly", () => {
+    GamePage.input().type("Mew").type("{enter}");
+  });
+  it("opens the app again", () => {
+    cy.visit("http://localhost:3000/Pikachu");
+  });
+  it("There should be two rows (1 label row, 1 guess rows", () => {
+    GamePage.row().should('have.length', 2)
+  });
+});
