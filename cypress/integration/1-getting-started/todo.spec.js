@@ -17,43 +17,35 @@ afterEach(function () {
   }
 });
 
-describe("Cypress", () => {
-  it("is working", () => {
-    expect(true).to.equal(true);
-  });
-
+describe("Player loses the game", () => {
   it("opens the app", () => {
     cy.visit("http://localhost:3000/Pikachu");
   });
-  it("Guesses a Pokemon", () => {
+  it("Guesses incorrectly", () => {
     cy.get("input").type("Mew").type("{enter}");
   });
-  it("Guesses a Pokemon", () => {
+  it("Guesses incorrectly", () => {
     cy.get("input").type("Mew").type("{enter}");
   });
-  it("Guesses a Pokemon", () => {
+  it("Guesses incorrectly", () => {
     cy.get("input").type("Mew").type("{enter}");
   });
-  it("Guesses a Pokemon", () => {
+  it("Guesses incorrectly", () => {
     cy.get("input").type("Mew").type("{enter}");
   });
-  it("Guesses a Pokemon", () => {
+  it("Guesses incorrectly", () => {
     cy.get("input").type("Mew").type("{enter}");
   });
-  it("Should have the number of expected rows", () => {
+  it("There should be seven rows (1 label row, 5 guess rows, 1 answer row", () => {
     cy.get('.board-row').should('have.length', 7)
   });
 });
 
-describe("Cypress", () => {
-  it("is working", () => {
-    expect(true).to.equal(true);
-  });
-
+describe("Player wins the game", () => {
   it("opens the app", () => {
     cy.visit("http://localhost:3000/Mew");
   });
-  it("Guesses a Pokemon", () => {
+  it("Guesses correctly", () => {
     cy.get("input").type("Mew").type("{enter}");
   });
   it("Starts a new game", () => {
@@ -61,27 +53,23 @@ describe("Cypress", () => {
   });
 });
 
-describe("Cypress", () => {
-  it("is working", () => {
-    expect(true).to.equal(true);
-  });
-
+describe("Player wins the game on the last guess", () => {
   it("opens the app", () => {
     cy.visit("http://localhost:3000/Pikachu");
   });
-  it("Guesses a Pokemon", () => {
+  it("Guesses incorrectly", () => {
     cy.get("input").type("Mew").type("{enter}");
   });
-  it("Guesses a Pokemon", () => {
+  it("Guesses incorrectly", () => {
     cy.get("input").type("Mew").type("{enter}");
   });
-  it("Guesses a Pokemon", () => {
+  it("Guesses incorrectly", () => {
     cy.get("input").type("Mew").type("{enter}");
   });
-  it("Guesses a Pokemon", () => {
+  it("Guesses incorrectly", () => {
     cy.get("input").type("Mew").type("{enter}");
   });
-  it("Guesses a Pokemon", () => {
+  it("Guesses correctly", () => {
     cy.get("input").type("Pikachu").type("{enter}");
   });
 });
