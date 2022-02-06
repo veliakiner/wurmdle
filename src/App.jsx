@@ -395,21 +395,18 @@ function BoardWrapper() {
 
 function App() {
   return (
-    // Helps hardcode answer when testing
-    process.env.NODE_ENV === 'development' ? (
-      <BrowserRouter>
-        <Routes>
+  // Helps hardcode answer when testing
+
+    <BrowserRouter>
+      <Routes>
+        {process.env.NODE_ENV === 'development' ? (
           <Route path="/:answer" element={<BoardWrapper />} />
-          <Route path="/" element={<BoardWrapper />} />
-        </Routes>
-      </BrowserRouter>
-    ) : (
-      <BrowserRouter>
-        <Routes>
-      <Route path="/" element={<BoardWrapper />} />
-        </Routes>
-      </BrowserRouter>
-    )
+        ) : (
+          {}
+        )}
+        <Route path="/" element={<BoardWrapper />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 export default App;
