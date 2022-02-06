@@ -1,5 +1,7 @@
 /// <reference types="cypress" />
 
+import GamePage from "../../pageObjects/gamePage";
+
 // Welcome to Cypress!
 //
 // This spec file contains a variety of sample tests
@@ -22,22 +24,22 @@ describe("Player loses the game", () => {
     cy.visit("http://localhost:3000/Pikachu");
   });
   it("Guesses incorrectly", () => {
-    cy.get("input").type("Mew").type("{enter}");
+    GamePage.input().type("Mew").type("{enter}");
   });
   it("Guesses incorrectly", () => {
-    cy.get("input").type("Mew").type("{enter}");
+    GamePage.input().type("Mew").type("{enter}");
   });
   it("Guesses incorrectly", () => {
-    cy.get("input").type("Mew").type("{enter}");
+    GamePage.input().type("Mew").type("{enter}");
   });
   it("Guesses incorrectly", () => {
-    cy.get("input").type("Mew").type("{enter}");
+    GamePage.input().type("Mew").type("{enter}");
   });
   it("Guesses incorrectly", () => {
-    cy.get("input").type("Mew").type("{enter}");
+    GamePage.input().type("Mew").type("{enter}");
   });
   it("There should be seven rows (1 label row, 5 guess rows, 1 answer row", () => {
-    cy.get('.board-row').should('have.length', 7)
+    GamePage.row().should('have.length', 7)
   });
 });
 
@@ -46,10 +48,10 @@ describe("Player wins the game on the first guess", () => {
     cy.visit("http://localhost:3000/Pikachu");
   });
   it("Guesses correctly", () => {
-    cy.get("input").type("Pikachu").type("{enter}");
+    GamePage.input().type("Pikachu").type("{enter}");
   });
   it("Starts a new game", () => {
-    cy.get(".start-over").click();
+    GamePage.startOver().click();
   });
 });
 
@@ -58,18 +60,18 @@ describe("Player wins the game on the last guess", () => {
     cy.visit("http://localhost:3000/Pikachu");
   });
   it("Guesses incorrectly", () => {
-    cy.get("input").type("Mew").type("{enter}");
+    GamePage.input().type("Mew").type("{enter}");
   });
   it("Guesses incorrectly", () => {
-    cy.get("input").type("Mew").type("{enter}");
+    GamePage.input().type("Mew").type("{enter}");
   });
   it("Guesses incorrectly", () => {
-    cy.get("input").type("Mew").type("{enter}");
+    GamePage.input().type("Mew").type("{enter}");
   });
   it("Guesses incorrectly", () => {
-    cy.get("input").type("Mew").type("{enter}");
+    GamePage.input().type("Mew").type("{enter}");
   });
   it("Guesses correctly", () => {
-    cy.get("input").type("Pikachu").type("{enter}");
+    GamePage.input().type("Pikachu").type("{enter}");
   });
 });
