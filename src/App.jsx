@@ -114,9 +114,7 @@ class Board extends React.Component {
 
   onGuess(state) {
     // sanitise
-    const {
-      currentGuess, monsList,
-    } = state;
+    const { currentGuess, monsList } = state;
     let { guesses, guessDeltas } = state;
     let { answer } = state;
     if (answer === '') {
@@ -153,7 +151,9 @@ class Board extends React.Component {
     guessDeltas = guessDeltas.concat([delta]);
     if (gameOver && !win) {
       guesses = guesses.concat(answer);
-      guessDeltas = guessDeltas.concat([calculateCorrectness(answer, answer)[0]]);
+      guessDeltas = guessDeltas.concat([
+        calculateCorrectness(answer, answer)[0],
+      ]);
     }
     this.setState(
       {
@@ -393,19 +393,15 @@ function BoardWrapper() {
 }
 
 function App() {
-  return (
+  /* TODO: violates OCP */
+  const routes = [<Route path="/" element={<BoardWrapper />} />];
   // Helps hardcode answer when testing
-
+  if (process.env.NODE_ENV === 'development') {
+    routes.push(<Route path="/:answer" element={<BoardWrapper />} />);
+  }
+  return (
     <BrowserRouter>
-      <Routes>
-        {/* TODO: violates OCP */}
-        {process.env.NODE_ENV === 'development' ? (
-          <Route path="/:answer" element={<BoardWrapper />} />
-        ) : (
-          {}
-        )}
-        <Route path="/" element={<BoardWrapper />} />
-      </Routes>
+      <Routes>{routes}</Routes>
     </BrowserRouter>
   );
 }
