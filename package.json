@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "create-react-app": "^5.0.0",
     "crypto-js": "^4.1.1",
+    "fuse.js": "^6.5.3",
     "mini-css-extract-plugin": "^2.5.1",
     "nth-check": "^2.0.1",
     "postcss": "^8.4.6",
