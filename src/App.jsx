@@ -121,7 +121,7 @@ class Board extends React.Component {
     this.state.monsList = getMonsList(genRange);
     const options = {
       includeScore: true,
-      minMatchCharLength: 3,
+      minMatchCharLength: 2,
       threshold: 0.6
     };
     this.state.searchRes = []
@@ -175,7 +175,7 @@ class Board extends React.Component {
           currentGuess: '',
         },
         () => {
-          this.setState({ glow: true });
+          this.setState({ glow: true, searchRes: [] });
           console.log('Invalid guess - do something here.');
         },
       );
@@ -204,6 +204,7 @@ class Board extends React.Component {
         gameOver,
         gameWon: win,
         answer,
+        searchRes: []
       },
       () => {
         console.log(`Guessed ${lastGuess}`);
@@ -291,8 +292,7 @@ class Board extends React.Component {
               list="mons">
             </input>
             <datalist id="mons">
-              {}
-      <option value={(this.state.searchRes[0] || {"item": ""})["item"]}/>
+      {searchOptions(this.state.searchRes)}
     </datalist>
             
           </form>
