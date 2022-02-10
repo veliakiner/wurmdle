@@ -11,6 +11,9 @@ import {
 import cryptoJs from 'crypto-js';
 import Fuse from 'fuse.js';
 import genData from './PokemonData';
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
+import Select from "react-select";
 
 function getGens(genRange) {
   const [minGen, maxGen] = genRange;
@@ -52,6 +55,7 @@ console.log('No cheating!');
 console.log = process.env.NODE_ENV === 'development' ? console.log : () => {}; // implement better logging solution
 const maxGuesses = 5;
 function startState() {
+  console.log("?????")
   return {
     answer: '',
     currentGuess: '',
@@ -157,20 +161,22 @@ class Board extends React.Component {
   }
 
   onChange(evt) {
-    const input = evt.target.value;
+    const input = evt;
+    console.log(evt)
     const { fuse } = this.state;
     const searchRes = fuse.search(input).slice(0, 4);
     // in the case that we select from the dropdown
-    function callbackFunc() {
-      if (evt.nativeEvent.data === undefined) {
-        this.onGuess(this.state);
-      }
-    }
-    this.setState({ currentGuess: input, glow: false, searchRes }, callbackFunc);
+    // function callbackFunc() {
+    //   if (evt.nativeEvent.data === undefined) {
+    //     this.onGuess(this.state);
+    //   }
+    // }
+    this.setState({ searchRes });
   }
 
   onGuess(state) {
     // sanitise
+    console.log("Guessing???")
     const { currentGuess, monsList } = state;
     let { guesses, guessDeltas } = state;
     let { answer } = state;
@@ -186,6 +192,7 @@ class Board extends React.Component {
     let lastGuess = currentGuess.toLowerCase();
     lastGuess = toTitleCase(lastGuess).trim();
     if (!monsList.includes(lastGuess)) {
+      console.log("Setting state...")
       this.setState(
         {
           currentGuess: '',
@@ -301,14 +308,14 @@ class Board extends React.Component {
               Guess
             </button>
 
-            <input
+            <Select
               className={glow ? 'glow' : 'no-glow'}
               placeholder="Graveler, Pikachu, etc.."
-              onChange={(e) => this.onChange(e)}
-              value={currentGuess}
-              list="mons"
+              onInputChange={(e) => this.onChange(e)}
+              onChange={(e) => {this.setState({currentGuess: e.label})}}
+              searchable={true}
+              options={searchOptions2(searchRes)}
             />
-            <datalist id="mons">{searchOptions(searchRes)}</datalist>
           </form>
         </div>
         <Grid guessDeltas={guessDeltas} guesses={guesses} />
@@ -317,6 +324,24 @@ class Board extends React.Component {
   }
 }
 
+function searchOptions2(searchRes) {
+  const options = [];
+  searchRes.forEach((element) => {
+    options.push({label: element.item, value: element.item});
+  });
+  console.log(options)
+  return options;
+}
+
+// const Countries = [
+//   { label: "Albania", value: 355 },
+//   { label: "Argentina", value: 54 },
+//   { label: "Austria", value: 43 },
+//   { label: "Cocos Islands", value: 61 },
+//   { label: "Kuwait", value: 965 },
+//   { label: "Sweden", value: 46 },
+//   { label: "Venezuela", value: 58 }
+// ];
 function Instructions() {
   return (
     <div>
