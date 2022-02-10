@@ -297,19 +297,18 @@ class Board extends React.Component {
           </div>
 
           <form
-            className={gameOver ? 'hide' : ''}
+            className={(gameOver ? 'hide' : '')}
             onSubmit={(evt) => {
               evt.preventDefault();
             }}
           >
-            <button type="submit" onClick={() => this.onGuess(this.state)}>
+            <button className="input" type="submit" onClick={() => this.onGuess(this.state)}>
               Guess
             </button>
 
             <Select
-              className={glow ? 'glow' : 'no-glow'}
               components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null }}
-              className={glow ? 'glow' : 'no-glow'}
+              className={"input " + "input-box " + (glow ? 'glow' : 'no-glow')}
               placeholder="Graveler, Pikachu, etc.."
               onInputChange={(e) => this.onChange(e)}
               onChange={(e) => {this.setState({currentGuess: e.label})}}
