@@ -10,8 +10,8 @@ import {
 } from 'react-router-dom';
 import cryptoJs from 'crypto-js';
 import Fuse from 'fuse.js';
+import Select from 'react-select';
 import genData from './PokemonData';
-import Select from "react-select";
 
 function getGens(genRange) {
   const [minGen, maxGen] = genRange;
@@ -53,7 +53,7 @@ console.log('No cheating!');
 console.log = process.env.NODE_ENV === 'development' ? console.log : () => {}; // implement better logging solution
 const maxGuesses = 5;
 function startState() {
-  console.log("?????")
+  console.log('?????');
   return {
     answer: '',
     currentGuess: '',
@@ -63,7 +63,7 @@ function startState() {
     gameOver: false,
     gameWon: false,
     glow: false,
-    partialGuess: ""
+    partialGuess: '',
   };
 }
 const toTitleCase = (phrase) => phrase
@@ -161,7 +161,7 @@ class Board extends React.Component {
 
   onChange(evt) {
     const input = evt;
-    console.log(evt)
+    console.log(evt);
     const { fuse } = this.state;
     const searchRes = fuse.search(input).slice(0, 4);
     // in the case that we select from the dropdown
@@ -170,17 +170,17 @@ class Board extends React.Component {
     //     this.onGuess(this.state);
     //   }
     // }
-    if (typeof evt === "string" && evt !== "") {
-      console.log("setting to ", input)
-      this.setState({ searchRes, partialGuess: input });
+    if (typeof evt === 'string' && evt !== '') {
+      console.log('setting to ', input);
+      this.setState({ searchRes, partialGuess: input, glow: false });
     } else {
-      this.setState({ searchRes });
+      this.setState({ searchRes, glow: false });
     }
   }
 
   onGuess(state) {
     // sanitise
-    console.log("Guessing???")
+    console.log('Guessing???');
     const { currentGuess, monsList, partialGuess } = state;
     let { guesses, guessDeltas } = state;
     let { answer } = state;
@@ -193,18 +193,18 @@ class Board extends React.Component {
         answer = monsList[monsIndex];
       }
     }
-    let guess = currentGuess || partialGuess
+    const guess = currentGuess || partialGuess;
     let lastGuess = guess.toLowerCase();
-    console.log(lastGuess)
-    console.log(lastGuess)
-    console.log(lastGuess)
+    console.log(lastGuess);
+    console.log(lastGuess);
+    console.log(lastGuess);
     lastGuess = toTitleCase(lastGuess).trim();
     if (!monsList.includes(lastGuess)) {
-      console.log("Setting state...")
+      console.log('Setting state...');
       this.setState(
         {
           currentGuess: '',
-          partialGuess: ""
+          partialGuess: '',
         },
         () => {
           this.setState({ glow: true, searchRes: [] });
@@ -231,7 +231,7 @@ class Board extends React.Component {
     this.setStateAndUpdateLocalStorage(
       {
         currentGuess: '',
-        partialGuess: "",
+        partialGuess: '',
         guesses,
         guessDeltas,
         gameOver,
@@ -309,22 +309,38 @@ class Board extends React.Component {
           </div>
 
           <form
-            className={(gameOver ? 'hide' : '')}
+            className={gameOver ? 'hide' : ''}
             onSubmit={(evt) => {
               evt.preventDefault();
             }}
           >
-            <button className="input" type="submit" onClick={() => this.onGuess(this.state)}>
+            <button
+              className="input"
+              type="submit"
+              onClick={() => this.onGuess(this.state)}
+            >
               Guess
             </button>
 
             <Select
-              components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null }}
-              className={"input " + "input-box " + (glow ? 'glow' : 'no-glow')}
+              components={{
+                DropdownIndicator: () => null,
+                IndicatorSeparator: () => null,
+              }}
+              className={'input ' + `input-box ${glow ? 'glow' : 'no-glow'}`}
               placeholder="Graveler, Pikachu, etc.."
               onInputChange={(e) => this.onChange(e)}
-              onChange={(e) => {this.setState({currentGuess: e.label })}}
-              value={{label: this.state.currentGuess, value: this.state.currentGuess}}
+              onChange={(e) => {
+                this.setState({ currentGuess: e.label });
+              }}
+              value={
+                this.state.partialGuess !== ''
+                  ? {
+                    label: this.state.currentGuess,
+                    value: this.state.currentGuess,
+                  }
+                  : ''
+              }
               options={searchOptions2(searchRes)}
               noOptionsMessage={() => null}
             />
@@ -339,9 +355,9 @@ class Board extends React.Component {
 function searchOptions2(searchRes) {
   const options = [];
   searchRes.forEach((element) => {
-    options.push({label: element.item, value: element.item});
+    options.push({ label: element.item, value: element.item });
   });
-  console.log(options)
+  console.log(options);
   return options;
 }
 
