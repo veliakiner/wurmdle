@@ -119,14 +119,9 @@ class Board extends React.Component {
     localStorage.setItem('gens', genRange);
     this.setStateAndUpdateLocalStorage(this.state);
     this.state.monsList = getMonsList(genRange);
-    const options = {
-      includeScore: true,
-      minMatchCharLength: 2,
-      threshold: 0.6
-    };
-    this.state.searchRes = []
+    this.state.searchRes = [];
 
-    this.fuse = new Fuse(this.state.monsList, options);
+    this.state.fuse = monsFuse(this.state.monsList);
   }
 
   componentDidMount() {
@@ -147,10 +142,10 @@ class Board extends React.Component {
   onChange(evt) {
     const input = evt.target.value;
     console.log(input);
-    const searchRes = this.fuse.search(input).slice(0, 4)
+    const searchRes = this.state.fuse.search(input).slice(0, 4);
     console.log(searchRes);
 
-    this.setState({ currentGuess: input, glow: false, searchRes: searchRes });
+    this.setState({ currentGuess: input, glow: false, searchRes });
   }
 
   onGuess(state) {
@@ -204,7 +199,7 @@ class Board extends React.Component {
         gameOver,
         gameWon: win,
         answer,
-        searchRes: []
+        searchRes: [],
       },
       () => {
         console.log(`Guessed ${lastGuess}`);
@@ -289,12 +284,12 @@ class Board extends React.Component {
               placeholder="Graveler, Pikachu, etc.."
               onChange={(e) => this.onChange(e)}
               value={currentGuess}
-              list="mons">
-            </input>
+              list="mons"
+            />
             <datalist id="mons">
-      {searchOptions(this.state.searchRes)}
-    </datalist>
-            
+              {searchOptions(this.state.searchRes)}
+            </datalist>
+
           </form>
         </div>
         <Grid guessDeltas={guessDeltas} guesses={guesses} />
@@ -303,10 +298,11 @@ class Board extends React.Component {
   }
 }
 
+
 function searchOptions(searchRes) {
-  let options = []
-  for (let res of searchRes) {
-    options.push(<option value={res["item"]}/>)
+  const options = [];
+  for (const res of searchRes) {
+    options.push(<option value={res.item}/>);
   }
   return options;
 }
@@ -423,12 +419,24 @@ function Square(props) {
   );
 }
 Square.propTypes = { value: string.isRequired };
+function monsFuse(monsList) {
 
+  const options = {
+    includeScore: true,
+    minMatchCharLength: 2,
+    threshold: 0.6,
+  };
+  return new Fuse(monsList, options)
+}
 function setSliderState(values, boardRef) {
   const genRange = [values[0], values[1] - 1];
+  const monsList = getMonsList(genRange)
   boardRef.setState({
     genRange,
-    monsList: getMonsList(genRange),
+    monsList: monsList,
+    fuse: monsFuse(monsList),
+    searchRes: []
+
   });
   localStorage.setItem('gens', genRange);
 }
