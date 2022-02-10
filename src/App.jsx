@@ -63,6 +63,7 @@ function startState() {
     gameOver: false,
     gameWon: false,
     glow: false,
+    partialGuess: ""
   };
 }
 const toTitleCase = (phrase) => phrase
@@ -171,7 +172,7 @@ class Board extends React.Component {
     // }
     if (typeof evt === "string" && evt !== "") {
       console.log("setting to ", input)
-      this.setState({ searchRes, currentGuess: input });
+      this.setState({ searchRes, partialGuess: input });
     } else {
       this.setState({ searchRes });
     }
@@ -180,7 +181,7 @@ class Board extends React.Component {
   onGuess(state) {
     // sanitise
     console.log("Guessing???")
-    const { currentGuess, monsList } = state;
+    const { currentGuess, monsList, partialGuess } = state;
     let { guesses, guessDeltas } = state;
     let { answer } = state;
     if (answer === '') {
@@ -192,7 +193,8 @@ class Board extends React.Component {
         answer = monsList[monsIndex];
       }
     }
-    let lastGuess = currentGuess.toLowerCase();
+    let guess = currentGuess || partialGuess
+    let lastGuess = guess.toLowerCase();
     console.log(lastGuess)
     console.log(lastGuess)
     console.log(lastGuess)
@@ -202,6 +204,7 @@ class Board extends React.Component {
       this.setState(
         {
           currentGuess: '',
+          partialGuess: ""
         },
         () => {
           this.setState({ glow: true, searchRes: [] });
@@ -228,6 +231,7 @@ class Board extends React.Component {
     this.setStateAndUpdateLocalStorage(
       {
         currentGuess: '',
+        partialGuess: "",
         guesses,
         guessDeltas,
         gameOver,
@@ -319,7 +323,7 @@ class Board extends React.Component {
               className={"input " + "input-box " + (glow ? 'glow' : 'no-glow')}
               placeholder="Graveler, Pikachu, etc.."
               onInputChange={(e) => this.onChange(e)}
-              onChange={(e) => {this.setState({currentGuess: e.label || currentGuess})}}
+              onChange={(e) => {this.setState({currentGuess: e.label })}}
               value={{label: this.state.currentGuess, value: this.state.currentGuess}}
               options={searchOptions2(searchRes)}
               noOptionsMessage={() => null}
