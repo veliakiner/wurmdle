@@ -9,6 +9,7 @@ import {
   Route, Routes, BrowserRouter, useParams,
 } from 'react-router-dom';
 import cryptoJs from 'crypto-js';
+import Fuse from 'fuse.js';
 import genData from './PokemonData';
 
 function getGens(genRange) {
@@ -118,6 +119,14 @@ class Board extends React.Component {
     localStorage.setItem('gens', genRange);
     this.setStateAndUpdateLocalStorage(this.state);
     this.state.monsList = getMonsList(genRange);
+    const options = {
+      includeScore: true,
+      minMatchCharLength: 3,
+      threshold: 0.6
+    };
+    this.state.searchRes = []
+
+    this.fuse = new Fuse(this.state.monsList, options);
   }
 
   componentDidMount() {
@@ -137,7 +146,11 @@ class Board extends React.Component {
 
   onChange(evt) {
     const input = evt.target.value;
-    this.setState({ currentGuess: input, glow: false });
+    console.log(input);
+    const searchRes = this.fuse.search(input).slice(0, 4)
+    console.log(searchRes);
+
+    this.setState({ currentGuess: input, glow: false, searchRes: searchRes });
   }
 
   onGuess(state) {
@@ -275,13 +288,27 @@ class Board extends React.Component {
               placeholder="Graveler, Pikachu, etc.."
               onChange={(e) => this.onChange(e)}
               value={currentGuess}
-            />
+              list="mons">
+            </input>
+            <datalist id="mons">
+              {}
+      <option value={(this.state.searchRes[0] || {"item": ""})["item"]}/>
+    </datalist>
+            
           </form>
         </div>
         <Grid guessDeltas={guessDeltas} guesses={guesses} />
       </div>
     );
   }
+}
+
+function searchOptions(searchRes) {
+  let options = []
+  for (let res of searchRes) {
+    options.push(<option value={res["item"]}/>)
+  }
+  return options;
 }
 function Instructions() {
   return (
