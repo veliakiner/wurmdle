@@ -11,8 +11,6 @@ import {
 import cryptoJs from 'crypto-js';
 import Fuse from 'fuse.js';
 import genData from './PokemonData';
-import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
 import Select from "react-select";
 
 function getGens(genRange) {
@@ -309,11 +307,12 @@ class Board extends React.Component {
             </button>
 
             <Select
+              components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null }}
               className={glow ? 'glow' : 'no-glow'}
               placeholder="Graveler, Pikachu, etc.."
               onInputChange={(e) => this.onChange(e)}
               onChange={(e) => {this.setState({currentGuess: e.label})}}
-              searchable={true}
+              value={{label: this.state.currentGuess, value: this.state.currentGuess}}
               options={searchOptions2(searchRes)}
             />
           </form>
