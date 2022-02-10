@@ -169,7 +169,12 @@ class Board extends React.Component {
     //     this.onGuess(this.state);
     //   }
     // }
-    this.setState({ searchRes });
+    if (typeof evt === "string" && evt !== "") {
+      console.log("setting to ", input)
+      this.setState({ searchRes, currentGuess: input });
+    } else {
+      this.setState({ searchRes });
+    }
   }
 
   onGuess(state) {
@@ -188,6 +193,9 @@ class Board extends React.Component {
       }
     }
     let lastGuess = currentGuess.toLowerCase();
+    console.log(lastGuess)
+    console.log(lastGuess)
+    console.log(lastGuess)
     lastGuess = toTitleCase(lastGuess).trim();
     if (!monsList.includes(lastGuess)) {
       console.log("Setting state...")
@@ -197,7 +205,7 @@ class Board extends React.Component {
         },
         () => {
           this.setState({ glow: true, searchRes: [] });
-          console.log('Invalid guess - do something here.');
+          console.log('Invalid guess - do something here. ', lastGuess);
         },
       );
       return;
@@ -311,7 +319,7 @@ class Board extends React.Component {
               className={"input " + "input-box " + (glow ? 'glow' : 'no-glow')}
               placeholder="Graveler, Pikachu, etc.."
               onInputChange={(e) => this.onChange(e)}
-              onChange={(e) => {this.setState({currentGuess: e.label})}}
+              onChange={(e) => {this.setState({currentGuess: e.label || currentGuess})}}
               value={{label: this.state.currentGuess, value: this.state.currentGuess}}
               options={searchOptions2(searchRes)}
               noOptionsMessage={() => null}
