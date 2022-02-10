@@ -31,6 +31,23 @@ function getMonsList(genRange) {
   return Object.keys(stats);
 }
 
+function monsFuse(monsList) {
+  const options = {
+    includeScore: true,
+    minMatchCharLength: 2,
+    threshold: 0.6,
+  };
+  return new Fuse(monsList, options);
+}
+
+function searchOptions(searchRes) {
+  const options = [];
+  searchRes.forEach((element) => {
+    options.push(<option value={element.item} aria-label="searchResult" />);
+  });
+  return options;
+}
+
 console.log('No cheating!');
 console.log = process.env.NODE_ENV === 'development' ? console.log : () => {}; // implement better logging solution
 const maxGuesses = 5;
@@ -118,10 +135,10 @@ class Board extends React.Component {
     this.state.genRange = genRange;
     localStorage.setItem('gens', genRange);
     this.setStateAndUpdateLocalStorage(this.state);
-    this.state.monsList = getMonsList(genRange);
+    const monsList = getMonsList(genRange);
+    this.state.monsList = monsList;
     this.state.searchRes = [];
-
-    this.state.fuse = monsFuse(this.state.monsList);
+    this.state.fuse = monsFuse(monsList);
   }
 
   componentDidMount() {
@@ -141,11 +158,15 @@ class Board extends React.Component {
 
   onChange(evt) {
     const input = evt.target.value;
-    console.log(input);
-    const searchRes = this.state.fuse.search(input).slice(0, 4);
-    console.log(searchRes);
-
-    this.setState({ currentGuess: input, glow: false, searchRes });
+    const { fuse } = this.state;
+    const searchRes = fuse.search(input).slice(0, 4);
+    // in the case that we select from the dropdown
+    function callbackFunc() {
+      if (evt.nativeEvent.data === undefined) {
+        this.onGuess(this.state);
+      }
+    }
+    this.setState({ currentGuess: input, glow: false, searchRes }, callbackFunc);
   }
 
   onGuess(state) {
@@ -246,6 +267,7 @@ class Board extends React.Component {
       guessDeltas,
       glow,
       genRange,
+      searchRes,
     } = this.state;
 
     console.log('Guesses: ', guesses);
@@ -286,10 +308,7 @@ class Board extends React.Component {
               value={currentGuess}
               list="mons"
             />
-            <datalist id="mons">
-              {searchOptions(this.state.searchRes)}
-            </datalist>
-
+            <datalist id="mons">{searchOptions(searchRes)}</datalist>
           </form>
         </div>
         <Grid guessDeltas={guessDeltas} guesses={guesses} />
@@ -298,14 +317,6 @@ class Board extends React.Component {
   }
 }
 
-
-function searchOptions(searchRes) {
-  const options = [];
-  for (const res of searchRes) {
-    options.push(<option value={res.item}/>);
-  }
-  return options;
-}
 function Instructions() {
   return (
     <div>
@@ -316,7 +327,6 @@ function Instructions() {
         {' '}
         <a href="https://github.com/veliakiner/wurmdle/issues">here</a>
         .
-
       </div>
       <div className="key">
         <div className="key-elem">Key:</div>
@@ -419,24 +429,15 @@ function Square(props) {
   );
 }
 Square.propTypes = { value: string.isRequired };
-function monsFuse(monsList) {
 
-  const options = {
-    includeScore: true,
-    minMatchCharLength: 2,
-    threshold: 0.6,
-  };
-  return new Fuse(monsList, options)
-}
 function setSliderState(values, boardRef) {
   const genRange = [values[0], values[1] - 1];
-  const monsList = getMonsList(genRange)
+  const monsList = getMonsList(genRange);
   boardRef.setState({
     genRange,
-    monsList: monsList,
+    monsList,
     fuse: monsFuse(monsList),
-    searchRes: []
-
+    searchRes: [],
   });
   localStorage.setItem('gens', genRange);
 }
