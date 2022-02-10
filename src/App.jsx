@@ -307,6 +307,7 @@ class Board extends React.Component {
             </button>
 
             <Select
+              className={glow ? 'glow' : 'no-glow'}
               components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null }}
               className={glow ? 'glow' : 'no-glow'}
               placeholder="Graveler, Pikachu, etc.."
@@ -314,6 +315,7 @@ class Board extends React.Component {
               onChange={(e) => {this.setState({currentGuess: e.label})}}
               value={{label: this.state.currentGuess, value: this.state.currentGuess}}
               options={searchOptions2(searchRes)}
+              noOptionsMessage={() => null}
             />
           </form>
         </div>
