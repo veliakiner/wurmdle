@@ -44,8 +44,9 @@ function monsFuse(monsList) {
 function searchOptions(searchRes) {
   const options = [];
   searchRes.forEach((element) => {
-    options.push(<option value={element.item} aria-label="searchResult" />);
+    options.push({ label: element.item, value: element.item });
   });
+  console.log(options);
   return options;
 }
 
@@ -64,7 +65,7 @@ function startState() {
     gameWon: false,
     glow: false,
     partialGuess: '',
-    enteredOnce: false
+    enteredOnce: false,
   };
 }
 const toTitleCase = (phrase) => phrase
@@ -269,10 +270,9 @@ class Board extends React.Component {
     const { gameOver, enteredOnce } = this.state;
     if (event.keyCode === 13 && gameOver) {
       if (enteredOnce) {
-
         this.setState(startState());
       } else {
-        this.setState({enteredOnce: true})
+        this.setState({ enteredOnce: true });
       }
     }
   }
@@ -288,6 +288,7 @@ class Board extends React.Component {
       glow,
       genRange,
       searchRes,
+      partialGuess,
     } = this.state;
 
     console.log('Guesses: ', guesses);
@@ -330,22 +331,22 @@ class Board extends React.Component {
                 DropdownIndicator: () => null,
                 IndicatorSeparator: () => null,
               }}
-              className={'input ' + `input-box ${glow ? 'glow' : 'no-glow'}`}
+              className={`input input-box ${glow ? 'glow' : 'no-glow'}`}
               placeholder="Graveler, Pikachu, etc.."
               onInputChange={(e) => this.onChange(e)}
               onChange={(e) => {
-                this.state.currentGuess = e.label
+                this.state.currentGuess = e.label;
                 this.onGuess(this.state);
               }}
               value={
-                this.state.partialGuess !== ''
+                partialGuess !== ''
                   ? {
-                    label: this.state.currentGuess,
-                    value: this.state.currentGuess,
+                    label: currentGuess,
+                    value: currentGuess,
                   }
                   : ''
               }
-              options={searchOptions2(searchRes)}
+              options={searchOptions(searchRes)}
               noOptionsMessage={() => null}
             />
           </form>
@@ -354,15 +355,6 @@ class Board extends React.Component {
       </div>
     );
   }
-}
-
-function searchOptions2(searchRes) {
-  const options = [];
-  searchRes.forEach((element) => {
-    options.push({ label: element.item, value: element.item });
-  });
-  console.log(options);
-  return options;
 }
 
 function Instructions() {
