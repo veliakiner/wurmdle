@@ -64,6 +64,7 @@ function startState() {
     gameWon: false,
     glow: false,
     partialGuess: '',
+    enteredOnce: false
   };
 }
 const toTitleCase = (phrase) => phrase
@@ -195,9 +196,6 @@ class Board extends React.Component {
     }
     const guess = currentGuess || partialGuess;
     let lastGuess = guess.toLowerCase();
-    console.log(lastGuess);
-    console.log(lastGuess);
-    console.log(lastGuess);
     lastGuess = toTitleCase(lastGuess).trim();
     if (!monsList.includes(lastGuess)) {
       console.log('Setting state...');
@@ -268,9 +266,14 @@ class Board extends React.Component {
   }
 
   resetOnEnter(event) {
-    const { gameOver } = this.state;
+    const { gameOver, enteredOnce } = this.state;
     if (event.keyCode === 13 && gameOver) {
-      this.setState(startState());
+      if (enteredOnce) {
+
+        this.setState(startState());
+      } else {
+        this.setState({enteredOnce: true})
+      }
     }
   }
 
@@ -331,7 +334,8 @@ class Board extends React.Component {
               placeholder="Graveler, Pikachu, etc.."
               onInputChange={(e) => this.onChange(e)}
               onChange={(e) => {
-                this.setState({ currentGuess: e.label });
+                this.state.currentGuess = e.label
+                this.onGuess(this.state);
               }}
               value={
                 this.state.partialGuess !== ''
@@ -361,15 +365,6 @@ function searchOptions2(searchRes) {
   return options;
 }
 
-// const Countries = [
-//   { label: "Albania", value: 355 },
-//   { label: "Argentina", value: 54 },
-//   { label: "Austria", value: 43 },
-//   { label: "Cocos Islands", value: 61 },
-//   { label: "Kuwait", value: 965 },
-//   { label: "Sweden", value: 46 },
-//   { label: "Venezuela", value: 58 }
-// ];
 function Instructions() {
   return (
     <div>
