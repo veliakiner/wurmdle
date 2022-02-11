@@ -9,6 +9,8 @@ import {
   Route, Routes, BrowserRouter, useParams,
 } from 'react-router-dom';
 import cryptoJs from 'crypto-js';
+import Fuse from 'fuse.js';
+import Select from 'react-select';
 import genData from './PokemonData';
 
 function getGens(genRange) {
@@ -30,10 +32,29 @@ function getMonsList(genRange) {
   return Object.keys(stats);
 }
 
+function monsFuse(monsList) {
+  const options = {
+    includeScore: true,
+    minMatchCharLength: 2,
+    threshold: 0.6,
+  };
+  return new Fuse(monsList, options);
+}
+
+function searchOptions(searchRes) {
+  const options = [];
+  searchRes.forEach((element) => {
+    options.push({ label: element.item, value: element.item });
+  });
+  console.log(options);
+  return options;
+}
+
 console.log('No cheating!');
 console.log = process.env.NODE_ENV === 'development' ? console.log : () => {}; // implement better logging solution
 const maxGuesses = 5;
 function startState() {
+  console.log('?????');
   return {
     answer: '',
     currentGuess: '',
@@ -43,6 +64,8 @@ function startState() {
     gameOver: false,
     gameWon: false,
     glow: false,
+    partialGuess: '',
+    enteredOnce: false,
   };
 }
 const toTitleCase = (phrase) => phrase
@@ -117,7 +140,10 @@ class Board extends React.Component {
     this.state.genRange = genRange;
     localStorage.setItem('gens', genRange);
     this.setStateAndUpdateLocalStorage(this.state);
-    this.state.monsList = getMonsList(genRange);
+    const monsList = getMonsList(genRange);
+    this.state.monsList = monsList;
+    this.state.searchRes = [];
+    this.state.fuse = monsFuse(monsList);
   }
 
   componentDidMount() {
@@ -136,13 +162,28 @@ class Board extends React.Component {
   }
 
   onChange(evt) {
-    const input = evt.target.value;
-    this.setState({ currentGuess: input, glow: false });
+    const input = evt;
+    console.log(evt);
+    const { fuse } = this.state;
+    const searchRes = fuse.search(input).slice(0, 4);
+    // in the case that we select from the dropdown
+    // function callbackFunc() {
+    //   if (evt.nativeEvent.data === undefined) {
+    //     this.onGuess(this.state);
+    //   }
+    // }
+    if (typeof evt === 'string' && evt !== '') {
+      console.log('setting to ', input);
+      this.setState({ searchRes, partialGuess: input, glow: false });
+    } else {
+      this.setState({ searchRes, glow: false });
+    }
   }
 
   onGuess(state) {
     // sanitise
-    const { currentGuess, monsList } = state;
+    console.log('Guessing???');
+    const { currentGuess, monsList, partialGuess } = state;
     let { guesses, guessDeltas } = state;
     let { answer } = state;
     if (answer === '') {
@@ -154,16 +195,19 @@ class Board extends React.Component {
         answer = monsList[monsIndex];
       }
     }
-    let lastGuess = currentGuess.toLowerCase();
+    const guess = currentGuess || partialGuess;
+    let lastGuess = guess.toLowerCase();
     lastGuess = toTitleCase(lastGuess).trim();
     if (!monsList.includes(lastGuess)) {
+      console.log('Setting state...');
       this.setState(
         {
           currentGuess: '',
+          partialGuess: '',
         },
         () => {
-          this.setState({ glow: true });
-          console.log('Invalid guess - do something here.');
+          this.setState({ glow: true, searchRes: [] });
+          console.log('Invalid guess - do something here. ', lastGuess);
         },
       );
       return;
@@ -186,11 +230,13 @@ class Board extends React.Component {
     this.setStateAndUpdateLocalStorage(
       {
         currentGuess: '',
+        partialGuess: '',
         guesses,
         guessDeltas,
         gameOver,
         gameWon: win,
         answer,
+        searchRes: [],
       },
       () => {
         console.log(`Guessed ${lastGuess}`);
@@ -221,9 +267,13 @@ class Board extends React.Component {
   }
 
   resetOnEnter(event) {
-    const { gameOver } = this.state;
+    const { gameOver, enteredOnce } = this.state;
     if (event.keyCode === 13 && gameOver) {
-      this.setState(startState());
+      if (enteredOnce) {
+        this.setState(startState());
+      } else {
+        this.setState({ enteredOnce: true });
+      }
     }
   }
 
@@ -237,6 +287,8 @@ class Board extends React.Component {
       guessDeltas,
       glow,
       genRange,
+      searchRes,
+      partialGuess,
     } = this.state;
 
     console.log('Guesses: ', guesses);
@@ -266,15 +318,36 @@ class Board extends React.Component {
               evt.preventDefault();
             }}
           >
-            <button type="submit" onClick={() => this.onGuess(this.state)}>
+            <button
+              className="input"
+              type="submit"
+              onClick={() => this.onGuess(this.state)}
+            >
               Guess
             </button>
 
-            <input
-              className={glow ? 'glow' : 'no-glow'}
+            <Select
+              components={{
+                DropdownIndicator: () => null,
+                IndicatorSeparator: () => null,
+              }}
+              className={`input input-box ${glow ? 'glow' : 'no-glow'}`}
               placeholder="Graveler, Pikachu, etc.."
-              onChange={(e) => this.onChange(e)}
-              value={currentGuess}
+              onInputChange={(e) => this.onChange(e)}
+              onChange={(e) => {
+                this.state.currentGuess = e.label;
+                this.onGuess(this.state);
+              }}
+              value={
+                partialGuess !== ''
+                  ? {
+                    label: currentGuess,
+                    value: currentGuess,
+                  }
+                  : ''
+              }
+              options={searchOptions(searchRes)}
+              noOptionsMessage={() => null}
             />
           </form>
         </div>
@@ -283,6 +356,7 @@ class Board extends React.Component {
     );
   }
 }
+
 function Instructions() {
   return (
     <div>
@@ -293,7 +367,6 @@ function Instructions() {
         {' '}
         <a href="https://github.com/veliakiner/wurmdle/issues">here</a>
         .
-
       </div>
       <div className="key">
         <div className="key-elem">Key:</div>
@@ -399,9 +472,12 @@ Square.propTypes = { value: string.isRequired };
 
 function setSliderState(values, boardRef) {
   const genRange = [values[0], values[1] - 1];
+  const monsList = getMonsList(genRange);
   boardRef.setState({
     genRange,
-    monsList: getMonsList(genRange),
+    monsList,
+    fuse: monsFuse(monsList),
+    searchRes: [],
   });
   localStorage.setItem('gens', genRange);
 }

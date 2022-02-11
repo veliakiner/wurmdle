@@ -157,3 +157,13 @@ iframe {
   margin-top: -5px;
   height: 5px;
 }
+
+.input-box {
+  float: left;
+  width: 200px;
+  vertical-align: middle
+}
+.input {
+  height: 38px;
+  vertical-align: middle
+}
