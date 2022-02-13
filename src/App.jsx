@@ -301,44 +301,45 @@ class Board extends React.Component {
             genRange={genRange}
             gameStarted={guesses.length > 0 && !gameOver}
           />
-          <div className={gameOver ? '' : 'hide'}>
-            <GameState answer={answer} gameWon={gameWon} />
-            <button
-              type="submit"
-              className="start-over"
-              onClick={() => this.setState(startState())}
-            >
-              Start over
-            </button>
-          </div>
+          <div className="input-container">
+            <div className={gameOver ? '' : 'hide'}>
+              <GameState answer={answer} gameWon={gameWon} />
+              <button
+                type="submit"
+                className="start-over"
+                onClick={() => this.setState(startState())}
+              >
+                Start over
+              </button>
+            </div>
 
-          <form
-            className={gameOver ? 'hide' : ''}
-            onSubmit={(evt) => {
-              evt.preventDefault();
-            }}
-          >
-            <button
-              className="input"
-              type="submit"
-              onClick={() => this.onGuess(this.state)}
+            <form
+              className={+gameOver ? 'hide' : ''}
+              onSubmit={(evt) => {
+                evt.preventDefault();
+              }}
             >
-              Guess
-            </button>
+              <button
+                className="input"
+                type="submit"
+                onClick={() => this.onGuess(this.state)}
+              >
+                Guess
+              </button>
 
-            <Select
-              components={{
-                DropdownIndicator: () => null,
-                IndicatorSeparator: () => null,
-              }}
-              className={`input input-box ${glow ? 'glow' : 'no-glow'}`}
-              placeholder="Graveler, Pikachu, etc.."
-              onInputChange={(e) => this.onChange(e)}
-              onChange={(e) => {
-                this.state.currentGuess = e.label;
-                this.onGuess(this.state);
-              }}
-              value={
+              <Select
+                components={{
+                  DropdownIndicator: () => null,
+                  IndicatorSeparator: () => null,
+                }}
+                className={`input input-box ${glow ? 'glow' : 'no-glow'}`}
+                placeholder="Graveler, Pikachu, etc.."
+                onInputChange={(e) => this.onChange(e)}
+                onChange={(e) => {
+                  this.state.currentGuess = e.label;
+                  this.onGuess(this.state);
+                }}
+                value={
                 partialGuess !== ''
                   ? {
                     label: currentGuess,
@@ -346,10 +347,11 @@ class Board extends React.Component {
                   }
                   : ''
               }
-              options={searchOptions(searchRes)}
-              noOptionsMessage={() => null}
-            />
-          </form>
+                options={searchOptions(searchRes)}
+                noOptionsMessage={() => null}
+              />
+            </form>
+          </div>
         </div>
         <Grid guessDeltas={guessDeltas} guesses={guesses} />
       </div>

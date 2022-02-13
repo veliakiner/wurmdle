@@ -167,3 +167,6 @@ iframe {
   height: 38px;
   vertical-align: middle
 }
+.input-container {
+  height: 40px;
+}
