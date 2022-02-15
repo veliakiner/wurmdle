@@ -2,6 +2,9 @@ class GamePage {
     input() {
       return cy.get("input");
     }
+    incorrectInput() {
+      return cy.get(".glow")
+    }
     row() {
       return cy.get('.board-row');
     }
