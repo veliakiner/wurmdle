@@ -3,7 +3,6 @@ import propTypes, {
   string, bool, arrayOf, number,
 } from 'prop-types';
 import './App.css';
-import FadeIn from 'react-fade-in';
 import ReactSlider from 'react-slider';
 import {
   Route, Routes, BrowserRouter, useParams,
@@ -12,6 +11,8 @@ import cryptoJs from 'crypto-js';
 import Fuse from 'fuse.js';
 import Select from 'react-select';
 import genData from './PokemonData';
+import Instructions from './Components/Instructions';
+import Grid from './Components/Grid';
 
 function getGens(genRange) {
   const [minGen, maxGen] = genRange;
@@ -359,40 +360,6 @@ class Board extends React.Component {
   }
 }
 
-function Instructions() {
-  return (
-    <div>
-      <div className="subtitle">
-        Welcome to Wurmdle! Try to guess the Pokemon based on its base stats!
-        You have five guesses. Adjust the slider to change which generations to
-        play with. Report issues
-        {' '}
-        <a href="https://github.com/veliakiner/wurmdle/issues">here</a>
-        .
-      </div>
-      <div className="key">
-        <div className="key-elem">Key:</div>
-        <div className="keys">
-          <span className="key-elem">
-            <Square key="toolow" value="0-" />
-            {' '}
-            Too low
-          </span>
-          <span className="key-elem">
-            <Square key="toohigh" value="999+" />
-            {' '}
-            Too high
-          </span>
-          <span className="key-elem">
-            <Square key="correct" value="100=" />
-            {' '}
-            Correct
-          </span>
-        </div>
-      </div>
-    </div>
-  );
-}
 Board.propTypes = { answer: string.isRequired };
 
 function GameState(props) {
@@ -408,69 +375,6 @@ function GameState(props) {
   return <span className="game-over-msg">{endgameString}</span>;
 }
 GameState.propTypes = { answer: string.isRequired, gameWon: bool.isRequired };
-
-function Grid(props) {
-  const rows = [];
-  const { guessDeltas, guesses } = props;
-  console.log(guessDeltas);
-  rows.push(
-    <Row
-      key={-1}
-      values={['HP', 'ATK', 'DEF', 'SPA', 'SPD', 'SPE']}
-      guess="Guess"
-    />,
-  );
-  for (let i = 0; i < guessDeltas.length; i += 1) {
-    rows.push(<Row key={i} values={guessDeltas[i]} guess={guesses[i]} />);
-  }
-  return <div>{rows}</div>;
-}
-Grid.propTypes = {
-  guessDeltas: arrayOf(arrayOf(string)).isRequired,
-  guesses: arrayOf(string).isRequired,
-};
-
-function Row(props) {
-  const numSquares = 6;
-  const squares = [];
-  const { guess, values } = props;
-  console.log(JSON.stringify(props));
-  for (let i = 0; i < numSquares; i += 1) {
-    const value = values[i];
-    squares.push(<Square key={i} value={value} />);
-  }
-  squares.push(<Square key={-1} value={guess} />);
-  return (
-    <FadeIn>
-      <div className="board-row">{squares}</div>
-    </FadeIn>
-  );
-}
-Row.propTypes = {
-  guess: string.isRequired,
-  values: arrayOf(string).isRequired,
-};
-
-function Square(props) {
-  let { value } = props;
-  const sign = value.slice(-1);
-  const classes = { '-': ' toolow', '+': ' toohigh', '=': ' correct' };
-  let buttonClass = 'square';
-  if ('=-+'.includes(sign)) {
-    value = value.slice(0, -1);
-    buttonClass += classes[sign] || '';
-  }
-  if (value === 'Wurmple') {
-    value = 'Wurmdle';
-  }
-  return (
-    <button type="button" className={buttonClass}>
-      {value}
-      {' '}
-    </button>
-  );
-}
-Square.propTypes = { value: string.isRequired };
 
 function setSliderState(values, boardRef) {
   const genRange = [values[0], values[1] - 1];
