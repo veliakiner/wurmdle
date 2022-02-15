@@ -54,7 +54,6 @@ console.log('No cheating!');
 console.log = process.env.NODE_ENV === 'development' ? console.log : () => {}; // implement better logging solution
 const maxGuesses = 5;
 function startState() {
-  console.log('?????');
   return {
     answer: '',
     currentGuess: '',
@@ -103,7 +102,6 @@ function calculateCorrectness(lastGuess, answer) {
 }
 
 function retrieveLocalStorageGameState() {
-  console.log('Updating???');
   const localStorageString = localStorage.getItem('gameState');
   const checkSum = localStorage.getItem('id');
   if (cryptoJs.SHA256(localStorageString).toString() !== checkSum) {
@@ -166,12 +164,6 @@ class Board extends React.Component {
     console.log(evt);
     const { fuse } = this.state;
     const searchRes = fuse.search(input).slice(0, 4);
-    // in the case that we select from the dropdown
-    // function callbackFunc() {
-    //   if (evt.nativeEvent.data === undefined) {
-    //     this.onGuess(this.state);
-    //   }
-    // }
     if (typeof evt === 'string' && evt !== '') {
       console.log('setting to ', input);
       this.setState({ searchRes, partialGuess: input, glow: false });
@@ -182,7 +174,7 @@ class Board extends React.Component {
 
   onGuess() {
     // sanitise
-    console.log('Guessing???');
+    console.log('Guessing.');
     const { currentGuess, monsList, partialGuess } = this.state;
     let { guesses, guessDeltas, answer } = this.state;
     if (answer === '') {
@@ -240,7 +232,7 @@ class Board extends React.Component {
       () => {
         console.log(`Guessed ${lastGuess}`);
         console.log(`Guesses: ${guesses.toString()}`);
-        console.log(`Guesse deltas: ${guessDeltas.toString()}`);
+        console.log(`Guess deltas: ${guessDeltas.toString()}`);
       },
     );
   }
