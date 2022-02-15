@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  string,
-} from 'prop-types';
+import { string } from 'prop-types';
 import './App.css';
 import {
   Route, Routes, BrowserRouter, useParams,
@@ -182,12 +180,11 @@ class Board extends React.Component {
     }
   }
 
-  onGuess(state) {
+  onGuess() {
     // sanitise
     console.log('Guessing???');
-    const { currentGuess, monsList, partialGuess } = state;
-    let { guesses, guessDeltas } = state;
-    let { answer } = state;
+    const { currentGuess, monsList, partialGuess } = this.state;
+    let { guesses, guessDeltas, answer } = this.state;
     if (answer === '') {
       const testAnswer = process.env.REACT_APP_ANSWER;
       if (process.env.REACT_APP_ANSWER !== undefined) {
@@ -334,11 +331,7 @@ class Board extends React.Component {
                 evt.preventDefault();
               }}
             >
-              <button
-                className="input"
-                type="submit"
-                onClick={() => this.onGuess(this.state)}
-              >
+              <button className="input" type="submit" onClick={this.onGuess}>
                 Guess
               </button>
 
@@ -352,7 +345,7 @@ class Board extends React.Component {
                 onInputChange={(e) => this.onChange(e)}
                 onChange={(e) => {
                   this.state.currentGuess = e.label;
-                  this.onGuess(this.state);
+                  this.onGuess();
                 }}
                 value={
                   partialGuess !== ''
