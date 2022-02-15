@@ -13,6 +13,7 @@ import Select from 'react-select';
 import genData from './PokemonData';
 import Instructions from './Components/Instructions';
 import Grid from './Components/Grid';
+import GameState from './Components/GameState';
 
 function getGens(genRange) {
   const [minGen, maxGen] = genRange;
@@ -361,20 +362,6 @@ class Board extends React.Component {
 }
 
 Board.propTypes = { answer: string.isRequired };
-
-function GameState(props) {
-  console.log(JSON.stringify(props));
-  let endgameString = '';
-  const { answer, gameWon } = props;
-  if (gameWon) {
-    endgameString += 'Game over - you won!';
-  } else {
-    endgameString += 'Sorry you have lost the game :(.';
-  }
-  endgameString += ` The answer was ${answer}. Type enter to start a new game!`;
-  return <span className="game-over-msg">{endgameString}</span>;
-}
-GameState.propTypes = { answer: string.isRequired, gameWon: bool.isRequired };
 
 function setSliderState(values, boardRef) {
   const genRange = [values[0], values[1] - 1];
