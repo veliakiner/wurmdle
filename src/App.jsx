@@ -1,9 +1,8 @@
 import React from 'react';
-import propTypes, {
-  string, bool, arrayOf, number,
+import {
+  string,
 } from 'prop-types';
 import './App.css';
-import ReactSlider from 'react-slider';
 import {
   Route, Routes, BrowserRouter, useParams,
 } from 'react-router-dom';
@@ -14,6 +13,7 @@ import genData from './PokemonData';
 import Instructions from './Components/Instructions';
 import Grid from './Components/Grid';
 import GameState from './Components/GameState';
+import GensSelector from './Components/GensSelector';
 
 function getGens(genRange) {
   const [minGen, maxGen] = genRange;
@@ -268,6 +268,18 @@ class Board extends React.Component {
     this.setState(props);
   }
 
+  setSliderState(values) {
+    const genRange = [values[0], values[1] - 1];
+    const monsList = getMonsList(genRange);
+    this.setState({
+      genRange,
+      monsList,
+      fuse: monsFuse(monsList),
+      searchRes: [],
+    });
+    localStorage.setItem('gens', genRange);
+  }
+
   resetOnEnter(event) {
     const { gameOver, enteredOnce } = this.state;
     if (event.keyCode === 13 && gameOver) {
@@ -302,6 +314,7 @@ class Board extends React.Component {
             boardRef={this}
             genRange={genRange}
             gameStarted={guesses.length > 0 && !gameOver}
+            setSliderState={this.setSliderState}
           />
           <div className="input-container">
             <div className={gameOver ? '' : 'hide'}>
@@ -362,50 +375,6 @@ class Board extends React.Component {
 }
 
 Board.propTypes = { answer: string.isRequired };
-
-function setSliderState(values, boardRef) {
-  const genRange = [values[0], values[1] - 1];
-  const monsList = getMonsList(genRange);
-  boardRef.setState({
-    genRange,
-    monsList,
-    fuse: monsFuse(monsList),
-    searchRes: [],
-  });
-  localStorage.setItem('gens', genRange);
-}
-
-function GensSelector(props) {
-  const { boardRef, genRange, gameStarted } = props;
-  console.log(gameStarted);
-  return (
-    <ReactSlider
-      disabled={gameStarted}
-      className="horizontal-slider"
-      thumbClassName="example-thumb"
-      trackClassName="example-track"
-      defaultValue={[genRange[0], genRange[1] + 1]}
-      ariaLabel={['Lower thumb', 'Upper thumb']}
-      ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
-      renderThumb={(props2, state) => (
-        <div {...props2}>{state.valueNow - state.index}</div>
-      )}
-      pearling
-      onAfterChange={(values) => {
-        setSliderState(values, boardRef);
-      }}
-      minDistance={1}
-      min={1}
-      max={9}
-      marks
-    />
-  );
-}
-GensSelector.propTypes = {
-  boardRef: propTypes.any.isRequired, // This suggests passing in a state object is frowned upon
-  genRange: arrayOf(number).isRequired,
-  gameStarted: bool.isRequired,
-};
 
 function BoardWrapper() {
   const { answer } = useParams();
