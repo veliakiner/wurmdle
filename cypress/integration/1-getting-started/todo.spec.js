@@ -58,6 +58,25 @@ describe("Player wins the game on the first guess", () => {
   });
 });
 
+describe("Invalid guess", () => {
+  it("opens the app", () => {
+    cy.visit("http://localhost:3000/Pikachu");
+  });
+  it("Makes an invalid guess", () => {
+    GamePage.input().type("Pikablu").type("{enter}");
+  });
+  it("The input should glow", () => {
+    GamePage.incorrectInput().should('be.visible')
+  });
+  // it("The input box should clear", () => {
+  //   GamePage.input().should('have.value', "")
+  // });
+  // it("Makes an invalid guess", () => {
+  //   GamePage.input().type("Pikachu").type("{enter}");
+  //   GamePage.row().should('have.length', 2)
+  // });
+});
+
 describe("Player wins the game on the last guess", () => {
   it("opens the app", () => {
     cy.visit("http://localhost:3000/Pikachu");

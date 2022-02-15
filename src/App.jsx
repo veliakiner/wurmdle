@@ -310,7 +310,7 @@ class Board extends React.Component {
               onSelectGuess={(evt) => {
                 this.onSelectGuess(evt);
               }}
-              onGuess={this.onGuess}
+              onGuess={() => this.onGuess()}
               {...this.state}
             />
           </div>
