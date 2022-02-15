@@ -14,6 +14,12 @@ class GamePage {
     startOver() {
         return cy.get(".start-over");
     }
+    leftSlider() {
+      return cy.get(".example-thumb-0");
+    }
+    rightSlider() {
+      return cy.get(".example-thumb-1");
+    }
   }
   
   export default new GamePage()
