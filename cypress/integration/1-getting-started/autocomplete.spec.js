@@ -33,6 +33,6 @@ describe("Search autocomplete", () => {
       GamePage.input().type("Me").type("{downArrow}").type("{enter}");
     });
     it("There should be three rows (1 label row, and 2 guess row", () => {
-      GamePage.row().should('have.length', 2)
+      GamePage.row().should('have.length', 3)
     });
   });

@@ -2,17 +2,6 @@
 
 import GamePage from "../../pageObjects/gamePage";
 
-// Welcome to Cypress!
-//
-// This spec file contains a variety of sample tests
-// for a todo list app that are designed to demonstrate
-// the power of writing tests in Cypress.
-//
-// To learn more about how Cypress works and
-// what makes it such an awesome testing tool,
-// please read our getting started guide:
-// https://on.cypress.io/introduction-to-cypress
-
 afterEach(function () {
   if (this.currentTest.state === "failed") {
     Cypress.runner.stop();
@@ -88,30 +77,5 @@ describe("Player wins the game on the last guess", () => {
   });
   it("Guesses correctly", () => {
     GamePage.input().type("Pikachu").type("{enter}");
-  });
-});
-
-describe("Using the submit button", () => {
-  it("opens the app", () => {
-    cy.visit("http://localhost:3000/Pikachu");
-  });
-  it("Makes an invalid guess", () => {
-    GamePage.input().type("Pikablu");
-  });
-  it("Hit the button", () => {
-    GamePage.submitButton().click();
-  });
-  it("The input should glow", () => {
-    GamePage.incorrectInput().should('be.visible')
-  });
-  it("The input box should clear", () => {
-    GamePage.input().should('have.value', "")
-  });
-  it("Makes a valid guess", () => {
-    GamePage.input().type("Mew");
-    GamePage.submitButton().click();
-  });
-  it("There should be two rows (1 label row, and 1 guess row", () => {
-    GamePage.row().should('have.length', 2)
   });
 });
