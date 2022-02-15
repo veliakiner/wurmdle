@@ -53,7 +53,6 @@ function startState() {
     guessDeltas: [],
     gameOver: false,
     gameWon: false,
-    glow: false,
     partialGuess: '',
     enteredOnce: false,
   };
@@ -157,9 +156,9 @@ class Board extends React.Component {
     const searchRes = fuse.search(input).slice(0, 4);
     if (typeof evt === 'string' && evt !== '') {
       console.log('setting to ', input);
-      this.setState({ searchRes, partialGuess: input, glow: false });
+      this.setState({ searchRes, partialGuess: input });
     } else {
-      this.setState({ searchRes, glow: false });
+      this.setState({ searchRes });
     }
   }
 
@@ -193,11 +192,11 @@ class Board extends React.Component {
           partialGuess: '',
         },
         () => {
-          this.setState({ glow: true, searchRes: [] });
+          this.setState({ searchRes: [] });
           console.log('Invalid guess - do something here. ', lastGuess);
         },
       );
-      return;
+      return false;
     }
     let noMoreGuesses;
     const [delta, win] = calculateCorrectness(lastGuess, answer);
@@ -231,6 +230,7 @@ class Board extends React.Component {
         console.log(`Guess deltas: ${guessDeltas.toString()}`);
       },
     );
+    return true;
   }
 
   setStateAndUpdateLocalStorage(props) {
