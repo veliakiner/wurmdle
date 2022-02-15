@@ -341,13 +341,13 @@ class Board extends React.Component {
                   this.onGuess(this.state);
                 }}
                 value={
-                partialGuess !== ''
-                  ? {
-                    label: currentGuess,
-                    value: currentGuess,
-                  }
-                  : ''
-              }
+                  partialGuess !== ''
+                    ? {
+                      label: currentGuess,
+                      value: currentGuess,
+                    }
+                    : ''
+                }
                 options={searchOptions(searchRes)}
                 noOptionsMessage={() => null}
               />
