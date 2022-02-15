@@ -5,6 +5,9 @@ class GamePage {
     incorrectInput() {
       return cy.get(".glow")
     }
+    submitButton() {
+      return cy.get('[type="submit"].input')
+    }
     row() {
       return cy.get('.board-row');
     }
