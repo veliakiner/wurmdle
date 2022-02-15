@@ -290,7 +290,7 @@ class Board extends React.Component {
             boardRef={this}
             genRange={genRange}
             gameStarted={guesses.length > 0 && !gameOver}
-            setSliderState={this.setSliderState}
+            setSliderState={(values) => { this.setSliderState(values); }}
           />
           <div className="input-container">
             <div className={gameOver ? '' : 'hide'}>
