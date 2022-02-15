@@ -6,12 +6,12 @@ import {
 } from 'react-router-dom';
 import cryptoJs from 'crypto-js';
 import Fuse from 'fuse.js';
-import Select from 'react-select';
 import genData from './PokemonData';
 import Instructions from './Components/Instructions';
 import Grid from './Components/Grid';
 import GameState from './Components/GameState';
 import GensSelector from './Components/GensSelector';
+import GameInput from './Components/GameInput';
 
 function getGens(genRange) {
   const [minGen, maxGen] = genRange;
@@ -39,15 +39,6 @@ function monsFuse(monsList) {
     threshold: 0.6,
   };
   return new Fuse(monsList, options);
-}
-
-function searchOptions(searchRes) {
-  const options = [];
-  searchRes.forEach((element) => {
-    options.push({ label: element.item, value: element.item });
-  });
-  console.log(options);
-  return options;
 }
 
 console.log('No cheating!');
@@ -172,6 +163,11 @@ class Board extends React.Component {
     }
   }
 
+  onSelectGuess(guess) {
+    this.state.currentGuess = guess;
+    this.onGuess();
+  }
+
   onGuess() {
     // sanitise
     console.log('Guessing.');
@@ -282,16 +278,7 @@ class Board extends React.Component {
 
   render() {
     const {
-      gameOver,
-      gameWon,
-      answer,
-      currentGuess,
-      guesses,
-      guessDeltas,
-      glow,
-      genRange,
-      searchRes,
-      partialGuess,
+      gameOver, gameWon, answer, guesses, guessDeltas, genRange,
     } = this.state;
 
     console.log('Guesses: ', guesses);
@@ -316,41 +303,16 @@ class Board extends React.Component {
                 Start over
               </button>
             </div>
-
-            <form
-              className={+gameOver ? 'hide' : ''}
-              onSubmit={(evt) => {
-                evt.preventDefault();
+            <GameInput
+              onChange={(evt) => {
+                this.onChange(evt);
               }}
-            >
-              <button className="input" type="submit" onClick={this.onGuess}>
-                Guess
-              </button>
-
-              <Select
-                components={{
-                  DropdownIndicator: () => null,
-                  IndicatorSeparator: () => null,
-                }}
-                className={`input input-box ${glow ? 'glow' : 'no-glow'}`}
-                placeholder="Graveler, Pikachu, etc.."
-                onInputChange={(e) => this.onChange(e)}
-                onChange={(e) => {
-                  this.state.currentGuess = e.label;
-                  this.onGuess();
-                }}
-                value={
-                  partialGuess !== ''
-                    ? {
-                      label: currentGuess,
-                      value: currentGuess,
-                    }
-                    : ''
-                }
-                options={searchOptions(searchRes)}
-                noOptionsMessage={() => null}
-              />
-            </form>
+              onSelectGuess={(evt) => {
+                this.onSelectGuess(evt);
+              }}
+              onGuess={this.onGuess}
+              {...this.state}
+            />
           </div>
         </div>
         <Grid guessDeltas={guessDeltas} guesses={guesses} />
