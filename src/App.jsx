@@ -297,7 +297,7 @@ class Board extends React.Component {
       <div>
         <Instructions />
         <div className="control">
-          <SelectGens
+          <GensSelector
             boardRef={this}
             genRange={genRange}
             gameStarted={guesses.length > 0 && !gameOver}
@@ -388,7 +388,7 @@ function setSliderState(values, boardRef) {
   localStorage.setItem('gens', genRange);
 }
 
-function SelectGens(props) {
+function GensSelector(props) {
   const { boardRef, genRange, gameStarted } = props;
   console.log(gameStarted);
   return (
@@ -414,7 +414,7 @@ function SelectGens(props) {
     />
   );
 }
-SelectGens.propTypes = {
+GensSelector.propTypes = {
   boardRef: propTypes.any.isRequired, // This suggests passing in a state object is frowned upon
   genRange: arrayOf(number).isRequired,
   gameStarted: bool.isRequired,
