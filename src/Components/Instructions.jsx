@@ -12,7 +12,6 @@ function Instructions() {
         {' '}
         <a href="https://github.com/veliakiner/wurmdle/issues">here</a>
         .
-    <img className="settings-btn" src="./settings.svg" onClick={() => console.log("Settings button clicked")} />
       </div>
       <div className="key">
         <div className="key-elem">Key:</div>

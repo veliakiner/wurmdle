@@ -1,23 +1,24 @@
-import React from 'react';
-import { string } from 'prop-types';
-import './App.css';
+import React, { useState } from "react";
+import { string } from "prop-types";
+import "./App.css";
+import { Route, Routes, BrowserRouter, useParams } from "react-router-dom";
+import genData from "./Libraries/Pokemon/PokemonData";
+import Instructions from "./Components/Instructions";
+import Grid from "./Components/Grid";
+import GameState from "./Components/GameState";
+import GensSelector from "./Components/GensSelector";
+import GameInput from "./Components/GameInput";
+import { getGenRange, getMonsList, monsFuse } from "./Libraries/Pokemon/utils";
 import {
-  Route, Routes, BrowserRouter, useParams,
-} from 'react-router-dom';
-import genData from './Libraries/Pokemon/PokemonData';
-import Instructions from './Components/Instructions';
-import Grid from './Components/Grid';
-import GameState from './Components/GameState';
-import GensSelector from './Components/GensSelector';
-import GameInput from './Components/GameInput';
-import { getGenRange, getMonsList, monsFuse } from './Libraries/Pokemon/utils';
-import { retrieveLocalStorageGameState, updateLocalStorageGameState } from './Libraries/localStorage';
+  retrieveLocalStorageGameState,
+  updateLocalStorageGameState,
+} from "./Libraries/localStorage";
 
 const allStats = genData(getGenRange([1, 8]));
 const defaultGenRange = [1, 3];
 const maxGuesses = 5;
-console.log('No cheating!');
-console.log = process.env.NODE_ENV === 'development' ? console.log : () => {}; // implement better logging solution
+console.log("No cheating!");
+console.log = process.env.NODE_ENV === "development" ? console.log : () => {}; // implement better logging solution
 
 function genState(genRange) {
   const monsList = getMonsList(genRange);
@@ -32,22 +33,23 @@ function genState(genRange) {
 
 function startState() {
   return {
-    answer: '',
-    currentGuess: '',
-    lastGuess: '',
+    answer: "",
+    currentGuess: "",
+    lastGuess: "",
     guesses: [],
     guessDeltas: [],
     gameOver: false,
     gameWon: false,
-    partialGuess: '',
+    partialGuess: "",
     enteredOnce: false,
   };
 }
-const toTitleCase = (phrase) => phrase
-  .toLowerCase()
-  .split(' ')
-  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-  .join(' ');
+const toTitleCase = (phrase) =>
+  phrase
+    .toLowerCase()
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
 
 function calculateCorrectness(lastGuess, answer) {
   console.log(lastGuess);
@@ -68,10 +70,10 @@ function calculateCorrectness(lastGuess, answer) {
     }
   }
   console.log(delta.toString());
-  console.log('Incorrect. Try again');
+  console.log("Incorrect. Try again");
 
   if (lastGuess === answer) {
-    console.log('Correct!');
+    console.log("Correct!");
     return [delta, true];
   }
   return [delta, false];
@@ -85,13 +87,13 @@ class Board extends React.Component {
       this.state = parsedState;
     } else {
       this.state = startState();
-      this.state.answer = toTitleCase(props.answer) || '';
+      this.state.answer = toTitleCase(props.answer) || "";
     }
-    const rawGenRange = localStorage.getItem('gens');
+    const rawGenRange = localStorage.getItem("gens");
     const genRange = rawGenRange
-      ? rawGenRange.split(',').map((x) => parseInt(x, 10))
+      ? rawGenRange.split(",").map((x) => parseInt(x, 10))
       : defaultGenRange;
-    localStorage.setItem('gens', genRange);
+    localStorage.setItem("gens", genRange);
     updateLocalStorageGameState(this.state);
     Object.assign(this.state, genState(genRange));
   }
@@ -102,12 +104,12 @@ class Board extends React.Component {
     this.resetOnEnterWrapped = (evt) => {
       this.resetOnEnter(evt);
     }; // hopefully guarantees that I'm removing the event listener...
-    document.addEventListener('keydown', this.resetOnEnterWrapped, false);
+    document.addEventListener("keydown", this.resetOnEnterWrapped, false);
   }
 
   componentWillUnmount() {
     console.log(
-      document.removeEventListener('keydown', this.resetOnEnterWrapped, false),
+      document.removeEventListener("keydown", this.resetOnEnterWrapped, false)
     );
   }
 
@@ -116,8 +118,8 @@ class Board extends React.Component {
     console.log(evt);
     const { fuse } = this.state;
     const searchRes = fuse.search(input).slice(0, 4);
-    if (typeof evt === 'string' && evt !== '') {
-      console.log('setting to ', input);
+    if (typeof evt === "string" && evt !== "") {
+      console.log("setting to ", input);
       this.setState({ searchRes, partialGuess: input });
     } else {
       this.setState({ searchRes });
@@ -131,10 +133,10 @@ class Board extends React.Component {
 
   onGuess() {
     // sanitise
-    console.log('Guessing.');
+    console.log("Guessing.");
     const { currentGuess, monsList, partialGuess } = this.state;
     let { guesses, guessDeltas, answer } = this.state;
-    if (answer === '') {
+    if (answer === "") {
       const testAnswer = process.env.REACT_APP_ANSWER;
       if (process.env.REACT_APP_ANSWER !== undefined) {
         answer = toTitleCase(testAnswer);
@@ -147,16 +149,16 @@ class Board extends React.Component {
     let lastGuess = guess.toLowerCase();
     lastGuess = toTitleCase(lastGuess).trim();
     if (!monsList.includes(lastGuess)) {
-      console.log('Setting state...');
+      console.log("Setting state...");
       this.setState(
         {
-          currentGuess: '',
-          partialGuess: '',
+          currentGuess: "",
+          partialGuess: "",
         },
         () => {
           this.setState({ searchRes: [] });
-          console.log('Invalid guess - do something here. ', lastGuess);
-        },
+          console.log("Invalid guess - do something here. ", lastGuess);
+        }
       );
       return false;
     }
@@ -176,23 +178,21 @@ class Board extends React.Component {
       ]);
     }
     this.setState(
-      updateLocalStorageGameState(
-        {
-          currentGuess: '',
-          partialGuess: '',
-          guesses,
-          guessDeltas,
-          gameOver,
-          gameWon: win,
-          answer,
-          searchRes: [],
-        },
-      ),
+      updateLocalStorageGameState({
+        currentGuess: "",
+        partialGuess: "",
+        guesses,
+        guessDeltas,
+        gameOver,
+        gameWon: win,
+        answer,
+        searchRes: [],
+      }),
       () => {
         console.log(`Guessed ${lastGuess}`);
         console.log(`Guesses: ${guesses.toString()}`);
         console.log(`Guess deltas: ${guessDeltas.toString()}`);
-      },
+      }
     );
     return true;
   }
@@ -200,7 +200,7 @@ class Board extends React.Component {
   setSliderState(values) {
     const genRange = [values[0], values[1] - 1];
     this.setState(genState(genRange));
-    localStorage.setItem('gens', genRange);
+    localStorage.setItem("gens", genRange);
   }
 
   resetOnEnter(event) {
@@ -215,11 +215,10 @@ class Board extends React.Component {
   }
 
   render() {
-    const {
-      gameOver, gameWon, answer, guesses, guessDeltas, genRange,
-    } = this.state;
+    const { gameOver, gameWon, answer, guesses, guessDeltas, genRange } =
+      this.state;
 
-    console.log('Guesses: ', guesses);
+    console.log("Guesses: ", guesses);
     return (
       <div>
         <Instructions />
@@ -228,10 +227,12 @@ class Board extends React.Component {
             boardRef={this}
             genRange={genRange}
             gameStarted={guesses.length > 0 && !gameOver}
-            setSliderState={(values) => { this.setSliderState(values); }}
+            setSliderState={(values) => {
+              this.setSliderState(values);
+            }}
           />
           <div className="input-container">
-            <div className={gameOver ? '' : 'hide'}>
+            <div className={gameOver ? "" : "hide"}>
               <GameState answer={answer} gameWon={gameWon} />
               <button
                 type="submit"
@@ -263,14 +264,29 @@ Board.propTypes = { answer: string.isRequired };
 
 function BoardWrapper() {
   const { answer } = useParams();
-  return <Board answer={answer || ''} />;
+  let [settings, setSettings] = useState(null)
+  console.log("Show settings", settings);
+  return (
+    <div>
+      <img
+        className="settings-btn"
+        src="./settings.svg"
+        onClick={() => setSettings(!settings)}
+      />
+      {settings ? (
+        <div/>
+      ) : (
+        <Board answer={answer || ""} />
+      )}
+    </div>
+  );
 }
 
 function App() {
   /* TODO: violates OCP */
   const routes = [<Route path="/" element={<BoardWrapper />} />];
   // Helps hardcode answer when testing
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV === "development") {
     routes.push(<Route path="/:answer" element={<BoardWrapper />} />);
   }
   return (
