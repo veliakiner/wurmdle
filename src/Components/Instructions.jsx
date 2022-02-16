@@ -3,14 +3,16 @@ import Square from './Square';
 
 function Instructions() {
   return (
-    <div>
+    <div className='header'>
       <div className="subtitle">
+        
         Welcome to Wurmdle! Try to guess the Pokemon based on its base stats!
         You have five guesses. Adjust the slider to change which generations to
         play with. Report issues
         {' '}
         <a href="https://github.com/veliakiner/wurmdle/issues">here</a>
         .
+    <img className="settings-btn" src="./settings.svg" onClick={() => console.log("Settings button clicked")} />
       </div>
       <div className="key">
         <div className="key-elem">Key:</div>

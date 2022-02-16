@@ -58,10 +58,11 @@
 }
 .subtitle {
   display: table;
-  margin: auto;
+  margin:0 auto;
   width: 75%;
   padding: 10px;
   text-align: center;
+  position: relative;
 }
 .key {
   display: table;
@@ -169,4 +170,15 @@ iframe {
 }
 .input-container {
   height: 40px;
+}
+
+.settings-btn {
+  height: 40px;
+  position:absolute;
+   top:0px;
+    left:100%;
+}
+.header {
+  width: 50%;
+  margin: auto;
 }
