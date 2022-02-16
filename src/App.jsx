@@ -4,46 +4,32 @@ import './App.css';
 import {
   Route, Routes, BrowserRouter, useParams,
 } from 'react-router-dom';
-import cryptoJs from 'crypto-js';
-import Fuse from 'fuse.js';
-import genData from './PokemonData';
+import genData from './Libraries/Pokemon/PokemonData';
 import Instructions from './Components/Instructions';
 import Grid from './Components/Grid';
 import GameState from './Components/GameState';
 import GensSelector from './Components/GensSelector';
 import GameInput from './Components/GameInput';
+import { getGenRange, getMonsList, monsFuse } from './Libraries/Pokemon/utils';
+import { retrieveLocalStorageGameState, updateLocalStorageGameState } from './Libraries/localStorage';
 
-function getGens(genRange) {
-  const [minGen, maxGen] = genRange;
-  const gens = [];
-  for (let i = minGen; i <= maxGen; i += 1) {
-    gens.push(i);
-  }
-  return gens;
-}
-
-const allStats = genData(getGens([1, 8]));
+const allStats = genData(getGenRange([1, 8]));
 const defaultGenRange = [1, 3];
-
-function getMonsList(genRange) {
-  console.log('Getting list for gens ', genRange);
-  const gens = getGens(genRange);
-  const stats = genData(gens); // can just filter stats by gens or something
-  return Object.keys(stats);
-}
-
-function monsFuse(monsList) {
-  const options = {
-    includeScore: true,
-    minMatchCharLength: 2,
-    threshold: 0.6,
-  };
-  return new Fuse(monsList, options);
-}
-
+const maxGuesses = 5;
 console.log('No cheating!');
 console.log = process.env.NODE_ENV === 'development' ? console.log : () => {}; // implement better logging solution
-const maxGuesses = 5;
+
+function genState(genRange) {
+  const monsList = getMonsList(genRange);
+  const fuse = monsFuse(monsList);
+  return {
+    genRange,
+    monsList,
+    fuse,
+    searchRes: [],
+  };
+}
+
 function startState() {
   return {
     answer: '',
@@ -91,26 +77,6 @@ function calculateCorrectness(lastGuess, answer) {
   return [delta, false];
 }
 
-function retrieveLocalStorageGameState() {
-  const localStorageString = localStorage.getItem('gameState');
-  const checkSum = localStorage.getItem('id');
-  if (cryptoJs.SHA256(localStorageString).toString() !== checkSum) {
-    return false;
-  }
-  try {
-    const parsedState = JSON.parse(localStorageString);
-    // We don't want to set the state to a finished game
-    if (parsedState.gameOver) {
-      console.log('Old game finished - discarding state.');
-      return false;
-    }
-    console.log('Restoring old game state.');
-    return parsedState;
-  } catch {
-    console.log('Something went wrong.');
-    return false;
-  }
-}
 class Board extends React.Component {
   constructor(props) {
     super();
@@ -125,13 +91,9 @@ class Board extends React.Component {
     const genRange = rawGenRange
       ? rawGenRange.split(',').map((x) => parseInt(x, 10))
       : defaultGenRange;
-    this.state.genRange = genRange;
     localStorage.setItem('gens', genRange);
-    this.setStateAndUpdateLocalStorage(this.state);
-    const monsList = getMonsList(genRange);
-    this.state.monsList = monsList;
-    this.state.searchRes = [];
-    this.state.fuse = monsFuse(monsList);
+    updateLocalStorageGameState(this.state);
+    Object.assign(this.state, genState(genRange));
   }
 
   componentDidMount() {
@@ -213,17 +175,19 @@ class Board extends React.Component {
         calculateCorrectness(answer, answer)[0],
       ]);
     }
-    this.setStateAndUpdateLocalStorage(
-      {
-        currentGuess: '',
-        partialGuess: '',
-        guesses,
-        guessDeltas,
-        gameOver,
-        gameWon: win,
-        answer,
-        searchRes: [],
-      },
+    this.setState(
+      updateLocalStorageGameState(
+        {
+          currentGuess: '',
+          partialGuess: '',
+          guesses,
+          guessDeltas,
+          gameOver,
+          gameWon: win,
+          answer,
+          searchRes: [],
+        },
+      ),
       () => {
         console.log(`Guessed ${lastGuess}`);
         console.log(`Guesses: ${guesses.toString()}`);
@@ -233,35 +197,9 @@ class Board extends React.Component {
     return true;
   }
 
-  setStateAndUpdateLocalStorage(props) {
-    let localStorageState;
-    try {
-      const localStorageString = localStorage.getItem('gameState');
-      const checkSum = localStorage.getItem('id');
-      if (cryptoJs.SHA256(localStorageString).toString() === checkSum) {
-        localStorageState = JSON.parse(localStorageString) || {};
-      } else {
-        localStorageState = {};
-      }
-    } catch (err) {
-      localStorageState = {};
-    }
-    const updatedState = Object.assign(localStorageState, props);
-    const updatedStateString = JSON.stringify(updatedState);
-    localStorage.setItem('gameState', updatedStateString);
-    localStorage.setItem('id', cryptoJs.SHA256(updatedStateString).toString());
-    this.setState(props);
-  }
-
   setSliderState(values) {
     const genRange = [values[0], values[1] - 1];
-    const monsList = getMonsList(genRange);
-    this.setState({
-      genRange,
-      monsList,
-      fuse: monsFuse(monsList),
-      searchRes: [],
-    });
+    this.setState(genState(genRange));
     localStorage.setItem('gens', genRange);
   }
 
