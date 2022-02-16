@@ -85,7 +85,7 @@ class Board extends React.Component {
     super();
     if (props.parsedState) {
       this.state = props.parsedState;
-      console.log("Setting parsed state")
+      console.log('Setting parsed state');
     } else {
       this.state = startState();
       this.state.answer = toTitleCase(props.answer) || '';
@@ -192,7 +192,7 @@ class Board extends React.Component {
         console.log(`Guess deltas: ${guessDeltas.toString()}`);
       },
     );
-    console.log("Game in progress after guess?", !gameOver)
+    console.log('Game in progress after guess?', !gameOver);
     this.setGameInProgress(!gameOver);
     return true;
   }
@@ -251,6 +251,8 @@ Board.propTypes = {
   answer: propTypes.string.isRequired,
   setGameInProgress: propTypes.func.isRequired,
   genRange: propTypes.arrayOf(propTypes.number).isRequired,
+  // TODO: incorrect, and probably shouldn't be passing in arbitrary objects
+  parsedState: propTypes.objectOf(propTypes.string).isRequired,
 };
 
 function BoardWrapper() {
@@ -262,18 +264,27 @@ function BoardWrapper() {
     : defaultGenRange;
   const [settings, setSettings] = useState(false);
   const [genRange, setGenRange] = useState(initialGenRange);
-  const [gameInProgress, setGameInProgress] = useState(!parsedState.gameOver || false);
+  const [gameInProgress, setGameInProgress] = useState(
+    !parsedState.gameOver || false,
+  );
   localStorage.setItem('gens', genRange);
   console.log('Show settings', settings);
   console.log('Gen range', genRange);
   return (
     <div>
-      <img
-        alt="Go to the settings page"
+      <button
         className="settings-btn"
-        src="./settings.svg"
+        type="button"
         onClick={() => setSettings(!settings)}
-      />
+      >
+        <img
+          alt="Go to the settings page"
+          height="40px"
+          width="40px"
+          src="./settings.svg"
+        />
+      </button>
+
       {settings ? (
         <SettingsPage
           setGenRange={setGenRange}

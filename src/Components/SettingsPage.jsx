@@ -4,7 +4,7 @@ import GensSelector from './GensSelector';
 
 function SettingsPage(props) {
   const { gameInProgress, genRange, setGenRange } = props;
-  console.log("Game in progress?", gameInProgress)
+  console.log('Game in progress?', gameInProgress);
   return (
     <div className="control">
       <GensSelector

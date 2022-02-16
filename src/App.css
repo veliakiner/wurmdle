@@ -173,10 +173,11 @@ iframe {
 }
 
 .settings-btn {
-  height: 40px;
   position:absolute;
    top:0px;
     left:75%;
+    border: none;
+    background: none;
 }
 .header {
   width: 50%;
