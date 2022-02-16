@@ -8,7 +8,6 @@ function SettingsPage(props) {
   return (
     <div className="control">
       <GensSelector
-        boardRef={this}
         genRange={genRange}
         gameStarted={gameInProgress}
         setSliderState={(values) => {
