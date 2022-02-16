@@ -19,6 +19,17 @@ const maxGuesses = 5;
 console.log('No cheating!');
 console.log = process.env.NODE_ENV === 'development' ? console.log : () => {}; // implement better logging solution
 
+function genState(genRange) {
+  const monsList = getMonsList(genRange);
+  const fuse = monsFuse(monsList);
+  return {
+    genRange,
+    monsList,
+    fuse,
+    searchRes: [],
+  };
+}
+
 function startState() {
   return {
     answer: '',
@@ -80,13 +91,9 @@ class Board extends React.Component {
     const genRange = rawGenRange
       ? rawGenRange.split(',').map((x) => parseInt(x, 10))
       : defaultGenRange;
-    this.state.genRange = genRange;
     localStorage.setItem('gens', genRange);
     updateLocalStorageGameState(this.state);
-    const monsList = getMonsList(genRange);
-    this.state.monsList = monsList;
-    this.state.searchRes = [];
-    this.state.fuse = monsFuse(monsList);
+    Object.assign(this.state, genState(genRange));
   }
 
   componentDidMount() {
@@ -192,13 +199,7 @@ class Board extends React.Component {
 
   setSliderState(values) {
     const genRange = [values[0], values[1] - 1];
-    const monsList = getMonsList(genRange);
-    this.setState({
-      genRange,
-      monsList,
-      fuse: monsFuse(monsList),
-      searchRes: [],
-    });
+    this.setState(genState(genRange));
     localStorage.setItem('gens', genRange);
   }
 
