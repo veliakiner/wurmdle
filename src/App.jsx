@@ -10,11 +10,8 @@ import Grid from './Components/Grid';
 import GameState from './Components/GameState';
 import GensSelector from './Components/GensSelector';
 import GameInput from './Components/GameInput';
-import {
-  retrieveLocalStorageGameState,
-  updateLocalStorageGameState,
-} from './Libraries/localStorage';
 import { getGenRange, getMonsList, monsFuse } from './Libraries/Pokemon/utils';
+import { retrieveLocalStorageGameState, updateLocalStorageGameState } from './Libraries/localStorage';
 
 const allStats = genData(getGenRange([1, 8]));
 const defaultGenRange = [1, 3];
@@ -35,19 +32,6 @@ function startState() {
     enteredOnce: false,
   };
 }
-
-function genState(genRange) {
-  const monsList = getMonsList(genRange);
-  const fuse = monsFuse(monsList);
-  const searchRes = [];
-  return {
-    genRange,
-    fuse,
-    monsList,
-    searchRes,
-  };
-}
-
 const toTitleCase = (phrase) => phrase
   .toLowerCase()
   .split(' ')
@@ -96,9 +80,13 @@ class Board extends React.Component {
     const genRange = rawGenRange
       ? rawGenRange.split(',').map((x) => parseInt(x, 10))
       : defaultGenRange;
+    this.state.genRange = genRange;
     localStorage.setItem('gens', genRange);
     updateLocalStorageGameState(this.state);
-    this.state.genState = genState(genRange);
+    const monsList = getMonsList(genRange);
+    this.state.monsList = monsList;
+    this.state.searchRes = [];
+    this.state.fuse = monsFuse(monsList);
   }
 
   componentDidMount() {
@@ -118,10 +106,8 @@ class Board extends React.Component {
 
   onChange(evt) {
     const input = evt;
-
-    const {
-      genState: { fuse },
-    } = this.state;
+    console.log(evt);
+    const { fuse } = this.state;
     const searchRes = fuse.search(input).slice(0, 4);
     if (typeof evt === 'string' && evt !== '') {
       console.log('setting to ', input);
@@ -183,16 +169,18 @@ class Board extends React.Component {
       ]);
     }
     this.setState(
-      updateLocalStorageGameState({
-        currentGuess: '',
-        partialGuess: '',
-        guesses,
-        guessDeltas,
-        gameOver,
-        gameWon: win,
-        answer,
-        searchRes: [],
-      }),
+      updateLocalStorageGameState(
+        {
+          currentGuess: '',
+          partialGuess: '',
+          guesses,
+          guessDeltas,
+          gameOver,
+          gameWon: win,
+          answer,
+          searchRes: [],
+        },
+      ),
       () => {
         console.log(`Guessed ${lastGuess}`);
         console.log(`Guesses: ${guesses.toString()}`);
@@ -204,7 +192,13 @@ class Board extends React.Component {
 
   setSliderState(values) {
     const genRange = [values[0], values[1] - 1];
-    this.setState({ genState: genState(genRange) });
+    const monsList = getMonsList(genRange);
+    this.setState({
+      genRange,
+      monsList,
+      fuse: monsFuse(monsList),
+      searchRes: [],
+    });
     localStorage.setItem('gens', genRange);
   }
 
@@ -221,12 +215,7 @@ class Board extends React.Component {
 
   render() {
     const {
-      gameOver,
-      gameWon,
-      answer,
-      guesses,
-      guessDeltas,
-      genState: { genRange },
+      gameOver, gameWon, answer, guesses, guessDeltas, genRange,
     } = this.state;
 
     console.log('Guesses: ', guesses);
@@ -238,9 +227,7 @@ class Board extends React.Component {
             boardRef={this}
             genRange={genRange}
             gameStarted={guesses.length > 0 && !gameOver}
-            setSliderState={(values) => {
-              this.setSliderState(values);
-            }}
+            setSliderState={(values) => { this.setSliderState(values); }}
           />
           <div className="input-container">
             <div className={gameOver ? '' : 'hide'}>
