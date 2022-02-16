@@ -1,6 +1,7 @@
 /// <reference types="cypress" />
 
 import GamePage from "../../pageObjects/gamePage";
+import SettingsPage from "../../pageObjects/settingsPage";
 
 afterEach(function () {
   if (this.currentTest.state === "failed") {
@@ -12,8 +13,14 @@ describe("The slider lets you select different mons", () => {
   it("opens the app", () => {
     cy.visit("http://localhost:3000/Pikachu");
   });
+  it("Open the settings page", () => {
+    GamePage.settingsToggle().click();
+  });
   it("Select only Gen 1", () => {
-    GamePage.rightSlider().type("{leftArrow}").type("{leftArrow}");
+    SettingsPage.rightSlider().type("{leftArrow}").type("{leftArrow}")
+  });
+  it("Go back to the game page", () => {
+    SettingsPage.settingsToggle().click();
   });
   it("Try to select a gen 2 mon", () => {
     GamePage.input().type("Smeargle").type("{enter}");
@@ -24,8 +31,14 @@ describe("The slider lets you select different mons", () => {
   it("The input should glow", () => {
     GamePage.incorrectInput().should('be.visible')
   });
+  it("Open the settings page", () => {
+    GamePage.settingsToggle().click();
+  });
   it("Select only Gen 4", () => {
-    GamePage.leftSlider().type("{rightArrow}").type("{rightArrow}").type("{rightArrow}");
+    SettingsPage.leftSlider().type("{rightArrow}").type("{rightArrow}").type("{rightArrow}");
+  });
+  it("Go back to the game page", () => {
+    SettingsPage.settingsToggle().click();
   });
   it("Try to select a gen 4 mon", () => {
     GamePage.input().type("Heatran").type("{enter}");
@@ -33,8 +46,14 @@ describe("The slider lets you select different mons", () => {
   it("There should be 2 rows (1 label row, 1  guess rows", () => {
     GamePage.row().should('have.length', 2)
   });
+  it("Open the settings page", () => {
+    GamePage.settingsToggle().click();
+  });
   it("Try to move the slider to include gen 1", () => {
-    GamePage.leftSlider().type("{leftArrow}").type("{leftArrow}").type("{leftArrow}");
+    SettingsPage.leftSlider().type("{leftArrow}").type("{leftArrow}").type("{leftArrow}");
+  });
+  it("Go back to the game page", () => {
+    SettingsPage.settingsToggle().click();
   });
   it("Try to select a gen 1 mon", () => {
     GamePage.input().type("Mew").type("{enter}");
