@@ -3,9 +3,9 @@ import Square from './Square';
 
 function Instructions() {
   return (
-    <div className='header'>
+    <div className="header">
       <div className="subtitle">
-        
+
         Welcome to Wurmdle! Try to guess the Pokemon based on its base stats!
         You have five guesses. Adjust the slider to change which generations to
         play with. Report issues
