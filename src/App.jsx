@@ -83,9 +83,9 @@ function calculateCorrectness(lastGuess, answer) {
 class Board extends React.Component {
   constructor(props) {
     super();
-    const parsedState = retrieveLocalStorageGameState();
-    if (parsedState) {
-      this.state = parsedState;
+    if (props.parsedState) {
+      this.state = props.parsedState;
+      console.log("Setting parsed state")
     } else {
       this.state = startState();
       this.state.answer = toTitleCase(props.answer) || '';
@@ -192,7 +192,8 @@ class Board extends React.Component {
         console.log(`Guess deltas: ${guessDeltas.toString()}`);
       },
     );
-    this.setGameInProgress(gameOver);
+    console.log("Game in progress after guess?", !gameOver)
+    this.setGameInProgress(!gameOver);
     return true;
   }
 
@@ -255,27 +256,24 @@ Board.propTypes = {
 function BoardWrapper() {
   const { answer } = useParams();
   const rawGenRange = localStorage.getItem('gens');
+  const parsedState = retrieveLocalStorageGameState();
   const initialGenRange = rawGenRange
     ? rawGenRange.split(',').map((x) => parseInt(x, 10))
     : defaultGenRange;
   const [settings, setSettings] = useState(false);
   const [genRange, setGenRange] = useState(initialGenRange);
-  const [gameInProgress, setGameInProgress] = useState(false);
+  const [gameInProgress, setGameInProgress] = useState(!parsedState.gameOver || false);
   localStorage.setItem('gens', genRange);
   console.log('Show settings', settings);
   console.log('Gen range', genRange);
   return (
     <div>
-      <button
-        type="button"
+      <img
+        alt="Go to the settings page"
+        className="settings-btn"
+        src="./settings.svg"
         onClick={() => setSettings(!settings)}
-      >
-        <img
-          alt="Go to the settings page"
-          className="settings-btn"
-          src="./settings.svg"
-        />
-      </button>
+      />
       {settings ? (
         <SettingsPage
           setGenRange={setGenRange}
@@ -287,6 +285,7 @@ function BoardWrapper() {
           answer={answer || ''}
           genRange={genRange}
           setGameInProgress={setGameInProgress}
+          parsedState={parsedState}
         />
       )}
     </div>
