@@ -4,7 +4,6 @@ import './App.css';
 import {
   Route, Routes, BrowserRouter, useParams,
 } from 'react-router-dom';
-import Fuse from 'fuse.js';
 import genData from './Libraries/Pokemon/PokemonData';
 import Instructions from './Components/Instructions';
 import Grid from './Components/Grid';
@@ -15,38 +14,14 @@ import {
   retrieveLocalStorageGameState,
   updateLocalStorageGameState,
 } from './Libraries/localStorage';
+import { getGenRange, getMonsList, monsFuse } from './Libraries/Pokemon/utils';
 
-function getGens(genRange) {
-  const [minGen, maxGen] = genRange;
-  const gens = [];
-  for (let i = minGen; i <= maxGen; i += 1) {
-    gens.push(i);
-  }
-  return gens;
-}
-
-const allStats = genData(getGens([1, 8]));
+const allStats = genData(getGenRange([1, 8]));
 const defaultGenRange = [1, 3];
-
-function getMonsList(genRange) {
-  console.log('Getting list for gens ', genRange);
-  const gens = getGens(genRange);
-  const stats = genData(gens); // can just filter stats by gens or something
-  return Object.keys(stats);
-}
-
-function monsFuse(monsList) {
-  const options = {
-    includeScore: true,
-    minMatchCharLength: 2,
-    threshold: 0.6,
-  };
-  return new Fuse(monsList, options);
-}
-
+const maxGuesses = 5;
 console.log('No cheating!');
 console.log = process.env.NODE_ENV === 'development' ? console.log : () => {}; // implement better logging solution
-const maxGuesses = 5;
+
 function startState() {
   return {
     answer: '',
