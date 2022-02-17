@@ -176,6 +176,7 @@ iframe {
   float: left;
   width: 200px;
   vertical-align: middle;
+  color: black;
 }
 .input {
   height: 38px;
