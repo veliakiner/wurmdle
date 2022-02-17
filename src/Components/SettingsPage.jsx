@@ -1,14 +1,15 @@
-import React from "react";
-import propTypes from "prop-types";
-import GensSelector from "./GensSelector";
+import React from 'react';
+import propTypes from 'prop-types';
+import GensSelector from './GensSelector';
 
 function SettingsPage(props) {
-  const { gameInProgress, genRange, setGenRange, settings, setSettings } =
-    props;
-  console.log("Settings:", settings);
+  const {
+    gameInProgress, genRange, setGenRange, settings, setSettings,
+  } = props;
+  console.log('Settings:', settings);
   return (
     <div className="control">
-      <h4 style={{ "text-align": "center" }}>Settings</h4>
+      <h4 style={{ 'text-align': 'center' }}>Settings</h4>
       <span>Adjust the slider to change which generations to play with. </span>
       <GensSelector
         genRange={genRange}
@@ -34,7 +35,9 @@ function SettingsPage(props) {
 }
 
 function BooleanSettingsOption(props) {
-  const { label, settings, setSettings, prop } = props;
+  const {
+    label, settings, setSettings, prop,
+  } = props;
   return (
     <div className="settings-option-container">
       <span>{label}</span>
@@ -44,7 +47,7 @@ function BooleanSettingsOption(props) {
         onChange={() => {
           settings[prop] = !settings[prop];
           setSettings({ ...settings });
-          localStorage.setItem("settings", JSON.stringify(settings));
+          localStorage.setItem('settings', JSON.stringify(settings));
         }}
       />
     </div>

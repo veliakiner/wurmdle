@@ -258,14 +258,15 @@ Board.propTypes = {
   parsedState: propTypes.objectOf(propTypes.string).isRequired,
 };
 
-function BoardWrapper() {
+function BoardWrapper(props) {
   const { answer } = useParams();
+  const { forceSettings } = props;
   const rawGenRange = localStorage.getItem('gens');
   const parsedState = retrieveLocalStorageGameState();
   const initialGenRange = rawGenRange
     ? rawGenRange.split(',').map((x) => parseInt(x, 10))
     : defaultGenRange;
-  const [toggleSettings, setToggleSettings] = useState(false);
+  const [toggleSettings, setToggleSettings] = useState(forceSettings || false);
   const [genRange, setGenRange] = useState(initialGenRange);
   const [settings, setSettings] = useState(JSON.parse(localStorage.getItem('settings')) || {});
   const [gameInProgress, setGameInProgress] = useState(
@@ -325,6 +326,7 @@ function App() {
   const routes = [<Route path="/" element={<BoardWrapper />} />];
   // Helps hardcode answer when testing
   if (process.env.NODE_ENV === 'development') {
+    routes.push(<Route path="/settings" element={<BoardWrapper forceSettings />} />);
     routes.push(<Route path="/:answer" element={<BoardWrapper />} />);
   }
   return (
