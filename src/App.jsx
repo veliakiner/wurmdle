@@ -284,8 +284,8 @@ function BoardWrapper() {
   console.log('Gen range', genRange);
   useEffect;
   return (
+    <div className="container" style={{maxWidth: "800px", margin: "auto"}}>
     <SettingsContext.Provider value={settings}>
-      <h1 className="header">Wurmdle</h1>
       <button
         className="settings-btn"
         type="button"
@@ -299,6 +299,7 @@ function BoardWrapper() {
           src="./settings.svg"
         />
       </button>
+      <h1 className="header">Wurmdle</h1>
 
       {toggleSettings ? (
         <SettingsPage
@@ -317,7 +318,7 @@ function BoardWrapper() {
           parsedState={parsedState}
         />
       )}
-    </SettingsContext.Provider>
+    </SettingsContext.Provider></div>
   );
 }
 

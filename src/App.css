@@ -186,15 +186,16 @@ iframe {
 }
 
 .settings-btn {
-  position: absolute;
+  float: right;
   top: 0px;
-  left: 75%;
   border: none;
   background: none;
 }
 .header {
   margin: auto;
   text-align: center;
+  width: 75%;
+  height: 50px;
 }
 
 .dark-mode {
