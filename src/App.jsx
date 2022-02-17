@@ -281,41 +281,42 @@ function BoardWrapper() {
   console.log('Gen range', genRange);
   useEffect;
   return (
-    <div className="container" style={{maxWidth: "800px", margin: "auto"}}>
-    <SettingsContext.Provider value={settings}>
-      <button
-        className="settings-btn"
-        type="button"
-        title="Settings"
-        onClick={() => setToggleSettings(!toggleSettings)}
-      >
-        <img
-          alt="Go to the settings page"
-          height="40px"
-          width="40px"
-          src="./settings.svg"
-        />
-      </button>
-      <h1 className="header">Wurmdle</h1>
+    <div className="container" style={{ maxWidth: '800px', margin: 'auto' }}>
+      <SettingsContext.Provider value={settings}>
+        <button
+          className="settings-btn"
+          type="button"
+          title="Settings"
+          onClick={() => setToggleSettings(!toggleSettings)}
+        >
+          <img
+            alt="Go to the settings page"
+            height="40px"
+            width="40px"
+            src="./settings.svg"
+          />
+        </button>
+        <h1 className="header">Wurmdle</h1>
 
-      {toggleSettings ? (
-        <SettingsPage
-          setGenRange={setGenRange}
-          genRange={genRange}
-          gameInProgress={gameInProgress}
-          settings={settings}
-          setSettings={setSettings}
-        />
-      ) : (
+        {toggleSettings ? (
+          <SettingsPage
+            setGenRange={setGenRange}
+            genRange={genRange}
+            gameInProgress={gameInProgress}
+            settings={settings}
+            setSettings={setSettings}
+          />
+        ) : (
 
-        <Board
-          answer={answer || ''}
-          genRange={genRange}
-          setGameInProgress={setGameInProgress}
-          parsedState={parsedState}
-        />
-      )}
-    </SettingsContext.Provider></div>
+          <Board
+            answer={answer || ''}
+            genRange={genRange}
+            setGameInProgress={setGameInProgress}
+            parsedState={parsedState}
+          />
+        )}
+      </SettingsContext.Provider>
+    </div>
   );
 }
 
