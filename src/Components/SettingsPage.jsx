@@ -18,18 +18,20 @@ function SettingsPage(props) {
           setGenRange([values[0], values[1] - 1]);
         }}
       />
-      <BooleanSettingsOption
-        label="Colour-blind friendly?"
-        settings={settings}
-        prop="colourBlind"
-        setSettings={setSettings}
-      />
-      <BooleanSettingsOption
-        label="Dark theme?"
-        settings={settings}
-        prop="darkTheme"
-        setSettings={setSettings}
-      />
+      <div className="settings-option-container">
+        <BooleanSettingsOption
+          label="Colour-blind friendly?"
+          settings={settings}
+          prop="colourBlind"
+          setSettings={setSettings}
+        />
+        <BooleanSettingsOption
+          label="Dark theme?"
+          settings={settings}
+          prop="darkTheme"
+          setSettings={setSettings}
+        />
+      </div>
     </div>
   );
 }
@@ -47,17 +49,19 @@ function BooleanSettingsOption(props) {
     label, settings, setSettings, prop,
   } = props;
   return (
-    <div className="settings-option-container">
-      <span>{label}</span>
-      <input
-        type="checkbox"
-        checked={settings[prop]}
-        onChange={() => {
-          settings[prop] = !settings[prop];
-          setSettings({ ...settings });
-          localStorage.setItem('settings', JSON.stringify(settings));
-        }}
-      />
+    <div className="settings-option">
+      <label>
+        <span style={{ padding: '5px' }}>{label}</span>
+        <input
+          type="checkbox"
+          checked={settings[prop]}
+          onChange={() => {
+            settings[prop] = !settings[prop];
+            setSettings({ ...settings });
+            localStorage.setItem('settings', JSON.stringify(settings));
+          }}
+        />
+      </label>
     </div>
   );
 }
