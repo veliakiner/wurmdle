@@ -9,10 +9,10 @@ class SettingsPage extends BasePage{
       return cy.get(".example-thumb-1");
     }
     cbFriendly() {
-      return cy.get(".control > div:nth-of-type(2) input[type='checkbox']");
+      return cy.get(".settings-option-container div:nth-of-type(1) input[type='checkbox']");
     }
     darkTheme() {
-      return cy.get(".control > div:nth-of-type(3) input[type='checkbox']");
+      return cy.get(".settings-option-container div:nth-of-type(2) input[type='checkbox']");
     }
   }
   
