@@ -41,6 +41,7 @@ function startState() {
     guesses: [],
     guessDeltas: [],
     gameOver: false, // TODO: change the gameInProgress
+    gameInProgress: false,
     gameWon: false,
     partialGuess: '',
     enteredOnce: false,
@@ -166,6 +167,7 @@ class Board extends React.Component {
       noMoreGuesses = true;
     }
     const gameOver = noMoreGuesses || win;
+    const gameInProgress = !gameOver;
     console.log(`Game over? ${gameOver}`);
     guesses = guesses.concat(lastGuess);
     guessDeltas = guessDeltas.concat([delta]);
@@ -185,6 +187,7 @@ class Board extends React.Component {
         gameWon: win,
         answer,
         searchRes: [],
+        gameInProgress,
       }),
       () => {
         console.log(`Guessed ${lastGuess}`);
@@ -192,8 +195,8 @@ class Board extends React.Component {
         console.log(`Guess deltas: ${guessDeltas.toString()}`);
       },
     );
-    console.log('Game in progress after guess?', !gameOver);
-    this.setGameInProgress(!gameOver);
+    console.log('Game in progress after guess?', gameInProgress);
+    this.setGameInProgress(gameInProgress);
     return true;
   }
 
@@ -265,7 +268,7 @@ function BoardWrapper() {
   const [settings, setSettings] = useState(false);
   const [genRange, setGenRange] = useState(initialGenRange);
   const [gameInProgress, setGameInProgress] = useState(
-    !parsedState.gameOver || false,
+    parsedState.gameInProgress || false,
   );
   localStorage.setItem('gens', genRange);
   console.log('Show settings', settings);
