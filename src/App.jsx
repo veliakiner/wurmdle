@@ -268,9 +268,6 @@ function BoardWrapper() {
   const [toggleSettings, setToggleSettings] = useState(false);
   const [genRange, setGenRange] = useState(initialGenRange);
   const [settings, setSettings] = useState(JSON.parse(localStorage.getItem('settings')) || {});
-  console.log(settings);
-  console.log(settings);
-  console.log(settings);
   const [gameInProgress, setGameInProgress] = useState(
     parsedState.gameInProgress || false,
   );
