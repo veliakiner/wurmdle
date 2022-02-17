@@ -278,42 +278,42 @@ function BoardWrapper() {
   console.log('Show settings', toggleSettings);
   console.log('Gen range', genRange);
   return (
-    <div>
-      <h1 className="header">Wurmdle</h1>
-      <button
-        className="settings-btn"
-        type="button"
-        title="Settings"
-        onClick={() => setToggleSettings(!toggleSettings)}
-      >
-        <img
-          alt="Go to the settings page"
-          height="40px"
-          width="40px"
-          src="./settings.svg"
-        />
-      </button>
+    <SettingsContext.Provider value={settings}>
+      <div className={settings.darkTheme ? 'dark-mode' : ''}>
+        <h1 className="header">Wurmdle</h1>
+        <button
+          className="settings-btn"
+          type="button"
+          title="Settings"
+          onClick={() => setToggleSettings(!toggleSettings)}
+        >
+          <img
+            alt="Go to the settings page"
+            height="40px"
+            width="40px"
+            src="./settings.svg"
+          />
+        </button>
 
-      {toggleSettings ? (
-        <SettingsPage
-          setGenRange={setGenRange}
-          genRange={genRange}
-          gameInProgress={gameInProgress}
-          settings={settings}
-          setSettings={setSettings}
-        />
-      ) : (
+        {toggleSettings ? (
+          <SettingsPage
+            setGenRange={setGenRange}
+            genRange={genRange}
+            gameInProgress={gameInProgress}
+            settings={settings}
+            setSettings={setSettings}
+          />
+        ) : (
 
-        <SettingsContext.Provider value={settings}>
           <Board
             answer={answer || ''}
             genRange={genRange}
             setGameInProgress={setGameInProgress}
             parsedState={parsedState}
           />
-        </SettingsContext.Provider>
-      )}
-    </div>
+        )}
+      </div>
+    </SettingsContext.Provider>
   );
 }
 

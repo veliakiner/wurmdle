@@ -25,8 +25,8 @@ function SettingsPage(props) {
           checked={settings.colourBlind}
           onChange={() => {
             settings.colourBlind = !settings.colourBlind;
-              // Can't assign the existing object, 
-              // presumably because react doesn't check object props to see if it's changed.
+            // Can't assign the existing object,
+            // presumably because react doesn't check object props to see if it's changed.
             setSettings({ ...settings });
             localStorage.setItem('settings', JSON.stringify(settings));
           }}
