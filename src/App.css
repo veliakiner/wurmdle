@@ -19,7 +19,7 @@
   border: 1px solid #999;
 }
 .toolow.colour-blind {
-  background: #D81B60;
+  background: #d81b60;
   border: 1px solid #999;
 }
 .toohigh {
@@ -27,7 +27,7 @@
   border: 1px solid #999;
 }
 .toohigh.colour-blind {
-  background: #1E88E5;
+  background: #1e88e5;
   border: 1px solid #999;
 }
 .correct {
@@ -35,7 +35,7 @@
   border: 1px solid #999;
 }
 .correct.colour-blind {
-  background: #FFC107;
+  background: #ffc107;
   border: 1px solid #999;
 }
 /* .label {
@@ -70,7 +70,7 @@
 }
 .subtitle {
   display: table;
-  margin:0 auto;
+  margin: 0 auto;
   width: 75%;
   padding: 10px;
   text-align: center;
@@ -174,25 +174,25 @@ iframe {
 .input-box {
   float: left;
   width: 200px;
-  vertical-align: middle
+  vertical-align: middle;
 }
 .input {
   height: 38px;
-  vertical-align: middle
+  vertical-align: middle;
 }
 .input-container {
   height: 40px;
 }
 
 .settings-btn {
-  position:absolute;
-   top:0px;
-    left:75%;
-    border: none;
-    background: none; 
+  position: absolute;
+  top: 0px;
+  left: 75%;
+  border: none;
+  background: none;
 }
 .header {
-  width: 100%;
+  width: 50%;
   margin: auto;
   text-align: center;
 }

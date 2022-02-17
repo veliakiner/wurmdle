@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
 import './App.css';
 import {
@@ -274,12 +274,17 @@ function BoardWrapper() {
   const [gameInProgress, setGameInProgress] = useState(
     parsedState.gameInProgress || false,
   );
+  if (settings.darkTheme) {
+    document.body.classList.add('dark-mode');
+  } else {
+    document.body.classList.remove('dark-mode');
+  }
   localStorage.setItem('gens', genRange);
   console.log('Show settings', toggleSettings);
   console.log('Gen range', genRange);
+  useEffect;
   return (
     <SettingsContext.Provider value={settings}>
-      <div className={settings.darkTheme ? 'dark-mode' : ''}>
         <h1 className="header">Wurmdle</h1>
         <button
           className="settings-btn"
@@ -312,7 +317,6 @@ function BoardWrapper() {
             parsedState={parsedState}
           />
         )}
-      </div>
     </SettingsContext.Provider>
   );
 }
