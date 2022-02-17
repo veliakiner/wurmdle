@@ -177,9 +177,10 @@ iframe {
    top:0px;
     left:75%;
     border: none;
-    background: none;
+    background: none; 
 }
 .header {
   width: 50%;
   margin: auto;
+  text-align: center;
 }

@@ -275,6 +275,7 @@ function BoardWrapper() {
   console.log('Gen range', genRange);
   return (
     <div>
+    <h1 className='header'>Wurmdle</h1>
       <button
         className="settings-btn"
         type="button"
