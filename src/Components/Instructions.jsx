@@ -3,7 +3,7 @@ import Square from './Square';
 
 function Instructions() {
   return (
-    <div className="header">
+    <div>
       <div className="subtitle">
 
         Welcome to Wurmdle! Try to guess the Pokemon based on its base stats!

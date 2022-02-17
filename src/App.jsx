@@ -285,38 +285,38 @@ function BoardWrapper() {
   useEffect;
   return (
     <SettingsContext.Provider value={settings}>
-        <h1 className="header">Wurmdle</h1>
-        <button
-          className="settings-btn"
-          type="button"
-          title="Settings"
-          onClick={() => setToggleSettings(!toggleSettings)}
-        >
-          <img
-            alt="Go to the settings page"
-            height="40px"
-            width="40px"
-            src="./settings.svg"
-          />
-        </button>
+      <h1 className="header">Wurmdle</h1>
+      <button
+        className="settings-btn"
+        type="button"
+        title="Settings"
+        onClick={() => setToggleSettings(!toggleSettings)}
+      >
+        <img
+          alt="Go to the settings page"
+          height="40px"
+          width="40px"
+          src="./settings.svg"
+        />
+      </button>
 
-        {toggleSettings ? (
-          <SettingsPage
-            setGenRange={setGenRange}
-            genRange={genRange}
-            gameInProgress={gameInProgress}
-            settings={settings}
-            setSettings={setSettings}
-          />
-        ) : (
+      {toggleSettings ? (
+        <SettingsPage
+          setGenRange={setGenRange}
+          genRange={genRange}
+          gameInProgress={gameInProgress}
+          settings={settings}
+          setSettings={setSettings}
+        />
+      ) : (
 
-          <Board
-            answer={answer || ''}
-            genRange={genRange}
-            setGameInProgress={setGameInProgress}
-            parsedState={parsedState}
-          />
-        )}
+        <Board
+          answer={answer || ''}
+          genRange={genRange}
+          setGameInProgress={setGameInProgress}
+          parsedState={parsedState}
+        />
+      )}
     </SettingsContext.Provider>
   );
 }
