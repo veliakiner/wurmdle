@@ -279,6 +279,7 @@ function BoardWrapper() {
       <button
         className="settings-btn"
         type="button"
+        title="Settings"
         onClick={() => setSettings(!settings)}
       >
         <img
