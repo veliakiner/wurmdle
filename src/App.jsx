@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import './App.css';
 import {
@@ -268,7 +268,9 @@ function BoardWrapper(props) {
     : defaultGenRange;
   const [toggleSettings, setToggleSettings] = useState(forceSettings || false);
   const [genRange, setGenRange] = useState(initialGenRange);
-  const [settings, setSettings] = useState(JSON.parse(localStorage.getItem('settings')) || {});
+  const [settings, setSettings] = useState(
+    JSON.parse(localStorage.getItem('settings')) || {},
+  );
   const [gameInProgress, setGameInProgress] = useState(
     parsedState.gameInProgress || false,
   );
@@ -280,7 +282,6 @@ function BoardWrapper(props) {
   localStorage.setItem('gens', genRange);
   console.log('Show settings', toggleSettings);
   console.log('Gen range', genRange);
-  useEffect;
   return (
     <div className="container" style={{ maxWidth: '800px', margin: 'auto' }}>
       <SettingsContext.Provider value={settings}>
@@ -308,7 +309,6 @@ function BoardWrapper(props) {
             setSettings={setSettings}
           />
         ) : (
-
           <Board
             answer={answer || ''}
             genRange={genRange}
@@ -320,13 +320,21 @@ function BoardWrapper(props) {
     </div>
   );
 }
+BoardWrapper.propTypes = {
+  forceSettings: propTypes.bool,
+};
+BoardWrapper.defaultProps = {
+  forceSettings: false,
+};
 
 function App() {
   /* TODO: violates OCP */
   const routes = [<Route path="/" element={<BoardWrapper />} />];
   // Helps hardcode answer when testing
   if (process.env.NODE_ENV === 'development') {
-    routes.push(<Route path="/settings" element={<BoardWrapper forceSettings />} />);
+    routes.push(
+      <Route path="/settings" element={<BoardWrapper forceSettings />} />,
+    );
     routes.push(<Route path="/:answer" element={<BoardWrapper />} />);
   }
   return (

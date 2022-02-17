@@ -34,6 +34,14 @@ function SettingsPage(props) {
   );
 }
 
+SettingsPage.propTypes = {
+  gameInProgress: propTypes.bool.isRequired,
+  genRange: propTypes.arrayOf(propTypes.number).isRequired,
+  setGenRange: propTypes.func.isRequired,
+  settings: propTypes.objectOf(propTypes.bool).isRequired,
+  setSettings: propTypes.func.isRequired,
+};
+
 function BooleanSettingsOption(props) {
   const {
     label, settings, setSettings, prop,
@@ -53,13 +61,11 @@ function BooleanSettingsOption(props) {
     </div>
   );
 }
-
-SettingsPage.propTypes = {
-  gameInProgress: propTypes.bool.isRequired,
-  genRange: propTypes.arrayOf(propTypes.number).isRequired,
-  setGenRange: propTypes.func.isRequired,
-  cbFriendly: propTypes.bool.isRequired,
-  setCbFriendly: propTypes.func.isRequired,
+BooleanSettingsOption.propTypes = {
+  label: propTypes.string.isRequired,
+  settings: propTypes.objectOf(propTypes.bool).isRequired,
+  setSettings: propTypes.func.isRequired,
+  prop: propTypes.string.isRequired,
 };
 
 export default SettingsPage;
