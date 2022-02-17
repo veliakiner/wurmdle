@@ -1,4 +1,6 @@
-class GamePage {
+import BasePage from "./basePage";
+
+class GamePage extends BasePage {
     input() {
       return cy.get("input");
     }
@@ -13,12 +15,6 @@ class GamePage {
     }
     startOver() {
         return cy.get(".start-over");
-    }
-    leftSlider() {
-      return cy.get(".example-thumb-0");
-    }
-    rightSlider() {
-      return cy.get(".example-thumb-1");
     }
   }
   

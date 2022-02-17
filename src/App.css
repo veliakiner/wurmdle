@@ -18,12 +18,24 @@
   background: #c00;
   border: 1px solid #999;
 }
+.toolow.colour-blind {
+  background: #d81b60;
+  border: 1px solid #999;
+}
 .toohigh {
   background: #0cc;
   border: 1px solid #999;
 }
+.toohigh.colour-blind {
+  background: #1e88e5;
+  border: 1px solid #999;
+}
 .correct {
   background: #0c0;
+  border: 1px solid #999;
+}
+.correct.colour-blind {
+  background: #ffc107;
   border: 1px solid #999;
 }
 /* .label {
@@ -58,10 +70,11 @@
 }
 .subtitle {
   display: table;
-  margin: auto;
+  margin: 0 auto;
   width: 75%;
   padding: 10px;
   text-align: center;
+  position: relative;
 }
 .key {
   display: table;
@@ -143,6 +156,7 @@ iframe {
   border-radius: 15%;
   border: 2px solid #96dbfa;
   background-color: #fff;
+  color: black;
   touch-action: pan-x;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -161,12 +175,43 @@ iframe {
 .input-box {
   float: left;
   width: 200px;
-  vertical-align: middle
+  vertical-align: middle;
+  color: black;
 }
 .input {
   height: 38px;
-  vertical-align: middle
+  vertical-align: middle;
 }
 .input-container {
   height: 40px;
+}
+
+.settings-btn {
+  float: right;
+  top: 0px;
+  border: none;
+  background: none;
+}
+.header {
+  margin: auto;
+  text-align: center;
+  width: 75%;
+  height: 50px;
+}
+
+.dark-mode {
+  background-color: #333;
+  color: #e9e9e9;
+}
+
+
+.settings-option-container {
+  padding-top: 40px;
+}
+
+.settings-option {
+  width: 250px;
+  text-align: right;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }

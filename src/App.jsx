@@ -1,5 +1,5 @@
-import React from 'react';
-import { string } from 'prop-types';
+import React, { useState } from 'react';
+import propTypes from 'prop-types';
 import './App.css';
 import {
   Route, Routes, BrowserRouter, useParams,
@@ -8,17 +8,20 @@ import genData from './Libraries/Pokemon/PokemonData';
 import Instructions from './Components/Instructions';
 import Grid from './Components/Grid';
 import GameState from './Components/GameState';
-import GensSelector from './Components/GensSelector';
 import GameInput from './Components/GameInput';
 import { getGenRange, getMonsList, monsFuse } from './Libraries/Pokemon/utils';
-import { retrieveLocalStorageGameState, updateLocalStorageGameState } from './Libraries/localStorage';
+import {
+  retrieveLocalStorageGameState,
+  updateLocalStorageGameState,
+} from './Libraries/localStorage';
+import SettingsPage from './Components/SettingsPage';
+import SettingsContext from './SettingsContext';
 
 const allStats = genData(getGenRange([1, 8]));
 const defaultGenRange = [1, 3];
 const maxGuesses = 5;
 console.log('No cheating!');
 console.log = process.env.NODE_ENV === 'development' ? console.log : () => {}; // implement better logging solution
-
 function genState(genRange) {
   const monsList = getMonsList(genRange);
   const fuse = monsFuse(monsList);
@@ -37,7 +40,8 @@ function startState() {
     lastGuess: '',
     guesses: [],
     guessDeltas: [],
-    gameOver: false,
+    gameOver: false, // TODO: change the gameInProgress
+    gameInProgress: false,
     gameWon: false,
     partialGuess: '',
     enteredOnce: false,
@@ -80,18 +84,15 @@ function calculateCorrectness(lastGuess, answer) {
 class Board extends React.Component {
   constructor(props) {
     super();
-    const parsedState = retrieveLocalStorageGameState();
-    if (parsedState) {
-      this.state = parsedState;
+    if (props.parsedState) {
+      this.state = props.parsedState;
+      console.log('Setting parsed state');
     } else {
       this.state = startState();
       this.state.answer = toTitleCase(props.answer) || '';
     }
-    const rawGenRange = localStorage.getItem('gens');
-    const genRange = rawGenRange
-      ? rawGenRange.split(',').map((x) => parseInt(x, 10))
-      : defaultGenRange;
-    localStorage.setItem('gens', genRange);
+    const { genRange, setGameInProgress } = props;
+    this.setGameInProgress = setGameInProgress;
     updateLocalStorageGameState(this.state);
     Object.assign(this.state, genState(genRange));
   }
@@ -166,6 +167,7 @@ class Board extends React.Component {
       noMoreGuesses = true;
     }
     const gameOver = noMoreGuesses || win;
+    const gameInProgress = !gameOver;
     console.log(`Game over? ${gameOver}`);
     guesses = guesses.concat(lastGuess);
     guessDeltas = guessDeltas.concat([delta]);
@@ -176,31 +178,26 @@ class Board extends React.Component {
       ]);
     }
     this.setState(
-      updateLocalStorageGameState(
-        {
-          currentGuess: '',
-          partialGuess: '',
-          guesses,
-          guessDeltas,
-          gameOver,
-          gameWon: win,
-          answer,
-          searchRes: [],
-        },
-      ),
+      updateLocalStorageGameState({
+        currentGuess: '',
+        partialGuess: '',
+        guesses,
+        guessDeltas,
+        gameOver,
+        gameWon: win,
+        answer,
+        searchRes: [],
+        gameInProgress,
+      }),
       () => {
         console.log(`Guessed ${lastGuess}`);
         console.log(`Guesses: ${guesses.toString()}`);
         console.log(`Guess deltas: ${guessDeltas.toString()}`);
       },
     );
+    console.log('Game in progress after guess?', gameInProgress);
+    this.setGameInProgress(gameInProgress);
     return true;
-  }
-
-  setSliderState(values) {
-    const genRange = [values[0], values[1] - 1];
-    this.setState(genState(genRange));
-    localStorage.setItem('gens', genRange);
   }
 
   resetOnEnter(event) {
@@ -216,7 +213,7 @@ class Board extends React.Component {
 
   render() {
     const {
-      gameOver, gameWon, answer, guesses, guessDeltas, genRange,
+      gameOver, gameWon, answer, guesses, guessDeltas,
     } = this.state;
 
     console.log('Guesses: ', guesses);
@@ -224,12 +221,6 @@ class Board extends React.Component {
       <div>
         <Instructions />
         <div className="control">
-          <GensSelector
-            boardRef={this}
-            genRange={genRange}
-            gameStarted={guesses.length > 0 && !gameOver}
-            setSliderState={(values) => { this.setSliderState(values); }}
-          />
           <div className="input-container">
             <div className={gameOver ? '' : 'hide'}>
               <GameState answer={answer} gameWon={gameWon} />
@@ -259,18 +250,91 @@ class Board extends React.Component {
   }
 }
 
-Board.propTypes = { answer: string.isRequired };
+Board.propTypes = {
+  answer: propTypes.string.isRequired,
+  setGameInProgress: propTypes.func.isRequired,
+  genRange: propTypes.arrayOf(propTypes.number).isRequired,
+  // TODO: incorrect, and probably shouldn't be passing in arbitrary objects
+  parsedState: propTypes.objectOf(propTypes.string).isRequired,
+};
 
-function BoardWrapper() {
+function BoardWrapper(props) {
   const { answer } = useParams();
-  return <Board answer={answer || ''} />;
+  const { forceSettings } = props;
+  const rawGenRange = localStorage.getItem('gens');
+  const parsedState = retrieveLocalStorageGameState();
+  const initialGenRange = rawGenRange
+    ? rawGenRange.split(',').map((x) => parseInt(x, 10))
+    : defaultGenRange;
+  const [toggleSettings, setToggleSettings] = useState(forceSettings || false);
+  const [genRange, setGenRange] = useState(initialGenRange);
+  const [settings, setSettings] = useState(
+    JSON.parse(localStorage.getItem('settings')) || {},
+  );
+  const [gameInProgress, setGameInProgress] = useState(
+    parsedState.gameInProgress || false,
+  );
+  if (settings.darkTheme) {
+    document.body.classList.add('dark-mode');
+  } else {
+    document.body.classList.remove('dark-mode');
+  }
+  localStorage.setItem('gens', genRange);
+  console.log('Show settings', toggleSettings);
+  console.log('Gen range', genRange);
+  return (
+    <div className="container" style={{ maxWidth: '800px', margin: 'auto' }}>
+      <SettingsContext.Provider value={settings}>
+        <button
+          className="settings-btn"
+          type="button"
+          title="Settings"
+          onClick={() => setToggleSettings(!toggleSettings)}
+        >
+          <img
+            alt="Go to the settings page"
+            height="40px"
+            width="40px"
+            src="./settings.svg"
+          />
+        </button>
+        <h1 className="header">Wurmdle</h1>
+
+        {toggleSettings ? (
+          <SettingsPage
+            setGenRange={setGenRange}
+            genRange={genRange}
+            gameInProgress={gameInProgress}
+            settings={settings}
+            setSettings={setSettings}
+          />
+        ) : (
+          <Board
+            answer={answer || ''}
+            genRange={genRange}
+            setGameInProgress={setGameInProgress}
+            parsedState={parsedState}
+          />
+        )}
+      </SettingsContext.Provider>
+    </div>
+  );
 }
+BoardWrapper.propTypes = {
+  forceSettings: propTypes.bool,
+};
+BoardWrapper.defaultProps = {
+  forceSettings: false,
+};
 
 function App() {
   /* TODO: violates OCP */
   const routes = [<Route path="/" element={<BoardWrapper />} />];
   // Helps hardcode answer when testing
   if (process.env.NODE_ENV === 'development') {
+    routes.push(
+      <Route path="/settings" element={<BoardWrapper forceSettings />} />,
+    );
     routes.push(<Route path="/:answer" element={<BoardWrapper />} />);
   }
   return (
