@@ -18,12 +18,24 @@
   background: #c00;
   border: 1px solid #999;
 }
+.toolow.colour-blind {
+  background: #D81B60;
+  border: 1px solid #999;
+}
 .toohigh {
   background: #0cc;
   border: 1px solid #999;
 }
+.toohigh.colour-blind {
+  background: #1E88E5;
+  border: 1px solid #999;
+}
 .correct {
   background: #0c0;
+  border: 1px solid #999;
+}
+.correct.colour-blind {
+  background: #FFC107;
   border: 1px solid #999;
 }
 /* .label {

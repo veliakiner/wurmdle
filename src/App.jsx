@@ -15,13 +15,13 @@ import {
   updateLocalStorageGameState,
 } from './Libraries/localStorage';
 import SettingsPage from './Components/SettingsPage';
+import ColourBlindContext from './ColourBlindContext';
 
 const allStats = genData(getGenRange([1, 8]));
 const defaultGenRange = [1, 3];
 const maxGuesses = 5;
 console.log('No cheating!');
 console.log = process.env.NODE_ENV === 'development' ? console.log : () => {}; // implement better logging solution
-
 function genState(genRange) {
   const monsList = getMonsList(genRange);
   const fuse = monsFuse(monsList);
@@ -267,6 +267,7 @@ function BoardWrapper() {
     : defaultGenRange;
   const [settings, setSettings] = useState(false);
   const [genRange, setGenRange] = useState(initialGenRange);
+  const [cbFriendly, setCbFriendly] = useState(localStorage.getItem('cbFriendly') || false);
   const [gameInProgress, setGameInProgress] = useState(
     parsedState.gameInProgress || false,
   );
@@ -275,7 +276,7 @@ function BoardWrapper() {
   console.log('Gen range', genRange);
   return (
     <div>
-    <h1 className='header'>Wurmdle</h1>
+      <h1 className="header">Wurmdle</h1>
       <button
         className="settings-btn"
         type="button"
@@ -295,14 +296,19 @@ function BoardWrapper() {
           setGenRange={setGenRange}
           genRange={genRange}
           gameInProgress={gameInProgress}
+          setCbFriendly={setCbFriendly}
+          cbFriendly={cbFriendly}
         />
       ) : (
-        <Board
-          answer={answer || ''}
-          genRange={genRange}
-          setGameInProgress={setGameInProgress}
-          parsedState={parsedState}
-        />
+
+        <ColourBlindContext.Provider value={cbFriendly}>
+          <Board
+            answer={answer || ''}
+            genRange={genRange}
+            setGameInProgress={setGameInProgress}
+            parsedState={parsedState}
+          />
+        </ColourBlindContext.Provider>
       )}
     </div>
   );
