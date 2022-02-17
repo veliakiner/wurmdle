@@ -1,6 +1,6 @@
 import React from 'react';
 import { string } from 'prop-types';
-import ColourBlindContext from '../ColourBlindContext';
+import SettingsContext from '../SettingsContext';
 
 function Square(props) {
   let { value } = props;
@@ -15,15 +15,15 @@ function Square(props) {
     value = 'Wurmdle';
   }
   return (
-    <ColourBlindContext.Consumer>
-      {(cbSetting) => (
-        <button type="button" className={buttonClass + (cbSetting ? ' colour-blind' : '')}>
+    <SettingsContext.Consumer>
+      {(settings) => (
+        <button type="button" className={buttonClass + (settings.colourBlind ? ' colour-blind' : '')}>
           {value}
           {' '}
         </button>
       )}
 
-    </ColourBlindContext.Consumer>
+    </SettingsContext.Consumer>
   );
 }
 

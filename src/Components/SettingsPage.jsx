@@ -4,9 +4,9 @@ import GensSelector from './GensSelector';
 
 function SettingsPage(props) {
   const {
-    gameInProgress, genRange, setGenRange, cbFriendly, setCbFriendly,
+    gameInProgress, genRange, setGenRange, settings, setSettings,
   } = props;
-  console.log('CB friendly?', cbFriendly);
+  console.log('Settings:', settings);
   return (
     <div className="control">
       <h4 style={{ 'text-align': 'center' }}>Settings</h4>
@@ -18,15 +18,32 @@ function SettingsPage(props) {
           setGenRange([values[0], values[1] - 1]);
         }}
       />
-      <span>Colour-blind friendly?</span>
-      <input
-        type="checkbox"
-        checked={cbFriendly}
-        onChange={() => {
-          setCbFriendly(!cbFriendly);
-          localStorage.setItem('cbFriendly', !cbFriendly);
-        }}
-      />
+      <div>
+        <span>Colour-blind friendly?</span>
+        <input
+          type="checkbox"
+          checked={settings.colourBlind}
+          onChange={() => {
+            settings.colourBlind = !settings.colourBlind;
+              // Can't assign the existing object, 
+              // presumably because react doesn't check object props to see if it's changed.
+            setSettings({ ...settings });
+            localStorage.setItem('settings', JSON.stringify(settings));
+          }}
+        />
+      </div>
+      <div>
+        <span>Dark theme?</span>
+        <input
+          type="checkbox"
+          checked={settings.darkTheme}
+          onChange={() => {
+            settings.darkTheme = !settings.darkTheme;
+            setSettings({ ...settings });
+            localStorage.setItem('settings', JSON.stringify(settings));
+          }}
+        />
+      </div>
     </div>
   );
 }

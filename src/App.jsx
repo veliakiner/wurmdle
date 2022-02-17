@@ -15,7 +15,7 @@ import {
   updateLocalStorageGameState,
 } from './Libraries/localStorage';
 import SettingsPage from './Components/SettingsPage';
-import ColourBlindContext from './ColourBlindContext';
+import SettingsContext from './SettingsContext';
 
 const allStats = genData(getGenRange([1, 8]));
 const defaultGenRange = [1, 3];
@@ -265,14 +265,17 @@ function BoardWrapper() {
   const initialGenRange = rawGenRange
     ? rawGenRange.split(',').map((x) => parseInt(x, 10))
     : defaultGenRange;
-  const [settings, setSettings] = useState(false);
+  const [toggleSettings, setToggleSettings] = useState(false);
   const [genRange, setGenRange] = useState(initialGenRange);
-  const [cbFriendly, setCbFriendly] = useState(localStorage.getItem('cbFriendly') || false);
+  const [settings, setSettings] = useState(JSON.parse(localStorage.getItem('settings')) || {});
+  console.log(settings);
+  console.log(settings);
+  console.log(settings);
   const [gameInProgress, setGameInProgress] = useState(
     parsedState.gameInProgress || false,
   );
   localStorage.setItem('gens', genRange);
-  console.log('Show settings', settings);
+  console.log('Show settings', toggleSettings);
   console.log('Gen range', genRange);
   return (
     <div>
@@ -281,7 +284,7 @@ function BoardWrapper() {
         className="settings-btn"
         type="button"
         title="Settings"
-        onClick={() => setSettings(!settings)}
+        onClick={() => setToggleSettings(!toggleSettings)}
       >
         <img
           alt="Go to the settings page"
@@ -291,24 +294,24 @@ function BoardWrapper() {
         />
       </button>
 
-      {settings ? (
+      {toggleSettings ? (
         <SettingsPage
           setGenRange={setGenRange}
           genRange={genRange}
           gameInProgress={gameInProgress}
-          setCbFriendly={setCbFriendly}
-          cbFriendly={cbFriendly}
+          settings={settings}
+          setSettings={setSettings}
         />
       ) : (
 
-        <ColourBlindContext.Provider value={cbFriendly}>
+        <SettingsContext.Provider value={settings}>
           <Board
             answer={answer || ''}
             genRange={genRange}
             setGameInProgress={setGameInProgress}
             parsedState={parsedState}
           />
-        </ColourBlindContext.Provider>
+        </SettingsContext.Provider>
       )}
     </div>
   );
