@@ -9,7 +9,7 @@ function Grid(props) {
   rows.push(
     <LabelRow
       key={-1}
-      values={['HP', 'ATK', 'DEF', 'SPA', 'SPD', 'SPE']}
+      values={['GEN', 'TYPE 1', 'TYPE 2', 'EVO', 'BST']}
       guess="Guess"
     />,
   );

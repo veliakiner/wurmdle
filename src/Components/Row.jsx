@@ -5,7 +5,7 @@ import Square, { IconSquare } from './Square';
 import { allStats } from '../Libraries/Pokemon/PokemonData';
 
 function GuessRow(props) {
-  const numSquares = 6;
+  const numSquares = 5;
   const squares = [];
   const { guess, values } = props;
   console.log(JSON.stringify(props));
@@ -26,7 +26,7 @@ GuessRow.propTypes = {
 };
 
 export function LabelRow(props) {
-  const numSquares = 6;
+  const numSquares = 5;
   const squares = [];
   const { values } = props;
   console.log(JSON.stringify(props));

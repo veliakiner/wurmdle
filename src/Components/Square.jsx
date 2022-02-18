@@ -7,10 +7,10 @@ function Square(props) {
   const sign = value.slice(-1);
   const classes = { '-': ' toolow', '+': ' toohigh', '=': ' correct' };
   let buttonClass = 'square';
-  if ('=-+'.includes(sign)) {
-    value = value.slice(0, -1);
-    buttonClass += classes[sign] || '';
-  }
+  // if ('=-+'.includes(sign)) {
+  //   value = value.slice(0, -1);
+  //   buttonClass += classes[sign] || '';
+  // }
   return (
     <SettingsContext.Consumer>
       {(settings) => (

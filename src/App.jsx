@@ -51,23 +51,47 @@ const toTitleCase = (phrase) => phrase
   .split(' ')
   .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
   .join(' ');
-
+//   {
+//     "number": 783,
+//     "name": "Hakamo-o",
+//     "types": [
+//         "Dragon",
+//         "Fighting"
+//     ],
+//     "total": 420,
+//     "stats": {
+//         "hp": 55,
+//         "attack": 75,
+//         "defense": 90,
+//         "sp_attack": 65,
+//         "sp_defense": 70,
+//         "speed": 65
+//     },
+//     "generation": 7,
+//     "legendary": false,
+//     "stage": 1,
+//     "sprite": "hakamo-o.png"
+// }
+function getInfo(mon) {
+  let info  = []
+  info.push(mon.generation)
+  info.push(mon.types[0])
+  info.push(mon.types[1])
+  info.push(mon.stage)
+  info.push(mon.total)
+  return info
+}
 function calculateCorrectness(lastGuess, answer) {
   console.log(lastGuess);
-  let guessStats = allStats[lastGuess].stats;
-  let ansStats = allStats[answer].stats;
+  let guessStats = getInfo(allStats[lastGuess]);
+  let ansStats = getInfo(allStats[answer]);
   const delta = [];
   // TODO: Refactor into function to test, and make less shit
-  guessStats = Object.values(guessStats);
-  ansStats = Object.values(ansStats);
   for (let i = 0; i < guessStats.length; i += 1) {
-    const diff = ansStats[i] - guessStats[i];
-    if (diff > 0) {
-      delta.push(`${guessStats[i]}-`);
-    } else if (diff < 0) {
-      delta.push(`${guessStats[i]}+`);
+    if (ansStats[i] === guessStats[i]) {
+      delta.push(`X`);
     } else {
-      delta.push(`${guessStats[i]}=`);
+      delta.push(` `);
     }
   }
   console.log(delta.toString());
