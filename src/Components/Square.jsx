@@ -43,8 +43,7 @@ export function IconSquare(props) {
     </SettingsContext.Consumer>
   );
 }
-IconSquare.propTypes = { name: string.isRequired };
-IconSquare.propTypes = { fileName: string.isRequired };
+IconSquare.propTypes = { name: string.isRequired, fileName: string.isRequired };
 
 export function LabelSquare(props) {
   const { value } = props;

@@ -34,7 +34,6 @@ export function LabelRow(props) {
     const value = values[i];
     squares.push(<Square key={i} value={value} />);
   }
-  squares.push(<IconSquare key={-1} />);
   return (
     <FadeIn>
       <div className="board-row">{squares}</div>
