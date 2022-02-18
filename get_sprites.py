@@ -34,7 +34,7 @@ if __name__ == "__main__":
                 name = name.replace("'", "")
                 name = re.sub(r" +", " ", name)
                 name = name.replace(" ", "-")
-                file_name = f"{name}.png"
+                file_name = f"{name}"
                 if mon.get("sprite"):
                     continue
                 while True:
