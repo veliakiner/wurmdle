@@ -52,25 +52,11 @@
   background: #ffc107;
   border: 1px solid #999;
 }
-/* .label {
-  background: #fff;
-  border: 1px solid #999;
-  float: left;
-  font-size: 12px;
-  font-weight: bold;
-  line-height: 34px;
-  height: 60px;
-  margin-right: -1px;
-  margin-top: -1px;
-  padding: 0;
-  text-align: center;
-  width: 60px;
-  float: right
-} */
 .board-row {
   display: table;
   margin: auto;
   width: flex;
+  padding-bottom: 10px;
   height: 50px;
   width: 350px;
   vertical-align: top;
