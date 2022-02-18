@@ -28,7 +28,7 @@ Square.propTypes = { value: string.isRequired };
 export function IconSquare(props) {
   const { fileName } = props;
   let { name } = props;
-  const buttonClass = 'icon-square';
+  const buttonClass = 'square icon-square';
 
   name = name === 'Wurmple' ? 'Wurmdle' : name;
   return (
