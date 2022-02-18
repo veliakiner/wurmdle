@@ -2,6 +2,7 @@ import React from 'react';
 import FadeIn from 'react-fade-in';
 import { string, arrayOf } from 'prop-types';
 import Square, { IconSquare } from './Square';
+import { allStats } from '../Libraries/Pokemon/PokemonData';
 
 function GuessRow(props) {
   const numSquares = 6;
@@ -12,7 +13,7 @@ function GuessRow(props) {
     const value = values[i];
     squares.push(<Square key={i} value={value} />);
   }
-  squares.push(<IconSquare key={-1} fileName={`./sprites/${guess.toLowerCase()}.png`} name={guess} />);
+  squares.push(<IconSquare key={-1} fileName={`./sprites/${allStats[guess].sprite}`} name={guess} />);
   return (
     <FadeIn>
       <div className="board-row">{squares}</div>
