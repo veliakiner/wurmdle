@@ -284,6 +284,7 @@ function BoardWrapper(props) {
   console.log('Gen range', genRange);
   return (
     <div className="container" style={{ maxWidth: '800px', margin: 'auto' }}>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
       <SettingsContext.Provider value={settings}>
         <button
           className="settings-btn"
