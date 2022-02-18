@@ -28,7 +28,7 @@ Square.propTypes = { value: string.isRequired };
 export function IconSquare(props) {
   const { fileName } = props;
   let { name } = props;
-  const buttonClass = 'icon-square';
+  const buttonClass = 'square icon-square';
 
   name = name === 'Wurmple' ? 'Wurmdle' : name;
   return (
@@ -44,22 +44,5 @@ export function IconSquare(props) {
   );
 }
 IconSquare.propTypes = { name: string.isRequired, fileName: string.isRequired };
-
-export function LabelSquare(props) {
-  const { value } = props;
-  const buttonClass = 'icon-square';
-  return (
-    <SettingsContext.Consumer>
-      {(settings) => (
-        <button type="button" className={buttonClass + (settings.colourBlind ? ' colour-blind' : '')}>
-          {value}
-          {' '}
-        </button>
-      )}
-
-    </SettingsContext.Consumer>
-  );
-}
-LabelSquare.propTypes = { value: string.isRequired };
 
 export default Square;
