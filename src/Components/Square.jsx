@@ -45,21 +45,4 @@ export function IconSquare(props) {
 }
 IconSquare.propTypes = { name: string.isRequired, fileName: string.isRequired };
 
-export function LabelSquare(props) {
-  const { value } = props;
-  const buttonClass = 'icon-square';
-  return (
-    <SettingsContext.Consumer>
-      {(settings) => (
-        <button type="button" className={buttonClass + (settings.colourBlind ? ' colour-blind' : '')}>
-          {value}
-          {' '}
-        </button>
-      )}
-
-    </SettingsContext.Consumer>
-  );
-}
-LabelSquare.propTypes = { value: string.isRequired };
-
 export default Square;
