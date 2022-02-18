@@ -12,7 +12,7 @@ function GuessRow(props) {
     const value = values[i];
     squares.push(<Square key={i} value={value} />);
   }
-  squares.push(<IconSquare key={-1} fileName={`./sprites/${guess.toLowerCase()}.png`} />);
+  squares.push(<IconSquare key={-1} fileName={`./sprites/${guess.toLowerCase()}.png`} name={guess} />);
   return (
     <FadeIn>
       <div className="board-row">{squares}</div>
