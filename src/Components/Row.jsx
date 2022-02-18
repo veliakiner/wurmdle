@@ -1,7 +1,7 @@
 import React from 'react';
 import FadeIn from 'react-fade-in';
 import { string, arrayOf } from 'prop-types';
-import Square, {IconSquare} from './Square';
+import Square, { IconSquare } from './Square';
 
 function GuessRow(props) {
   const numSquares = 6;
@@ -24,8 +24,6 @@ GuessRow.propTypes = {
   values: arrayOf(string).isRequired,
 };
 
-
-
 export function LabelRow(props) {
   const numSquares = 6;
   const squares = [];
@@ -46,6 +44,5 @@ LabelRow.propTypes = {
   guess: string.isRequired,
   values: arrayOf(string).isRequired,
 };
-
 
 export default GuessRow;

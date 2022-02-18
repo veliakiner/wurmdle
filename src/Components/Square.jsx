@@ -27,13 +27,13 @@ function Square(props) {
   );
 }
 export function IconSquare(props) {
-  let { fileName } = props;
-  let buttonClass = 'icon-square';
+  const { fileName } = props;
+  const buttonClass = 'icon-square';
   return (
     <SettingsContext.Consumer>
       {(settings) => (
         <button type="button" className={buttonClass + (settings.colourBlind ? ' colour-blind' : '')}>
-          <img src={fileName}/>
+          <img className="guess-img" src={fileName} />
           {' '}
         </button>
       )}
@@ -43,8 +43,8 @@ export function IconSquare(props) {
 }
 
 export function LabelSquare(props) {
-  let { value } = props;
-  let buttonClass = 'icon-square';
+  const { value } = props;
+  const buttonClass = 'icon-square';
   return (
     <SettingsContext.Consumer>
       {(settings) => (

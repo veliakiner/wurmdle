@@ -1,6 +1,6 @@
 import React from 'react';
 import { string, arrayOf } from 'prop-types';
-import GuessRow, {LabelRow} from './Row';
+import GuessRow, { LabelRow } from './Row';
 
 function Grid(props) {
   const rows = [];

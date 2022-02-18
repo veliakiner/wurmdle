@@ -28,6 +28,10 @@
   width: 50px;
   vertical-align: inherit;
 }
+.guess-img {
+  margin-left: 0px;
+  margin-top: -10px;
+}
 .toolow {
   background: #c00;
   border: 1px solid #999;
@@ -56,6 +60,7 @@
   display: table;
   margin: auto;
   width: flex;
+  padding-left: 50px;
   padding-bottom: 10px;
   height: 50px;
   width: 350px;
