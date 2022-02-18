@@ -47,6 +47,14 @@
   background: #ffc107;
   border: 1px solid #999;
 }
+.incorrect {
+  background: none;
+  border: 1px solid #999;
+}
+.incorrect.colour-blind {
+  background: none;
+  border: 1px solid #999;
+}
 .board-row {
   display: table;
   margin: auto;

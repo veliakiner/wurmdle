@@ -93,15 +93,15 @@ function calculateCorrectness(lastGuess, answer) {
     const uniqueTypes = new Set(allTypes).size;
     console.log(uniqueTypes);
     if (uniqueTypes === 4) {
-      delta.type1 = ' ';
-      delta.type2 = ' ';
+      delta.type1 = 'x';
+      delta.type2 = 'x';
     } else if (uniqueTypes === 3) {
       if (bothSingleType) {
-        delta.type1 = '';
+        delta.type1 = 'x';
         delta.type2 = '=';
       } else {
         delta.type1 = '=';
-        delta.type2 = '';
+        delta.type2 = 'x';
       }
     } else {
       delta.type1 = '=';

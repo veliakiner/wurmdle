@@ -5,7 +5,6 @@ function Instructions() {
   return (
     <div>
       <div className="subtitle">
-
         Welcome to Wurmdle! Try to guess the Pokemon based on its base stats!
         You have five guesses. Report issues
         {' '}
@@ -16,17 +15,22 @@ function Instructions() {
         <div className="key-elem">Key:</div>
         <div className="keys">
           <span className="key-elem">
-            <Square key="toolow" value="0-" />
+            <Square key="toolow" value="-" />
             {' '}
             Too low
           </span>
           <span className="key-elem">
-            <Square key="toohigh" value="999+" />
+            <Square key="toohigh" value="+" />
             {' '}
             Too high
           </span>
           <span className="key-elem">
-            <Square key="correct" value="100=" />
+            <Square key="incorrect" value="x" />
+            {' '}
+            Incorrect
+          </span>
+          <span className="key-elem">
+            <Square key="correct" value="=" />
             {' '}
             Correct
           </span>
