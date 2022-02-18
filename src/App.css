@@ -12,6 +12,7 @@
   max-width: 50px;
   width: 50px;
   vertical-align: inherit;
+  border-radius: 10%;
 }
 
 .icon-square {
