@@ -5631,7 +5631,7 @@
             },
             "generation": 8,
             "legendary": true,
-            "stage": null,
+            "stage": 0,
             "sprite": "articuno-galar.png"
         },
         "Galarian Zapdos": {
@@ -5652,7 +5652,7 @@
             },
             "generation": 8,
             "legendary": true,
-            "stage": null,
+            "stage": 0,
             "sprite": "zapdos-galar.png"
         },
         "Galarian Moltres": {
@@ -5673,7 +5673,7 @@
             },
             "generation": 8,
             "legendary": true,
-            "stage": null,
+            "stage": 0,
             "sprite": "moltres-galar.png"
         },
         "Galarian Slowking": {
@@ -12663,7 +12663,7 @@
             },
             "generation": 3,
             "legendary": true,
-            "stage": null,
+            "stage": 0,
             "sprite": "kyogre-primal.png"
         },
         "Groudon": {
@@ -12704,7 +12704,7 @@
             },
             "generation": 3,
             "legendary": true,
-            "stage": null,
+            "stage": 0,
             "sprite": "groudon-primal.png"
         },
         "Rayquaza": {
