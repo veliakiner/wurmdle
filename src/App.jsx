@@ -283,7 +283,10 @@ function BoardWrapper(props) {
   console.log('Gen range', genRange);
   return (
     <div className="container" style={{ maxWidth: '800px', margin: 'auto' }}>
-      <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+      <meta
+        name="viewport"
+        content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+      />
       <SettingsContext.Provider value={settings}>
         <button
           className="settings-btn"
@@ -326,17 +329,23 @@ BoardWrapper.propTypes = {
 BoardWrapper.defaultProps = {
   forceSettings: false,
 };
-
 function App() {
   /* TODO: violates OCP */
-  const routes = [<Route path="/" element={<BoardWrapper />} />];
-  // Helps hardcode answer when testing
+  let routes = [<Route path="/" element={<BoardWrapper />} />];
+  const devRoutes = [
+    <Route path="/:answer" element={<BoardWrapper />} />,
+    <Route path="/settings" element={<BoardWrapper forceSettings />} />,
+  ];
   if (process.env.NODE_ENV === 'development') {
-    routes.push(
-      <Route path="/settings" element={<BoardWrapper forceSettings />} />,
-    );
-    routes.push(<Route path="/:answer" element={<BoardWrapper />} />);
+    routes = routes.concat(devRoutes);
   }
+  // So that each route has its own key. Not sure why this fucking matters.
+  routes = routes.map((route) => (
+    <React.Fragment key={route.props.path}>
+      {route}
+      {' '}
+    </React.Fragment>
+  ));
   return (
     <BrowserRouter>
       <Routes>{routes}</Routes>
