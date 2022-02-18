@@ -545,9 +545,9 @@
             "legendary": false,
             "stage": 1
         },
-        "Nidoran\u2640": {
+            "Nidoran Female": {
             "number": 29,
-            "name": "Nidoran\u2640",
+            "name": "Nidoran Female",
             "types": [
                 "Poison"
             ],
@@ -603,9 +603,9 @@
             "legendary": false,
             "stage": 2
         },
-        "Nidoran\u2642": {
+        "Nidoran Male": {
             "number": 32,
-            "name": "Nidoran\u2642",
+            "name": "Nidoran Male",
             "types": [
                 "Poison"
             ],
@@ -5281,9 +5281,9 @@
             "legendary": false,
             "stage": 1
         },
-        "Galarian Farfetch\u2019d": {
+        "Galarian Farfetch'd": {
             "number": 83,
-            "name": "Galarian Farfetch\u2019d",
+            "name": "Galarian Farfetch'd",
             "types": [
                 "Fighting"
             ],
