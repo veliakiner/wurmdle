@@ -1,20 +1,20 @@
 import React from 'react';
 import { string, arrayOf } from 'prop-types';
-import Row from './Row';
+import GuessRow, {LabelRow} from './Row';
 
 function Grid(props) {
   const rows = [];
   const { guessDeltas, guesses } = props;
   console.log(guessDeltas);
   rows.push(
-    <Row
+    <LabelRow
       key={-1}
       values={['HP', 'ATK', 'DEF', 'SPA', 'SPD', 'SPE']}
       guess="Guess"
     />,
   );
   for (let i = 0; i < guessDeltas.length; i += 1) {
-    rows.push(<Row key={i} values={guessDeltas[i]} guess={guesses[i]} />);
+    rows.push(<GuessRow key={i} values={guessDeltas[i]} guess={guesses[i]} />);
   }
   return <div>{rows}</div>;
 }

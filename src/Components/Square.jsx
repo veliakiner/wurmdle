@@ -26,6 +26,37 @@ function Square(props) {
     </SettingsContext.Consumer>
   );
 }
+export function IconSquare(props) {
+  let { fileName } = props;
+  let buttonClass = 'icon-square';
+  return (
+    <SettingsContext.Consumer>
+      {(settings) => (
+        <button type="button" className={buttonClass + (settings.colourBlind ? ' colour-blind' : '')}>
+          <img src={fileName}/>
+          {' '}
+        </button>
+      )}
+
+    </SettingsContext.Consumer>
+  );
+}
+
+export function LabelSquare(props) {
+  let { value } = props;
+  let buttonClass = 'icon-square';
+  return (
+    <SettingsContext.Consumer>
+      {(settings) => (
+        <button type="button" className={buttonClass + (settings.colourBlind ? ' colour-blind' : '')}>
+          {value}
+          {' '}
+        </button>
+      )}
+
+    </SettingsContext.Consumer>
+  );
+}
 
 Square.propTypes = { value: string.isRequired };
 

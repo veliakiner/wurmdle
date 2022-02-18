@@ -14,6 +14,20 @@
   width: 50px;
   vertical-align: inherit;
 }
+
+.icon-square {
+  background: none;
+  border: none;
+  overflow-wrap: break-word;
+  height: 50px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  max-width: 50px;
+  width: 50px;
+  vertical-align: inherit;
+}
 .toolow {
   background: #c00;
   border: 1px solid #999;
@@ -58,6 +72,7 @@
   margin: auto;
   width: flex;
   height: 50px;
+  width: 350px;
   vertical-align: top;
 }
 .control {
