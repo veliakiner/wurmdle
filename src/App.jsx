@@ -18,7 +18,7 @@ import SettingsPage from './Components/SettingsPage';
 import SettingsContext from './SettingsContext';
 
 const defaultGenRange = [1, 3];
-const maxGuesses = 5;
+const maxGuesses = 8;
 console.log('No cheating!');
 console.log = process.env.NODE_ENV === 'development' ? console.log : () => {}; // implement better logging solution
 function genState(genRange) {
@@ -51,57 +51,72 @@ const toTitleCase = (phrase) => phrase
   .split(' ')
   .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
   .join(' ');
-//   {
-//     "number": 783,
-//     "name": "Hakamo-o",
-//     "types": [
-//         "Dragon",
-//         "Fighting"
-//     ],
-//     "total": 420,
-//     "stats": {
-//         "hp": 55,
-//         "attack": 75,
-//         "defense": 90,
-//         "sp_attack": 65,
-//         "sp_defense": 70,
-//         "speed": 65
-//     },
-//     "generation": 7,
-//     "legendary": false,
-//     "stage": 1,
-//     "sprite": "hakamo-o.png"
-// }
 function getInfo(mon) {
-  let info  = []
-  info.push(mon.generation)
-  info.push(mon.types[0])
-  info.push(mon.types[1])
-  info.push(mon.stage)
-  info.push(mon.total)
-  return info
+  const info = {};
+  info.gen = mon.generation;
+  info.types = mon.types;
+  info.evo = mon.stage;
+  info.bst = mon.total;
+  return info;
 }
+
 function calculateCorrectness(lastGuess, answer) {
   console.log(lastGuess);
-  let guessStats = getInfo(allStats[lastGuess]);
-  let ansStats = getInfo(allStats[answer]);
-  const delta = [];
+  const guessStats = getInfo(allStats[lastGuess]);
+  const ansStats = getInfo(allStats[answer]);
   // TODO: Refactor into function to test, and make less shit
-  for (let i = 0; i < guessStats.length; i += 1) {
-    if (ansStats[i] === guessStats[i]) {
-      delta.push(`X`);
-    } else {
-      delta.push(` `);
+  const keys = Object.keys(guessStats);
+  const delta = {};
+  for (const key of keys) {
+    console.log(key);
+    if (typeof ansStats[key] === 'number') {
+      console.log(key);
+      const diff = ansStats[key] - guessStats[key];
+      if (diff > 0) {
+        delta[key] = '-';
+      } else if (diff < 0) {
+        delta[key] = '+';
+      } else {
+        delta[key] = '=';
+      }
     }
+    console.log(JSON.stringify(delta));
+    const allTypes = [...guessStats.types, ...ansStats.types];
+    const bothSingleType = allTypes.length === 2;
+    if (allTypes.length === 3) {
+      allTypes.push('none');
+    }
+    if (allTypes.length === 2) {
+      allTypes.push('none');
+      allTypes.push('none');
+    }
+    const uniqueTypes = new Set(allTypes).size;
+    console.log(uniqueTypes);
+    if (uniqueTypes === 4) {
+      delta.type1 = ' ';
+      delta.type2 = ' ';
+    } else if (uniqueTypes === 3) {
+      if (bothSingleType) {
+        delta.type1 = '';
+        delta.type2 = '=';
+      } else {
+        delta.type1 = '=';
+        delta.type2 = '';
+      }
+    } else {
+      delta.type1 = '=';
+      delta.type2 = '=';
+    }
+    console.log(JSON.stringify(delta));
   }
-  console.log(delta.toString());
+  const deltaList = [delta.gen, delta.type1, delta.type2, delta.evo, delta.bst];
   console.log('Incorrect. Try again');
 
   if (lastGuess === answer) {
     console.log('Correct!');
-    return [delta, true];
+    return [deltaList, true];
   }
-  return [delta, false];
+  return [deltaList, false];
 }
 
 class Board extends React.Component {

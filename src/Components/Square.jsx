@@ -3,14 +3,8 @@ import { string } from 'prop-types';
 import SettingsContext from '../SettingsContext';
 
 function Square(props) {
-  let { value } = props;
-  const sign = value.slice(-1);
-  const classes = { '-': ' toolow', '+': ' toohigh', '=': ' correct' };
-  let buttonClass = 'square';
-  // if ('=-+'.includes(sign)) {
-  //   value = value.slice(0, -1);
-  //   buttonClass += classes[sign] || '';
-  // }
+  const { value } = props;
+  const buttonClass = 'square';
   return (
     <SettingsContext.Consumer>
       {(settings) => (
