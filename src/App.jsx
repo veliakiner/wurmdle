@@ -4,12 +4,12 @@ import './App.css';
 import {
   Route, Routes, BrowserRouter, useParams,
 } from 'react-router-dom';
-import genData from './Libraries/Pokemon/PokemonData';
+import {allStats} from './Libraries/Pokemon/PokemonData';
 import Instructions from './Components/Instructions';
 import Grid from './Components/Grid';
 import GameState from './Components/GameState';
 import GameInput from './Components/GameInput';
-import { getGenRange, getMonsList, monsFuse } from './Libraries/Pokemon/utils';
+import { getMonsList, monsFuse } from './Libraries/Pokemon/utils';
 import {
   retrieveLocalStorageGameState,
   updateLocalStorageGameState,
@@ -17,7 +17,6 @@ import {
 import SettingsPage from './Components/SettingsPage';
 import SettingsContext from './SettingsContext';
 
-const allStats = genData(getGenRange([1, 8]));
 const defaultGenRange = [1, 3];
 const maxGuesses = 5;
 console.log('No cheating!');
