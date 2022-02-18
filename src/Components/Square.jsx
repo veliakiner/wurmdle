@@ -26,6 +26,8 @@ function Square(props) {
     </SettingsContext.Consumer>
   );
 }
+Square.propTypes = { value: string.isRequired };
+
 export function IconSquare(props) {
   const { fileName, name } = props;
   const buttonClass = 'icon-square';
@@ -33,7 +35,7 @@ export function IconSquare(props) {
     <SettingsContext.Consumer>
       {(settings) => (
         <button type="button" className={buttonClass + (settings.colourBlind ? ' colour-blind' : '')}>
-          <img className="guess-img" src={fileName} title={name}/>
+          <img alt={name} className="guess-img" src={fileName} title={name} />
           {' '}
         </button>
       )}
@@ -41,6 +43,8 @@ export function IconSquare(props) {
     </SettingsContext.Consumer>
   );
 }
+IconSquare.propTypes = { name: string.isRequired };
+IconSquare.propTypes = { fileName: string.isRequired };
 
 export function LabelSquare(props) {
   const { value } = props;
@@ -57,7 +61,6 @@ export function LabelSquare(props) {
     </SettingsContext.Consumer>
   );
 }
-
-Square.propTypes = { value: string.isRequired };
+LabelSquare.propTypes = { value: string.isRequired };
 
 export default Square;

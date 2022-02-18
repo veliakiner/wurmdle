@@ -28,7 +28,7 @@ GuessRow.propTypes = {
 export function LabelRow(props) {
   const numSquares = 6;
   const squares = [];
-  const { guess, values } = props;
+  const { values } = props;
   console.log(JSON.stringify(props));
   for (let i = 0; i < numSquares; i += 1) {
     const value = values[i];
@@ -42,7 +42,6 @@ export function LabelRow(props) {
   );
 }
 LabelRow.propTypes = {
-  guess: string.isRequired,
   values: arrayOf(string).isRequired,
 };
 

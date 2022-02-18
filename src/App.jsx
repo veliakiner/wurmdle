@@ -4,7 +4,7 @@ import './App.css';
 import {
   Route, Routes, BrowserRouter, useParams,
 } from 'react-router-dom';
-import {allStats} from './Libraries/Pokemon/PokemonData';
+import { allStats } from './Libraries/Pokemon/PokemonData';
 import Instructions from './Components/Instructions';
 import Grid from './Components/Grid';
 import GameState from './Components/GameState';
