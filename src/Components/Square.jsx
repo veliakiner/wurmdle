@@ -29,8 +29,11 @@ function Square(props) {
 Square.propTypes = { value: string.isRequired };
 
 export function IconSquare(props) {
-  const { fileName, name } = props;
+  const { fileName } = props;
+  let { name } = props;
   const buttonClass = 'icon-square';
+
+  name = name === 'Wurmple' ? 'Wurmdle' : name;
   return (
     <SettingsContext.Consumer>
       {(settings) => (
