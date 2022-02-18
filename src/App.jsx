@@ -4,12 +4,12 @@ import './App.css';
 import {
   Route, Routes, BrowserRouter, useParams,
 } from 'react-router-dom';
-import genData from './Libraries/Pokemon/PokemonData';
+import { allStats } from './Libraries/Pokemon/PokemonData';
 import Instructions from './Components/Instructions';
 import Grid from './Components/Grid';
 import GameState from './Components/GameState';
 import GameInput from './Components/GameInput';
-import { getGenRange, getMonsList, monsFuse } from './Libraries/Pokemon/utils';
+import { getMonsList, monsFuse } from './Libraries/Pokemon/utils';
 import {
   retrieveLocalStorageGameState,
   updateLocalStorageGameState,
@@ -17,7 +17,6 @@ import {
 import SettingsPage from './Components/SettingsPage';
 import SettingsContext from './SettingsContext';
 
-const allStats = genData(getGenRange([1, 8]));
 const defaultGenRange = [1, 3];
 const maxGuesses = 5;
 console.log('No cheating!');
@@ -284,7 +283,10 @@ function BoardWrapper(props) {
   console.log('Gen range', genRange);
   return (
     <div className="container" style={{ maxWidth: '800px', margin: 'auto' }}>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+      <meta
+        name="viewport"
+        content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+      />
       <SettingsContext.Provider value={settings}>
         <button
           className="settings-btn"
@@ -327,17 +329,23 @@ BoardWrapper.propTypes = {
 BoardWrapper.defaultProps = {
   forceSettings: false,
 };
-
 function App() {
   /* TODO: violates OCP */
-  const routes = [<Route path="/" element={<BoardWrapper />} />];
-  // Helps hardcode answer when testing
+  let routes = [<Route path="/" element={<BoardWrapper />} />];
+  const devRoutes = [
+    <Route path="/:answer" element={<BoardWrapper />} />,
+    <Route path="/settings" element={<BoardWrapper forceSettings />} />,
+  ];
   if (process.env.NODE_ENV === 'development') {
-    routes.push(
-      <Route path="/settings" element={<BoardWrapper forceSettings />} />,
-    );
-    routes.push(<Route path="/:answer" element={<BoardWrapper />} />);
+    routes = routes.concat(devRoutes);
   }
+  // So that each route has its own key. Not sure why this fucking matters.
+  routes = routes.map((route) => (
+    <React.Fragment key={route.props.path}>
+      {route}
+      {' '}
+    </React.Fragment>
+  ));
   return (
     <BrowserRouter>
       <Routes>{routes}</Routes>

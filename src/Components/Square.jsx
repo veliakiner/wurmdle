@@ -11,9 +11,6 @@ function Square(props) {
     value = value.slice(0, -1);
     buttonClass += classes[sign] || '';
   }
-  if (value === 'Wurmple') {
-    value = 'Wurmdle';
-  }
   return (
     <SettingsContext.Consumer>
       {(settings) => (
@@ -26,7 +23,43 @@ function Square(props) {
     </SettingsContext.Consumer>
   );
 }
-
 Square.propTypes = { value: string.isRequired };
+
+export function IconSquare(props) {
+  const { fileName } = props;
+  let { name } = props;
+  const buttonClass = 'icon-square';
+
+  name = name === 'Wurmple' ? 'Wurmdle' : name;
+  return (
+    <SettingsContext.Consumer>
+      {(settings) => (
+        <button type="button" className={buttonClass + (settings.colourBlind ? ' colour-blind' : '')}>
+          <img alt={name} className="guess-img" src={fileName} title={name} />
+          {' '}
+        </button>
+      )}
+
+    </SettingsContext.Consumer>
+  );
+}
+IconSquare.propTypes = { name: string.isRequired, fileName: string.isRequired };
+
+export function LabelSquare(props) {
+  const { value } = props;
+  const buttonClass = 'icon-square';
+  return (
+    <SettingsContext.Consumer>
+      {(settings) => (
+        <button type="button" className={buttonClass + (settings.colourBlind ? ' colour-blind' : '')}>
+          {value}
+          {' '}
+        </button>
+      )}
+
+    </SettingsContext.Consumer>
+  );
+}
+LabelSquare.propTypes = { value: string.isRequired };
 
 export default Square;

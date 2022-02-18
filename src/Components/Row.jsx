@@ -1,9 +1,10 @@
 import React from 'react';
 import FadeIn from 'react-fade-in';
 import { string, arrayOf } from 'prop-types';
-import Square from './Square';
+import Square, { IconSquare } from './Square';
+import { allStats } from '../Libraries/Pokemon/PokemonData';
 
-function Row(props) {
+function GuessRow(props) {
   const numSquares = 6;
   const squares = [];
   const { guess, values } = props;
@@ -12,17 +13,35 @@ function Row(props) {
     const value = values[i];
     squares.push(<Square key={i} value={value} />);
   }
-  squares.push(<Square key={-1} value={guess} />);
+  squares.push(<IconSquare key={-1} fileName={`./sprites/${allStats[guess].sprite}`} name={guess} />);
   return (
     <FadeIn>
       <div className="board-row">{squares}</div>
     </FadeIn>
   );
 }
-
-Row.propTypes = {
+GuessRow.propTypes = {
   guess: string.isRequired,
   values: arrayOf(string).isRequired,
 };
 
-export default Row;
+export function LabelRow(props) {
+  const numSquares = 6;
+  const squares = [];
+  const { values } = props;
+  console.log(JSON.stringify(props));
+  for (let i = 0; i < numSquares; i += 1) {
+    const value = values[i];
+    squares.push(<Square key={i} value={value} />);
+  }
+  return (
+    <FadeIn>
+      <div className="board-row">{squares}</div>
+    </FadeIn>
+  );
+}
+LabelRow.propTypes = {
+  values: arrayOf(string).isRequired,
+};
+
+export default GuessRow;
