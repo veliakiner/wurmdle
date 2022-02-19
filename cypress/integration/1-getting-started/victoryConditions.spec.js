@@ -27,6 +27,9 @@ describe("Player loses the game", () => {
   it("Guesses incorrectly", () => {
     GamePage.input().type("Mew").type("{enter}");
   });
+  it("Guesses incorrectly", () => {
+    GamePage.input().type("Mew").type("{enter}");
+  });
   it("There should be seven rows (1 label row, 5 guess rows, 1 answer row", () => {
     GamePage.row().should('have.length', 7)
   });
@@ -62,6 +65,9 @@ describe("Invalid guess", () => {
 describe("Player wins the game on the last guess", () => {
   it("opens the app", () => {
     cy.visit("http://localhost:3000/Pikachu");
+  });
+  it("Guesses incorrectly", () => {
+    GamePage.input().type("Mew").type("{enter}");
   });
   it("Guesses incorrectly", () => {
     GamePage.input().type("Mew").type("{enter}");

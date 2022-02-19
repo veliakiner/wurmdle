@@ -25,3 +25,8 @@ export function monsFuse(monsList) {
   };
   return new Fuse(monsList, options);
 }
+
+export function calcGuesses(monsList) {
+  /* Scale number of guesses according to how many mons are in the guess pool. */
+  return Math.round(Math.log(monsList.length) / Math.log(2)) - 2;
+}

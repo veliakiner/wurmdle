@@ -9,7 +9,7 @@ import Instructions from './Components/Instructions';
 import Grid from './Components/Grid';
 import GameState from './Components/GameState';
 import GameInput from './Components/GameInput';
-import { getMonsList, monsFuse } from './Libraries/Pokemon/utils';
+import { getMonsList, monsFuse, calcGuesses } from './Libraries/Pokemon/utils';
 import {
   retrieveLocalStorageGameState,
   updateLocalStorageGameState,
@@ -19,7 +19,6 @@ import SettingsContext from './SettingsContext';
 import Horse from './Components/Horse';
 
 const defaultGenRange = [1, 3];
-const maxGuesses = 5;
 console.log('No cheating!');
 console.log = process.env.NODE_ENV === 'development' ? console.log : () => {}; // implement better logging solution
 function genState(genRange) {
@@ -32,7 +31,6 @@ function genState(genRange) {
     searchRes: [],
   };
 }
-
 function startState() {
   return {
     answer: '',
@@ -95,6 +93,8 @@ class Board extends React.Component {
     this.setGameInProgress = setGameInProgress;
     updateLocalStorageGameState(this.state);
     Object.assign(this.state, genState(genRange));
+    const { monsList } = this.state;
+    this.maxGuesses = calcGuesses(monsList);
   }
 
   componentDidMount() {
@@ -163,7 +163,7 @@ class Board extends React.Component {
     }
     let noMoreGuesses;
     const [delta, win] = calculateCorrectness(lastGuess, answer);
-    if (guesses.length > maxGuesses - 2) {
+    if (guesses.length > this.maxGuesses - 2) {
       noMoreGuesses = true;
     }
     const gameOver = noMoreGuesses || win;
@@ -219,7 +219,7 @@ class Board extends React.Component {
     console.log('Guesses: ', guesses);
     return (
       <div>
-        <Instructions />
+        <Instructions maxGuesses={this.maxGuesses} />
         <div className="control">
           <div className="input-container">
             <div className={gameOver ? '' : 'hide'}>

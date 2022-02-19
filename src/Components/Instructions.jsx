@@ -1,13 +1,19 @@
 import React from 'react';
+import propTypes from 'prop-types';
 import Square from './Square';
 
-function Instructions() {
+function Instructions(props) {
+  const { maxGuesses } = props;
   return (
     <div>
       <div className="subtitle">
 
         Welcome to Wurmdle! Try to guess the Pokemon based on its base stats!
-        You have five guesses. Report issues
+        You have
+        {' '}
+        {maxGuesses}
+        {' '}
+        guesses. Report issues
         {' '}
         <a href="https://github.com/veliakiner/wurmdle/issues">here</a>
         .
@@ -35,5 +41,9 @@ function Instructions() {
     </div>
   );
 }
+
+Instructions.propTypes = {
+  maxGuesses: propTypes.number.isRequired,
+};
 
 export default Instructions;
