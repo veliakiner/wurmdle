@@ -231,13 +231,17 @@ class Board extends React.Component {
           <div className="input-container">
             <div className={gameOver ? '' : 'hide'}>
               <GameState answer={answer} gameWon={gameWon} />
-              
-              <div style={{margin: "auto", textAlign: "center"}}><button 
-                type="submit"
-                onClick={() => this.setState(startState())}
-              >
-                Start over
-              </button > <span>{' (or type Enter)'}</span></div>
+
+              <div style={{ margin: 'auto', textAlign: 'center' }}>
+                <button
+                  type="submit"
+                  onClick={() => this.setState(startState())}
+                >
+                  Start over
+                </button>
+                {' '}
+                <span>{' (or type Enter)'}</span>
+              </div>
             </div>
             <GameInput
               onChange={(evt) => {
