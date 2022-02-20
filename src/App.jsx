@@ -218,7 +218,6 @@ class Board extends React.Component {
   resetOnEnter(event) {
     const { gameOver, enteredOnce } = this.state;
     if (event.key) {
-      console.log('?');
       this.nameInput.focus();
     }
     if (event.keyCode === 13 && gameOver) {
