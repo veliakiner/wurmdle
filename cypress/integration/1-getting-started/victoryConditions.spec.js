@@ -30,7 +30,7 @@ describe("Player loses the game", () => {
   it("Guesses incorrectly", () => {
     GamePage.input().type("Mew").type("{enter}");
   });
-  it("There should be seven rows (1 label row, 5 guess rows, 1 answer row", () => {
+  it("There should be seven rows (1 label row, 5 guess rows, 1 answer row)", () => {
     GamePage.row().should('have.length', 7)
   });
 });
