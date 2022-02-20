@@ -43,6 +43,7 @@ function startState() {
     gameWon: false,
     partialGuess: '',
     enteredOnce: false,
+    dupeGuess: '',
   };
 }
 const toTitleCase = (phrase) => phrase
@@ -126,9 +127,9 @@ class Board extends React.Component {
     const searchRes = fuse.search(input).slice(0, 4);
     if (typeof evt === 'string' && evt !== '') {
       console.log('setting to ', input);
-      this.setState({ searchRes, partialGuess: input });
+      this.setState({ searchRes, partialGuess: input, dupeGuess: '' });
     } else {
-      this.setState({ searchRes });
+      this.setState({ searchRes, dupeGuess: '' });
     }
   }
 
@@ -154,12 +155,13 @@ class Board extends React.Component {
     const guess = currentGuess || partialGuess;
     let lastGuess = guess.toLowerCase();
     lastGuess = toTitleCase(lastGuess).trim();
-    if (!monsList.includes(lastGuess)) {
+    if (!monsList.includes(lastGuess) || guesses.includes(lastGuess)) {
       console.log('Setting state...');
       this.setState(
         {
           currentGuess: '',
           partialGuess: '',
+          dupeGuess: lastGuess,
         },
         () => {
           this.setState({ searchRes: [] });
@@ -220,7 +222,7 @@ class Board extends React.Component {
 
   render() {
     const {
-      gameOver, gameWon, answer, guesses, guessDeltas,
+      gameOver, gameWon, answer, guesses, guessDeltas, dupeGuess,
     } = this.state;
 
     console.log('Guesses: ', guesses);
@@ -255,7 +257,7 @@ class Board extends React.Component {
             />
           </div>
         </div>
-        <Grid guessDeltas={guessDeltas} guesses={guesses} />
+        <Grid guessDeltas={guessDeltas} guesses={guesses} dupeGuess={dupeGuess} />
       </div>
     );
   }
