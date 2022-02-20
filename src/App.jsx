@@ -253,7 +253,7 @@ class Board extends React.Component {
                 this.onSelectGuess(evt);
               }}
               onGuess={() => this.onGuess()}
-              onGiveUp={() => this.setState({
+              onGiveUp={() => this.setState(updateLocalStorageGameState({
                 gameOver: true,
                 gameWon: false,
                 gameInProgress: false,
