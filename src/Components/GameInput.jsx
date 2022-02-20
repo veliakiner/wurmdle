@@ -24,9 +24,9 @@ function GameInput(props) {
     partialGuess,
     onGiveUp,
     guesses,
+    focusRef,
   } = props;
   const [glow, setGlow] = useState(0);
-
   return (
     <form
       className={+gameOver ? 'hide' : ''}
@@ -60,6 +60,7 @@ function GameInput(props) {
       </button>
 
       <Select
+        ref={focusRef}
         components={{
           DropdownIndicator: () => null,
           IndicatorSeparator: () => null,
@@ -95,6 +96,7 @@ GameInput.propTypes = {
   partialGuess: string.isRequired,
   searchRes: arrayOf(string).isRequired, // is wrong, fix later
   guesses: arrayOf(string).isRequired,
+  focusRef: func.isRequired,
 };
 
 export default GameInput;

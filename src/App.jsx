@@ -217,6 +217,9 @@ class Board extends React.Component {
 
   resetOnEnter(event) {
     const { gameOver, enteredOnce } = this.state;
+    if (event.key) {
+      this.nameInput.focus();
+    }
     if (event.keyCode === 13 && gameOver) {
       if (enteredOnce) {
         this.setState(startState());
@@ -251,18 +254,21 @@ class Board extends React.Component {
                 <span>{' (or type Enter)'}</span>
               </div>
             </div>
-            <GameInput
-              onChange={(evt) => {
-                this.onChange(evt);
-              }}
-              guesses={guesses}
-              onSelectGuess={(evt) => {
-                this.onSelectGuess(evt);
-              }}
-              onGuess={() => this.setState({ enteredOnce: true }, this.onGuess)}
-              onGiveUp={() => this.setState({ enteredOnce: true }, this.onLose)}
-              {...this.state}
-            />
+            <div>
+              <GameInput
+                focusRef={(input) => { this.nameInput = input; }}
+                onChange={(evt) => {
+                  this.onChange(evt);
+                }}
+                guesses={guesses}
+                onSelectGuess={(evt) => {
+                  this.onSelectGuess(evt);
+                }}
+                onGuess={() => this.setState({ enteredOnce: true }, this.onGuess)}
+                onGiveUp={() => this.setState({ enteredOnce: true }, this.onLose)}
+                {...this.state}
+              />
+            </div>
           </div>
         </div>
         <Grid
