@@ -16,19 +16,19 @@ describe("Player loses the game", () => {
     GamePage.input().type("Mew").type("{enter}");
   });
   it("Guesses incorrectly", () => {
-    GamePage.input().type("Mew").type("{enter}");
+    GamePage.input().type("Hitmonlee").type("{enter}");
   });
   it("Guesses incorrectly", () => {
-    GamePage.input().type("Mew").type("{enter}");
+    GamePage.input().type("Hitmonchan").type("{enter}");
   });
   it("Guesses incorrectly", () => {
-    GamePage.input().type("Mew").type("{enter}");
+    GamePage.input().type("Raichu").type("{enter}");
   });
   it("Guesses incorrectly", () => {
-    GamePage.input().type("Mew").type("{enter}");
+    GamePage.input().type("Blastoise").type("{enter}");
   });
   it("Guesses incorrectly", () => {
-    GamePage.input().type("Mew").type("{enter}");
+    GamePage.input().type("Weedle").type("{enter}");
   });
   it("There should be seven rows (1 label row, 5 guess rows, 1 answer row)", () => {
     GamePage.row().should('have.length', 7)
@@ -70,16 +70,16 @@ describe("Player wins the game on the last guess", () => {
     GamePage.input().type("Mew").type("{enter}");
   });
   it("Guesses incorrectly", () => {
-    GamePage.input().type("Mew").type("{enter}");
+    GamePage.input().type("Mewtwo").type("{enter}");
   });
   it("Guesses incorrectly", () => {
-    GamePage.input().type("Mew").type("{enter}");
+    GamePage.input().type("Machamp").type("{enter}");
   });
   it("Guesses incorrectly", () => {
-    GamePage.input().type("Mew").type("{enter}");
+    GamePage.input().type("Hitmonlee").type("{enter}");
   });
   it("Guesses incorrectly", () => {
-    GamePage.input().type("Mew").type("{enter}");
+    GamePage.input().type("Raichu").type("{enter}");
   });
   it("Guesses correctly", () => {
     GamePage.input().type("Pikachu").type("{enter}");
