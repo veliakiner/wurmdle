@@ -129,7 +129,7 @@ class Board extends React.Component {
       console.log('setting to ', input);
       this.setState({ searchRes, partialGuess: input, dupeGuess: '' });
     } else {
-      this.setState({ searchRes, dupeGuess: '' });
+      this.setState({ searchRes });
     }
   }
 
