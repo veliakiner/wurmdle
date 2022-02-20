@@ -46,7 +46,7 @@ function startState() {
     so we have to set this to false and then set to true when it gets
     triggered spuriously the first time. Otherwise, the game automatically
     resets as soon as the game ends. */
-    enteredOnce: false,
+    enteredOnce: true,
     dupeGuess: '',
   };
 }
@@ -107,6 +107,7 @@ class Board extends React.Component {
       this.state.gameWon = false;
       this.state.answer = 'Koffing';
     }
+    this.state.answer = this.randomAnswer();
   }
 
   componentDidMount() {
@@ -137,26 +138,13 @@ class Board extends React.Component {
     }
   }
 
-  onSelectGuess(guess) {
-    this.state.currentGuess = guess;
-    this.onGuess();
-  }
-
   onGuess() {
     // sanitise
     console.log('Guessing.');
-    const { currentGuess, monsList, partialGuess } = this.state;
-    let { guesses, guessDeltas, answer } = this.state;
-    if (answer === '') {
-      const testAnswer = process.env.REACT_APP_ANSWER;
-      if (process.env.REACT_APP_ANSWER !== undefined) {
-        answer = toTitleCase(testAnswer);
-      } else {
-        const monsIndex = Math.round(Math.random() * monsList.length);
-        answer = monsList[monsIndex];
-      }
-      return this.setState({ answer }, this.onGuess);
-    }
+    const {
+      currentGuess, monsList, partialGuess, answer,
+    } = this.state;
+    let { guesses, guessDeltas } = this.state;
     const guess = currentGuess || partialGuess;
     let lastGuess = guess.toLowerCase();
     lastGuess = toTitleCase(lastGuess).trim();
@@ -215,6 +203,22 @@ class Board extends React.Component {
     return this.onTurnEnd(false, true);
   }
 
+  randomAnswer() {
+    let { answer } = this.state;
+    const { monsList } = this.state;
+    if (answer === '') {
+      const testAnswer = process.env.REACT_APP_ANSWER;
+      if (process.env.REACT_APP_ANSWER !== undefined) {
+        answer = toTitleCase(testAnswer);
+      } else {
+        const monsIndex = Math.round(Math.random() * monsList.length);
+        answer = monsList[monsIndex];
+      }
+      console.log('Setting answer to', answer);
+    }
+    return answer;
+  }
+
   resetOnEnter(event) {
     const { gameOver, enteredOnce } = this.state;
     if (event.key) {
@@ -262,10 +266,10 @@ class Board extends React.Component {
                 }}
                 guesses={guesses}
                 onSelectGuess={(evt) => {
-                  this.onSelectGuess(evt);
+                  this.setState({ enteredOnce: false, currentGuess: evt }, this.onGuess);
                 }}
-                onGuess={() => this.setState({ enteredOnce: true }, this.onGuess)}
-                onGiveUp={() => this.setState({ enteredOnce: true }, this.onLose)}
+                onGuess={() => this.onGuess()}
+                onGiveUp={() => this.onLose()}
                 {...this.state}
               />
             </div>
