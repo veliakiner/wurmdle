@@ -51,7 +51,10 @@ function GameInput(props) {
         disabled={guesses.length === 0}
         type="submit"
         style={{ float: 'left' }}
-        onClick={onGiveUp}
+        onClick={() => {
+          onGiveUp();
+          setGlow(false);
+        }}
       >
         Give up
       </button>
