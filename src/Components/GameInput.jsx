@@ -4,6 +4,8 @@ import {
   string, bool, func, arrayOf,
 } from 'prop-types';
 
+const { useRef, useEffect } = React;
+
 function searchOptions(searchRes) {
   const options = [];
   searchRes.forEach((element) => {
@@ -26,7 +28,12 @@ function GameInput(props) {
     guesses,
   } = props;
   const [glow, setGlow] = useState(0);
+  const focusRef = useRef(null);
 
+  useEffect(() => {
+    console.log('Click???');
+    focusRef.current.focus();
+  }, []);
   return (
     <form
       className={+gameOver ? 'hide' : ''}
@@ -60,6 +67,7 @@ function GameInput(props) {
       </button>
 
       <Select
+        ref={focusRef}
         components={{
           DropdownIndicator: () => null,
           IndicatorSeparator: () => null,
