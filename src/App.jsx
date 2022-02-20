@@ -176,7 +176,7 @@ class Board extends React.Component {
     const [delta, win] = calculateCorrectness(lastGuess, answer);
     guesses = guesses.concat(lastGuess);
     guessDeltas = guessDeltas.concat([delta]);
-    if (guesses.length > this.maxGuesses - 2) {
+    if (guesses.length > this.maxGuesses - 1) {
       noMoreGuesses = true;
     }
     const gameOver = noMoreGuesses || win;
