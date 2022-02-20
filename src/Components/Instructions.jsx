@@ -7,16 +7,17 @@ function Instructions(props) {
   return (
     <div>
       <div className="subtitle">
-
-        Welcome to Wurmdle! Try to guess the Pokemon based on its base stats!
-        You have
+        Try to guess the Pokemon based on its base stats! You have
         {' '}
         {maxGuesses}
         {' '}
-        guesses. Report issues
-        {' '}
-        <a href="https://github.com/veliakiner/wurmdle/issues">here</a>
-        .
+        guesses.
+        <div>
+          Report issues
+          {' '}
+          <a href="https://github.com/veliakiner/wurmdle/issues">here</a>
+          .
+        </div>
       </div>
       <div className="key">
         <div className="key-elem">Key:</div>
