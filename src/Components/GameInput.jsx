@@ -22,6 +22,7 @@ function GameInput(props) {
     currentGuess,
     searchRes,
     partialGuess,
+    onGiveUp,
   } = props;
   const [glow, setGlow] = useState(0);
 
@@ -35,6 +36,7 @@ function GameInput(props) {
       <button
         className="input"
         type="submit"
+        style={{ float: 'right' }}
         onClick={() => {
           if (!onGuess()) {
             setGlow(true);
@@ -42,6 +44,14 @@ function GameInput(props) {
         }}
       >
         Guess
+      </button>
+      <button
+        className="input"
+        type="submit"
+        style={{ float: 'left' }}
+        onClick={onGiveUp}
+      >
+        Give up
       </button>
 
       <Select
@@ -74,6 +84,7 @@ GameInput.propTypes = {
   onChange: func.isRequired,
   onGuess: func.isRequired,
   onSelectGuess: func.isRequired,
+  onGiveUp: func.isRequired,
   gameOver: bool.isRequired,
   currentGuess: string.isRequired,
   partialGuess: string.isRequired,

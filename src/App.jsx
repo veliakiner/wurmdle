@@ -253,11 +253,20 @@ class Board extends React.Component {
                 this.onSelectGuess(evt);
               }}
               onGuess={() => this.onGuess()}
+              onGiveUp={() => this.setState({
+                gameOver: true,
+                gameWon: false,
+                gameInProgress: false,
+              })}
               {...this.state}
             />
           </div>
         </div>
-        <Grid guessDeltas={guessDeltas} guesses={guesses} dupeGuess={dupeGuess} />
+        <Grid
+          guessDeltas={guessDeltas}
+          guesses={guesses}
+          dupeGuess={dupeGuess}
+        />
       </div>
     );
   }
