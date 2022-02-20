@@ -23,6 +23,7 @@ function GameInput(props) {
     searchRes,
     partialGuess,
     onGiveUp,
+    guesses
   } = props;
   const [glow, setGlow] = useState(0);
 
@@ -47,6 +48,7 @@ function GameInput(props) {
       </button>
       <button
         className="input"
+        disabled={guesses.length === 0}
         type="submit"
         style={{ float: 'left' }}
         onClick={onGiveUp}
