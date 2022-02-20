@@ -207,13 +207,8 @@ class Board extends React.Component {
     let { answer } = this.state;
     const { monsList } = this.state;
     if (answer === '') {
-      const testAnswer = process.env.REACT_APP_ANSWER;
-      if (process.env.REACT_APP_ANSWER !== undefined) {
-        answer = toTitleCase(testAnswer);
-      } else {
-        const monsIndex = Math.round(Math.random() * monsList.length);
-        answer = monsList[monsIndex];
-      }
+      const monsIndex = Math.round(Math.random() * monsList.length);
+      answer = monsList[monsIndex];
       console.log('Setting answer to', answer);
     }
     return answer;
