@@ -7,7 +7,7 @@ import { allStats } from '../Libraries/Pokemon/PokemonData';
 function GuessRow(props) {
   const numSquares = 6;
   const squares = [];
-  const { guess, values } = props;
+  const { guess, values, dupeGuess } = props;
   console.log(JSON.stringify(props));
   for (let i = 0; i < numSquares; i += 1) {
     const value = values[i];
@@ -16,13 +16,14 @@ function GuessRow(props) {
   squares.push(<IconSquare key={-1} fileName={`./sprites/${allStats[guess].sprite}`} name={guess} />);
   return (
     <FadeIn>
-      <div className="board-row">{squares}</div>
+      <div className={`board-row${dupeGuess === guess ? ' animate' : ''}`}>{squares}</div>
     </FadeIn>
   );
 }
 GuessRow.propTypes = {
   guess: string.isRequired,
   values: arrayOf(string).isRequired,
+  dupeGuess: string.isRequired,
 };
 
 export function LabelRow(props) {

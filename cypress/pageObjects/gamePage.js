@@ -8,7 +8,7 @@ class GamePage extends BasePage {
       return cy.get(".glow")
     }
     submitButton() {
-      return cy.get('[type="submit"].input')
+      return cy.get('button.input:nth-of-type(1)')
     }
     row() {
       return cy.get('.board-row');

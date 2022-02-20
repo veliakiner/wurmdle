@@ -4,7 +4,7 @@ import GuessRow, { LabelRow } from './Row';
 
 function Grid(props) {
   const rows = [];
-  const { guessDeltas, guesses } = props;
+  const { guessDeltas, guesses, dupeGuess } = props;
   console.log(guessDeltas);
   rows.push(
     <LabelRow
@@ -14,7 +14,14 @@ function Grid(props) {
     />,
   );
   for (let i = 0; i < guessDeltas.length; i += 1) {
-    rows.push(<GuessRow key={i} values={guessDeltas[i]} guess={guesses[i]} />);
+    rows.push(
+      <GuessRow
+        key={i}
+        values={guessDeltas[i]}
+        guess={guesses[i]}
+        dupeGuess={dupeGuess}
+      />,
+    );
   }
   return <div>{rows}</div>;
 }
@@ -22,6 +29,7 @@ function Grid(props) {
 Grid.propTypes = {
   guessDeltas: arrayOf(arrayOf(string)).isRequired,
   guesses: arrayOf(string).isRequired,
+  dupeGuess: string.isRequired,
 };
 
 export default Grid;
