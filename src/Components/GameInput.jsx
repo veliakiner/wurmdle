@@ -91,7 +91,7 @@ GameInput.propTypes = {
   currentGuess: string.isRequired,
   partialGuess: string.isRequired,
   searchRes: arrayOf(string).isRequired, // is wrong, fix later
-  guesses: arrayOf[string].isRequired,
+  guesses: arrayOf(string).isRequired,
 };
 
 export default GameInput;

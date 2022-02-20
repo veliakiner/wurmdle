@@ -29,7 +29,7 @@ function Grid(props) {
 Grid.propTypes = {
   guessDeltas: arrayOf(arrayOf(string)).isRequired,
   guesses: arrayOf(string).isRequired,
-  dupeGuess: arrayOf(string).isRequired,
+  dupeGuess: string.isRequired,
 };
 
 export default Grid;
