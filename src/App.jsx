@@ -42,6 +42,10 @@ function startState() {
     gameInProgress: false,
     gameWon: false,
     partialGuess: '',
+    /* The enter key when guessing will also trigger resetOnEnter,
+    so we have to set this to false and then set to true when it gets
+    triggered spuriously the first time. Otherwise, the game automatically
+    resets as soon as the game ends. */
     enteredOnce: false,
     dupeGuess: '',
   };
@@ -255,8 +259,8 @@ class Board extends React.Component {
               onSelectGuess={(evt) => {
                 this.onSelectGuess(evt);
               }}
-              onGuess={() => this.onGuess()}
-              onGiveUp={() => this.onLose()}
+              onGuess={() => this.setState({ enteredOnce: true }, this.onGuess)}
+              onGiveUp={() => this.setState({ enteredOnce: true }, this.onLose)}
               {...this.state}
             />
           </div>
