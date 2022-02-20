@@ -23,7 +23,7 @@ function GameInput(props) {
     searchRes,
     partialGuess,
     onGiveUp,
-    guesses
+    guesses,
   } = props;
   const [glow, setGlow] = useState(0);
 
@@ -91,6 +91,7 @@ GameInput.propTypes = {
   currentGuess: string.isRequired,
   partialGuess: string.isRequired,
   searchRes: arrayOf(string).isRequired, // is wrong, fix later
+  guesses: arrayOf[string].isRequired,
 };
 
 export default GameInput;

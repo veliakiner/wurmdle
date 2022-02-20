@@ -209,6 +209,33 @@ class Board extends React.Component {
     return true;
   }
 
+  onGiveUp() {
+    const { answer } = this.state;
+    let { guesses, guessDeltas } = this.state;
+    const gameInProgress = false;
+    guesses = guesses.concat(answer);
+    guessDeltas = guessDeltas.concat([calculateCorrectness(answer, answer)[0]]);
+    this.setState(
+      updateLocalStorageGameState({
+        currentGuess: '',
+        partialGuess: '',
+        guesses,
+        guessDeltas,
+        gameOver: true,
+        gameWon: false,
+        answer,
+        searchRes: [],
+        gameInProgress,
+      }),
+      () => {
+        console.log(`Guesses: ${guesses.toString()}`);
+        console.log(`Guess deltas: ${guessDeltas.toString()}`);
+      },
+    );
+    console.log('Game in progress after guess?', gameInProgress);
+    this.setGameInProgress(gameInProgress);
+  }
+
   resetOnEnter(event) {
     const { gameOver, enteredOnce } = this.state;
     if (event.keyCode === 13 && gameOver) {
@@ -254,11 +281,7 @@ class Board extends React.Component {
                 this.onSelectGuess(evt);
               }}
               onGuess={() => this.onGuess()}
-              onGiveUp={() => this.setState(updateLocalStorageGameState({
-                gameOver: true,
-                gameWon: false,
-                gameInProgress: false
-              }))}
+              onGiveUp={() => this.onGiveUp()}
               {...this.state}
             />
           </div>
