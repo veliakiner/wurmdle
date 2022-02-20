@@ -232,7 +232,7 @@ class Board extends React.Component {
             <div className={gameOver ? '' : 'hide'}>
               <GameState answer={answer} gameWon={gameWon} />
 
-              <div style={{ margin: 'auto', textAlign: 'center' }}>
+              <div className="start-over">
                 <button
                   type="submit"
                   onClick={() => this.setState(startState())}
