@@ -89,8 +89,7 @@
 
 .start-over {
   margin: auto;
-  /* width: 100%; */
-  /* padding: 10px; */
+  text-align: center;
 }
 .game-over-msg {
   padding: 10px;

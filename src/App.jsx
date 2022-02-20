@@ -89,12 +89,19 @@ class Board extends React.Component {
       this.state = startState();
       this.state.answer = toTitleCase(props.answer) || '';
     }
-    const { genRange, setGameInProgress } = props;
+    const { genRange, setGameInProgress, forceGameOver } = props;
     this.setGameInProgress = setGameInProgress;
     updateLocalStorageGameState(this.state);
     Object.assign(this.state, genState(genRange));
     const { monsList } = this.state;
     this.maxGuesses = calcGuesses(monsList);
+
+    if (forceGameOver) {
+      this.state.gameOver = true;
+      this.state.gameInProgress = false;
+      this.state.gameWon = false;
+      this.state.answer = 'Koffing';
+    }
   }
 
   componentDidMount() {
@@ -224,13 +231,17 @@ class Board extends React.Component {
           <div className="input-container">
             <div className={gameOver ? '' : 'hide'}>
               <GameState answer={answer} gameWon={gameWon} />
-              <button
-                type="submit"
-                className="start-over"
-                onClick={() => this.setState(startState())}
-              >
-                Start over
-              </button>
+
+              <div className="start-over">
+                <button
+                  type="submit"
+                  onClick={() => this.setState(startState())}
+                >
+                  Start over
+                </button>
+                {' '}
+                <span>{' (or type Enter)'}</span>
+              </div>
             </div>
             <GameInput
               onChange={(evt) => {
@@ -256,17 +267,21 @@ Board.propTypes = {
   genRange: propTypes.arrayOf(propTypes.number).isRequired,
   // TODO: incorrect, and probably shouldn't be passing in arbitrary objects
   parsedState: propTypes.objectOf(propTypes.string).isRequired,
+  forceGameOver: propTypes.bool,
+};
+Board.defaultProps = {
+  forceGameOver: false,
 };
 
 function BoardWrapper(props) {
+  const { force } = props;
   const { answer } = useParams();
-  const { forceSettings } = props;
   const rawGenRange = localStorage.getItem('gens');
   const parsedState = retrieveLocalStorageGameState();
   const initialGenRange = rawGenRange
     ? rawGenRange.split(',').map((x) => parseInt(x, 10))
     : defaultGenRange;
-  const [toggleSettings, setToggleSettings] = useState(forceSettings || false);
+  const [toggleSettings, setToggleSettings] = useState(force.settings || false);
   const [genRange, setGenRange] = useState(initialGenRange);
   const [settings, setSettings] = useState(
     JSON.parse(localStorage.getItem('settings')) || {},
@@ -318,6 +333,7 @@ function BoardWrapper(props) {
             genRange={genRange}
             setGameInProgress={setGameInProgress}
             parsedState={parsedState}
+            forceGameOver={force.gameOver}
           />
         )}
       </SettingsContext.Provider>
@@ -325,18 +341,28 @@ function BoardWrapper(props) {
   );
 }
 BoardWrapper.propTypes = {
-  forceSettings: propTypes.bool,
+  force: propTypes.objectOf(propTypes.bool),
 };
 BoardWrapper.defaultProps = {
-  forceSettings: false,
+  force: { settings: false, gameOver: false },
 };
 
 function App() {
   /* TODO: violates OCP */
-  let routes = [<Route path="/" element={<BoardWrapper />} />, <Route path="/share" element={<Horse />} />];
+  let routes = [
+    <Route path="/" element={<BoardWrapper />} />,
+    <Route path="/share" element={<Horse />} />,
+  ];
   const devRoutes = [
     <Route path="/:answer" element={<BoardWrapper />} />,
-    <Route path="/settings" element={<BoardWrapper forceSettings />} />,
+    <Route
+      path="/settings"
+      element={<BoardWrapper force={{ settings: true }} />}
+    />,
+    <Route
+      path="/gameover"
+      element={<BoardWrapper force={{ gameOver: true }} />}
+    />,
   ];
   if (process.env.NODE_ENV === 'development') {
     routes = routes.concat(devRoutes);

@@ -14,7 +14,7 @@ class GamePage extends BasePage {
       return cy.get('.board-row');
     }
     startOver() {
-        return cy.get(".start-over");
+        return cy.get(".start-over > button");
     }
   }
   
