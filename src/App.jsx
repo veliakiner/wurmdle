@@ -107,7 +107,8 @@ class Board extends React.Component {
       this.state.gameWon = false;
       this.state.answer = 'Koffing';
     }
-    this.state.answer = this.randomAnswer();
+    const { answer } = this.state;
+    this.state.answer = answer || this.randomAnswer();
   }
 
   componentDidMount() {
@@ -204,13 +205,10 @@ class Board extends React.Component {
   }
 
   randomAnswer() {
-    let { answer } = this.state;
     const { monsList } = this.state;
-    if (answer === '') {
-      const monsIndex = Math.round(Math.random() * monsList.length);
-      answer = monsList[monsIndex];
-      console.log('Setting answer to', answer);
-    }
+    const monsIndex = Math.round(Math.random() * monsList.length);
+    const answer = monsList[monsIndex];
+    console.log('Setting answer to', answer);
     return answer;
   }
 
@@ -221,11 +219,15 @@ class Board extends React.Component {
     }
     if (event.keyCode === 13 && gameOver) {
       if (enteredOnce) {
-        this.setState(startState());
+        this.setState(this.newGameState());
       } else {
         this.setState({ enteredOnce: true });
       }
     }
+  }
+
+  newGameState() {
+    return { ...startState(), answer: this.randomAnswer() };
   }
 
   render() {
@@ -245,7 +247,7 @@ class Board extends React.Component {
               <div className="start-over">
                 <button
                   type="submit"
-                  onClick={() => this.setState(startState())}
+                  onClick={() => this.setState(this.newGameState())}
                 >
                   Start over
                 </button>
