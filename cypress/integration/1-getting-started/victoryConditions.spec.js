@@ -45,8 +45,15 @@ describe("Player wins the game on the first guess", () => {
   it("There should be two rows (1 label row, and 1 guess row", () => {
     GamePage.row().should('have.length', 2)
   });
-  it("Starts a new game", () => {
+});
+
+describe("Player can restart", () => {
+  it("opens the app", () => {
+    cy.visit("http://localhost:3000/Pikachu");
+    GamePage.input().type("Pikachu").type("{enter}");
     GamePage.startOver().click();
+    GamePage.input().type("Mewtwo").type("{enter}");
+    GamePage.row().should('have.length', 2)
   });
 });
 
