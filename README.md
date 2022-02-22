@@ -5,5 +5,8 @@ Whenever you guess a Pokemon, you'll see the difference between the stats of wha
 Hosted on https://wurmdle.com
 
 # License
+The sprite images are © Nintendo/Creatures Inc./GAME FREAK Inc.
+
 Sprites from https://github.com/msikma/pokesprite
+
 Everything else: see LICENSE in this repository.
