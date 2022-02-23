@@ -16,7 +16,6 @@ import {
 } from './Libraries/localStorage';
 import SettingsPage from './Components/SettingsPage';
 import SettingsContext from './SettingsContext';
-import Horse from './Components/Horse';
 
 const defaultGenRange = [1, 3];
 console.log('No cheating!');
@@ -372,7 +371,6 @@ function App() {
   /* TODO: violates OCP */
   let routes = [
     <Route path="/" element={<BoardWrapper />} />,
-    <Route path="/share" element={<Horse />} />,
   ];
   const devRoutes = [
     <Route path="/:answer" element={<BoardWrapper />} />,
