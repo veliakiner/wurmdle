@@ -4,15 +4,17 @@ import { string, arrayOf } from 'prop-types';
 import Square, { IconSquare } from './Square';
 import { allStats } from '../Libraries/Pokemon/PokemonData';
 
-function GuessRow(props) {
-  const numSquares = 6;
+function createSquares(values) {
   const squares = [];
-  const { guess, values, dupeGuess } = props;
-  console.log(JSON.stringify(props));
-  for (let i = 0; i < numSquares; i += 1) {
+  for (let i = 0; i < values.length; i += 1) {
     const value = values[i];
     squares.push(<Square key={i} value={value} />);
   }
+  return squares;
+}
+function GuessRow(props) {
+  const { guess, values, dupeGuess } = props;
+  const squares = createSquares(values);
   squares.push(<IconSquare key={-1} fileName={`./sprites/${allStats[guess].sprite}`} name={guess} />);
   return (
     <FadeIn>
@@ -27,14 +29,8 @@ GuessRow.propTypes = {
 };
 
 export function LabelRow(props) {
-  const numSquares = 6;
-  const squares = [];
   const { values } = props;
-  console.log(JSON.stringify(props));
-  for (let i = 0; i < numSquares; i += 1) {
-    const value = values[i];
-    squares.push(<Square key={i} value={value} />);
-  }
+  const squares = createSquares(values);
   return (
     <FadeIn>
       <div className="board-row">{squares}</div>
