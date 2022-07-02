@@ -10,7 +10,7 @@ export function getGenRange(upperAndLower) {
   return gens;
 }
 
-export function getMonsList(genRange) {
+export function getMonsList(genRange, onlyFullyEvolved) {
   console.log('Getting list for gens ', genRange);
   const gens = getGenRange(genRange);
   const stats = genData(gens); // can just filter stats by gens or something

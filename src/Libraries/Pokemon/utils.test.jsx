@@ -5,3 +5,6 @@ test('getGenRange to return generations between the provided values (inclusive)'
 test('returns 151 for the OG generation', () => {
   expect(getMonsList([1, 1])).toHaveLength(151);
 });
+test('returns 81 for the fully-evolved OG generation', () => {
+  expect(getMonsList([1, 1], true)).toHaveLength(81);
+});
