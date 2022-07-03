@@ -12,5 +12,13 @@ function genData(genList) {
   return requiredData;
 }
 
+export function isFullyEvolved(mon, pokemonData) {
+  if (mon.evos === undefined) {
+    return true;
+  }
+  const pokemonNames = Object.keys(pokemonData);
+  return !mon.evos.find((evolution) => pokemonNames.includes(evolution));
+}
+
 export const allStats = genData();
 export default genData;
