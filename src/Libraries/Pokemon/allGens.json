@@ -19,7 +19,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "bulbasaur.png"
+            "sprite": "bulbasaur.png",
+            "evos": [
+                "Ivysaur"
+            ]
         },
         "Ivysaur": {
             "number": 2,
@@ -40,7 +43,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 1,
-            "sprite": "ivysaur.png"
+            "sprite": "ivysaur.png",
+            "evos": [
+                "Venusaur"
+            ]
         },
         "Venusaur": {
             "number": 3,
@@ -81,7 +87,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "charmander.png"
+            "sprite": "charmander.png",
+            "evos": [
+                "Charmeleon"
+            ]
         },
         "Charmeleon": {
             "number": 5,
@@ -101,7 +110,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 1,
-            "sprite": "charmeleon.png"
+            "sprite": "charmeleon.png",
+            "evos": [
+                "Charizard"
+            ]
         },
         "Charizard": {
             "number": 6,
@@ -142,7 +154,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "squirtle.png"
+            "sprite": "squirtle.png",
+            "evos": [
+                "Wartortle"
+            ]
         },
         "Wartortle": {
             "number": 8,
@@ -162,7 +177,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 1,
-            "sprite": "wartortle.png"
+            "sprite": "wartortle.png",
+            "evos": [
+                "Blastoise"
+            ]
         },
         "Blastoise": {
             "number": 9,
@@ -202,7 +220,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "caterpie.png"
+            "sprite": "caterpie.png",
+            "evos": [
+                "Metapod"
+            ]
         },
         "Metapod": {
             "number": 11,
@@ -222,7 +243,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 1,
-            "sprite": "metapod.png"
+            "sprite": "metapod.png",
+            "evos": [
+                "Butterfree"
+            ]
         },
         "Butterfree": {
             "number": 12,
@@ -264,7 +288,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "weedle.png"
+            "sprite": "weedle.png",
+            "evos": [
+                "Kakuna"
+            ]
         },
         "Kakuna": {
             "number": 14,
@@ -285,7 +312,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 1,
-            "sprite": "kakuna.png"
+            "sprite": "kakuna.png",
+            "evos": [
+                "Beedrill"
+            ]
         },
         "Beedrill": {
             "number": 15,
@@ -327,7 +357,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "pidgey.png"
+            "sprite": "pidgey.png",
+            "evos": [
+                "Pidgeotto"
+            ]
         },
         "Pidgeotto": {
             "number": 17,
@@ -348,7 +381,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 1,
-            "sprite": "pidgeotto.png"
+            "sprite": "pidgeotto.png",
+            "evos": [
+                "Pidgeot"
+            ]
         },
         "Pidgeot": {
             "number": 18,
@@ -389,7 +425,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "rattata.png"
+            "sprite": "rattata.png",
+            "evos": [
+                "Raticate"
+            ]
         },
         "Raticate": {
             "number": 20,
@@ -430,7 +469,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "spearow.png"
+            "sprite": "spearow.png",
+            "evos": [
+                "Fearow"
+            ]
         },
         "Fearow": {
             "number": 22,
@@ -471,7 +513,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "ekans.png"
+            "sprite": "ekans.png",
+            "evos": [
+                "Arbok"
+            ]
         },
         "Arbok": {
             "number": 24,
@@ -511,7 +556,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "pikachu.png"
+            "sprite": "pikachu.png",
+            "evos": [
+                "Raichu"
+            ]
         },
         "Raichu": {
             "number": 26,
@@ -551,7 +599,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "sandshrew.png"
+            "sprite": "sandshrew.png",
+            "evos": [
+                "Sandslash"
+            ]
         },
         "Sandslash": {
             "number": 28,
@@ -591,7 +642,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "nidoran-f.png"
+            "sprite": "nidoran-f.png",
+            "evos": [
+                "Nidorina"
+            ]
         },
         "Nidorina": {
             "number": 30,
@@ -611,7 +665,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 1,
-            "sprite": "nidorina.png"
+            "sprite": "nidorina.png",
+            "evos": [
+                "Nidoqueen"
+            ]
         },
         "Nidoqueen": {
             "number": 31,
@@ -652,7 +709,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "nidoran-m.png"
+            "sprite": "nidoran-m.png",
+            "evos": [
+                "Nidorino"
+            ]
         },
         "Nidorino": {
             "number": 33,
@@ -672,7 +732,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 1,
-            "sprite": "nidorino.png"
+            "sprite": "nidorino.png",
+            "evos": [
+                "Nidoking"
+            ]
         },
         "Nidoking": {
             "number": 34,
@@ -713,7 +776,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "clefairy.png"
+            "sprite": "clefairy.png",
+            "evos": [
+                "Clefable"
+            ]
         },
         "Clefable": {
             "number": 36,
@@ -753,7 +819,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "vulpix.png"
+            "sprite": "vulpix.png",
+            "evos": [
+                "Ninetales"
+            ]
         },
         "Ninetales": {
             "number": 38,
@@ -794,7 +863,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "jigglypuff.png"
+            "sprite": "jigglypuff.png",
+            "evos": [
+                "Wigglytuff"
+            ]
         },
         "Wigglytuff": {
             "number": 40,
@@ -836,7 +908,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "zubat.png"
+            "sprite": "zubat.png",
+            "evos": [
+                "Golbat"
+            ]
         },
         "Golbat": {
             "number": 42,
@@ -857,7 +932,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 1,
-            "sprite": "golbat.png"
+            "sprite": "golbat.png",
+            "evos": [
+                "Crobat"
+            ]
         },
         "Oddish": {
             "number": 43,
@@ -878,7 +956,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "oddish.png"
+            "sprite": "oddish.png",
+            "evos": [
+                "Gloom"
+            ]
         },
         "Gloom": {
             "number": 44,
@@ -899,7 +980,11 @@
             "generation": 1,
             "legendary": false,
             "stage": 1,
-            "sprite": "gloom.png"
+            "sprite": "gloom.png",
+            "evos": [
+                "Vileplume",
+                "Bellossom"
+            ]
         },
         "Vileplume": {
             "number": 45,
@@ -941,7 +1026,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "paras.png"
+            "sprite": "paras.png",
+            "evos": [
+                "Parasect"
+            ]
         },
         "Parasect": {
             "number": 47,
@@ -983,7 +1071,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "venonat.png"
+            "sprite": "venonat.png",
+            "evos": [
+                "Venomoth"
+            ]
         },
         "Venomoth": {
             "number": 49,
@@ -1024,7 +1115,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "diglett.png"
+            "sprite": "diglett.png",
+            "evos": [
+                "Dugtrio"
+            ]
         },
         "Dugtrio": {
             "number": 51,
@@ -1064,7 +1158,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "meowth.png"
+            "sprite": "meowth.png",
+            "evos": [
+                "Persian"
+            ]
         },
         "Persian": {
             "number": 53,
@@ -1104,7 +1201,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "psyduck.png"
+            "sprite": "psyduck.png",
+            "evos": [
+                "Golduck"
+            ]
         },
         "Golduck": {
             "number": 55,
@@ -1144,7 +1244,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "mankey.png"
+            "sprite": "mankey.png",
+            "evos": [
+                "Primeape"
+            ]
         },
         "Primeape": {
             "number": 57,
@@ -1184,7 +1287,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "growlithe.png"
+            "sprite": "growlithe.png",
+            "evos": [
+                "Arcanine"
+            ]
         },
         "Arcanine": {
             "number": 59,
@@ -1224,7 +1330,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "poliwag.png"
+            "sprite": "poliwag.png",
+            "evos": [
+                "Poliwhirl"
+            ]
         },
         "Poliwhirl": {
             "number": 61,
@@ -1244,7 +1353,11 @@
             "generation": 1,
             "legendary": false,
             "stage": 1,
-            "sprite": "poliwhirl.png"
+            "sprite": "poliwhirl.png",
+            "evos": [
+                "Poliwrath",
+                "Politoed"
+            ]
         },
         "Poliwrath": {
             "number": 62,
@@ -1285,7 +1398,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "abra.png"
+            "sprite": "abra.png",
+            "evos": [
+                "Kadabra"
+            ]
         },
         "Kadabra": {
             "number": 64,
@@ -1305,7 +1421,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 1,
-            "sprite": "kadabra.png"
+            "sprite": "kadabra.png",
+            "evos": [
+                "Alakazam"
+            ]
         },
         "Alakazam": {
             "number": 65,
@@ -1345,7 +1464,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "machop.png"
+            "sprite": "machop.png",
+            "evos": [
+                "Machoke"
+            ]
         },
         "Machoke": {
             "number": 67,
@@ -1365,7 +1487,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 1,
-            "sprite": "machoke.png"
+            "sprite": "machoke.png",
+            "evos": [
+                "Machamp"
+            ]
         },
         "Machamp": {
             "number": 68,
@@ -1406,7 +1531,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "bellsprout.png"
+            "sprite": "bellsprout.png",
+            "evos": [
+                "Weepinbell"
+            ]
         },
         "Weepinbell": {
             "number": 70,
@@ -1427,7 +1555,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 1,
-            "sprite": "weepinbell.png"
+            "sprite": "weepinbell.png",
+            "evos": [
+                "Victreebel"
+            ]
         },
         "Victreebel": {
             "number": 71,
@@ -1469,7 +1600,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "tentacool.png"
+            "sprite": "tentacool.png",
+            "evos": [
+                "Tentacruel"
+            ]
         },
         "Tentacruel": {
             "number": 73,
@@ -1511,7 +1645,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "geodude.png"
+            "sprite": "geodude.png",
+            "evos": [
+                "Graveler"
+            ]
         },
         "Graveler": {
             "number": 75,
@@ -1532,7 +1669,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 1,
-            "sprite": "graveler.png"
+            "sprite": "graveler.png",
+            "evos": [
+                "Golem"
+            ]
         },
         "Golem": {
             "number": 76,
@@ -1573,7 +1713,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "ponyta.png"
+            "sprite": "ponyta.png",
+            "evos": [
+                "Rapidash"
+            ]
         },
         "Rapidash": {
             "number": 78,
@@ -1614,7 +1757,11 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "slowpoke.png"
+            "sprite": "slowpoke.png",
+            "evos": [
+                "Slowbro",
+                "Slowking"
+            ]
         },
         "Slowbro": {
             "number": 80,
@@ -1656,7 +1803,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "magnemite.png"
+            "sprite": "magnemite.png",
+            "evos": [
+                "Magneton"
+            ]
         },
         "Magneton": {
             "number": 82,
@@ -1677,7 +1827,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 1,
-            "sprite": "magneton.png"
+            "sprite": "magneton.png",
+            "evos": [
+                "Magnezone"
+            ]
         },
         "Farfetch'd": {
             "number": 83,
@@ -1698,7 +1851,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "farfetchd.png"
+            "sprite": "farfetchd.png",
+            "evos": [
+                "Sirfetch'd"
+            ]
         },
         "Doduo": {
             "number": 84,
@@ -1719,7 +1875,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "doduo.png"
+            "sprite": "doduo.png",
+            "evos": [
+                "Dodrio"
+            ]
         },
         "Dodrio": {
             "number": 85,
@@ -1760,7 +1919,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "seel.png"
+            "sprite": "seel.png",
+            "evos": [
+                "Dewgong"
+            ]
         },
         "Dewgong": {
             "number": 87,
@@ -1801,7 +1963,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "grimer.png"
+            "sprite": "grimer.png",
+            "evos": [
+                "Muk"
+            ]
         },
         "Muk": {
             "number": 89,
@@ -1841,7 +2006,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "shellder.png"
+            "sprite": "shellder.png",
+            "evos": [
+                "Cloyster"
+            ]
         },
         "Cloyster": {
             "number": 91,
@@ -1883,7 +2051,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "gastly.png"
+            "sprite": "gastly.png",
+            "evos": [
+                "Haunter"
+            ]
         },
         "Haunter": {
             "number": 93,
@@ -1904,7 +2075,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 1,
-            "sprite": "haunter.png"
+            "sprite": "haunter.png",
+            "evos": [
+                "Gengar"
+            ]
         },
         "Gengar": {
             "number": 94,
@@ -1946,7 +2120,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "onix.png"
+            "sprite": "onix.png",
+            "evos": [
+                "Steelix"
+            ]
         },
         "Drowzee": {
             "number": 96,
@@ -1966,7 +2143,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "drowzee.png"
+            "sprite": "drowzee.png",
+            "evos": [
+                "Hypno"
+            ]
         },
         "Hypno": {
             "number": 97,
@@ -2006,7 +2186,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "krabby.png"
+            "sprite": "krabby.png",
+            "evos": [
+                "Kingler"
+            ]
         },
         "Kingler": {
             "number": 99,
@@ -2046,7 +2229,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "voltorb.png"
+            "sprite": "voltorb.png",
+            "evos": [
+                "Electrode"
+            ]
         },
         "Electrode": {
             "number": 101,
@@ -2087,7 +2273,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "exeggcute.png"
+            "sprite": "exeggcute.png",
+            "evos": [
+                "Exeggutor"
+            ]
         },
         "Exeggutor": {
             "number": 103,
@@ -2128,7 +2317,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "cubone.png"
+            "sprite": "cubone.png",
+            "evos": [
+                "Marowak"
+            ]
         },
         "Marowak": {
             "number": 105,
@@ -2208,7 +2400,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "lickitung.png"
+            "sprite": "lickitung.png",
+            "evos": [
+                "Lickilicky"
+            ]
         },
         "Koffing": {
             "number": 109,
@@ -2228,7 +2423,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "koffing.png"
+            "sprite": "koffing.png",
+            "evos": [
+                "Weezing"
+            ]
         },
         "Weezing": {
             "number": 110,
@@ -2269,7 +2467,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "rhyhorn.png"
+            "sprite": "rhyhorn.png",
+            "evos": [
+                "Rhydon"
+            ]
         },
         "Rhydon": {
             "number": 112,
@@ -2290,7 +2491,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 1,
-            "sprite": "rhydon.png"
+            "sprite": "rhydon.png",
+            "evos": [
+                "Rhyperior"
+            ]
         },
         "Chansey": {
             "number": 113,
@@ -2310,7 +2514,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "chansey.png"
+            "sprite": "chansey.png",
+            "evos": [
+                "Blissey"
+            ]
         },
         "Tangela": {
             "number": 114,
@@ -2330,7 +2537,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "tangela.png"
+            "sprite": "tangela.png",
+            "evos": [
+                "Tangrowth"
+            ]
         },
         "Kangaskhan": {
             "number": 115,
@@ -2370,7 +2580,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "horsea.png"
+            "sprite": "horsea.png",
+            "evos": [
+                "Seadra"
+            ]
         },
         "Seadra": {
             "number": 117,
@@ -2390,7 +2603,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 1,
-            "sprite": "seadra.png"
+            "sprite": "seadra.png",
+            "evos": [
+                "Kingdra"
+            ]
         },
         "Goldeen": {
             "number": 118,
@@ -2410,7 +2626,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "goldeen.png"
+            "sprite": "goldeen.png",
+            "evos": [
+                "Seaking"
+            ]
         },
         "Seaking": {
             "number": 119,
@@ -2450,7 +2669,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "staryu.png"
+            "sprite": "staryu.png",
+            "evos": [
+                "Starmie"
+            ]
         },
         "Starmie": {
             "number": 121,
@@ -2513,7 +2735,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "scyther.png"
+            "sprite": "scyther.png",
+            "evos": [
+                "Scizor"
+            ]
         },
         "Jynx": {
             "number": 124,
@@ -2554,7 +2779,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "electabuzz.png"
+            "sprite": "electabuzz.png",
+            "evos": [
+                "Electivire"
+            ]
         },
         "Magmar": {
             "number": 126,
@@ -2574,7 +2802,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "magmar.png"
+            "sprite": "magmar.png",
+            "evos": [
+                "Magmortar"
+            ]
         },
         "Pinsir": {
             "number": 127,
@@ -2634,7 +2865,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "magikarp.png"
+            "sprite": "magikarp.png",
+            "evos": [
+                "Gyarados"
+            ]
         },
         "Gyarados": {
             "number": 130,
@@ -2716,7 +2950,17 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "eevee.png"
+            "sprite": "eevee.png",
+            "evos": [
+                "Vaporeon",
+                "Jolteon",
+                "Flareon",
+                "Espeon",
+                "Umbreon",
+                "Leafeon",
+                "Glaceon",
+                "Sylveon"
+            ]
         },
         "Vaporeon": {
             "number": 134,
@@ -2796,7 +3040,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "porygon.png"
+            "sprite": "porygon.png",
+            "evos": [
+                "Porygon2"
+            ]
         },
         "Omanyte": {
             "number": 138,
@@ -2817,7 +3064,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "omanyte.png"
+            "sprite": "omanyte.png",
+            "evos": [
+                "Omastar"
+            ]
         },
         "Omastar": {
             "number": 139,
@@ -2859,7 +3109,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "kabuto.png"
+            "sprite": "kabuto.png",
+            "evos": [
+                "Kabutops"
+            ]
         },
         "Kabutops": {
             "number": 141,
@@ -3004,7 +3257,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 0,
-            "sprite": "dratini.png"
+            "sprite": "dratini.png",
+            "evos": [
+                "Dragonair"
+            ]
         },
         "Dragonair": {
             "number": 148,
@@ -3024,7 +3280,10 @@
             "generation": 1,
             "legendary": false,
             "stage": 1,
-            "sprite": "dragonair.png"
+            "sprite": "dragonair.png",
+            "evos": [
+                "Dragonite"
+            ]
         },
         "Dragonite": {
             "number": 149,
@@ -3108,7 +3367,10 @@
             "generation": 7,
             "legendary": false,
             "stage": 0,
-            "sprite": "rattata-alola.png"
+            "sprite": "rattata-alola.png",
+            "evos": [
+                "Alolan Raticate"
+            ]
         },
         "Alolan Raticate": {
             "number": 20,
@@ -3171,7 +3433,10 @@
             "generation": 7,
             "legendary": false,
             "stage": 0,
-            "sprite": "sandshrew-alola.png"
+            "sprite": "sandshrew-alola.png",
+            "evos": [
+                "Alolan Sandslash"
+            ]
         },
         "Alolan Sandslash": {
             "number": 28,
@@ -3212,7 +3477,10 @@
             "generation": 7,
             "legendary": false,
             "stage": 0,
-            "sprite": "vulpix-alola.png"
+            "sprite": "vulpix-alola.png",
+            "evos": [
+                "Alolan Ninetales"
+            ]
         },
         "Alolan Ninetales": {
             "number": 38,
@@ -3254,7 +3522,10 @@
             "generation": 7,
             "legendary": false,
             "stage": 0,
-            "sprite": "diglett-alola.png"
+            "sprite": "diglett-alola.png",
+            "evos": [
+                "Alolan Dugtrio"
+            ]
         },
         "Alolan Dugtrio": {
             "number": 51,
@@ -3295,7 +3566,10 @@
             "generation": 7,
             "legendary": false,
             "stage": 0,
-            "sprite": "meowth-alola.png"
+            "sprite": "meowth-alola.png",
+            "evos": [
+                "Alolan Persian"
+            ]
         },
         "Alolan Persian": {
             "number": 53,
@@ -3336,7 +3610,10 @@
             "generation": 7,
             "legendary": false,
             "stage": 0,
-            "sprite": "geodude-alola.png"
+            "sprite": "geodude-alola.png",
+            "evos": [
+                "Alolan Graveler"
+            ]
         },
         "Alolan Graveler": {
             "number": 75,
@@ -3357,7 +3634,10 @@
             "generation": 7,
             "legendary": false,
             "stage": 1,
-            "sprite": "graveler-alola.png"
+            "sprite": "graveler-alola.png",
+            "evos": [
+                "Alolan Golem"
+            ]
         },
         "Alolan Golem": {
             "number": 76,
@@ -3399,7 +3679,10 @@
             "generation": 7,
             "legendary": false,
             "stage": 0,
-            "sprite": "grimer-alola.png"
+            "sprite": "grimer-alola.png",
+            "evos": [
+                "Alolan Muk"
+            ]
         },
         "Alolan Muk": {
             "number": 89,
@@ -3483,7 +3766,10 @@
             "generation": 7,
             "legendary": false,
             "stage": 0,
-            "sprite": "rowlet.png"
+            "sprite": "rowlet.png",
+            "evos": [
+                "Dartrix"
+            ]
         },
         "Dartrix": {
             "number": 723,
@@ -3504,7 +3790,10 @@
             "generation": 7,
             "legendary": false,
             "stage": 1,
-            "sprite": "dartrix.png"
+            "sprite": "dartrix.png",
+            "evos": [
+                "Decidueye"
+            ]
         },
         "Decidueye": {
             "number": 724,
@@ -3545,7 +3834,10 @@
             "generation": 7,
             "legendary": false,
             "stage": 0,
-            "sprite": "litten.png"
+            "sprite": "litten.png",
+            "evos": [
+                "Torracat"
+            ]
         },
         "Torracat": {
             "number": 726,
@@ -3565,7 +3857,10 @@
             "generation": 7,
             "legendary": false,
             "stage": 1,
-            "sprite": "torracat.png"
+            "sprite": "torracat.png",
+            "evos": [
+                "Incineroar"
+            ]
         },
         "Incineroar": {
             "number": 727,
@@ -3606,7 +3901,10 @@
             "generation": 7,
             "legendary": false,
             "stage": 0,
-            "sprite": "popplio.png"
+            "sprite": "popplio.png",
+            "evos": [
+                "Brionne"
+            ]
         },
         "Brionne": {
             "number": 729,
@@ -3626,7 +3924,10 @@
             "generation": 7,
             "legendary": false,
             "stage": 1,
-            "sprite": "brionne.png"
+            "sprite": "brionne.png",
+            "evos": [
+                "Primarina"
+            ]
         },
         "Primarina": {
             "number": 730,
@@ -3668,7 +3969,10 @@
             "generation": 7,
             "legendary": false,
             "stage": 0,
-            "sprite": "pikipek.png"
+            "sprite": "pikipek.png",
+            "evos": [
+                "Trumbeak"
+            ]
         },
         "Trumbeak": {
             "number": 732,
@@ -3689,7 +3993,10 @@
             "generation": 7,
             "legendary": false,
             "stage": 1,
-            "sprite": "trumbeak.png"
+            "sprite": "trumbeak.png",
+            "evos": [
+                "Toucannon"
+            ]
         },
         "Toucannon": {
             "number": 733,
@@ -3730,7 +4037,10 @@
             "generation": 7,
             "legendary": false,
             "stage": 0,
-            "sprite": "yungoos.png"
+            "sprite": "yungoos.png",
+            "evos": [
+                "Gumshoos"
+            ]
         },
         "Gumshoos": {
             "number": 735,
@@ -3770,7 +4080,10 @@
             "generation": 7,
             "legendary": false,
             "stage": 0,
-            "sprite": "grubbin.png"
+            "sprite": "grubbin.png",
+            "evos": [
+                "Charjabug"
+            ]
         },
         "Charjabug": {
             "number": 737,
@@ -3791,7 +4104,10 @@
             "generation": 7,
             "legendary": false,
             "stage": 1,
-            "sprite": "charjabug.png"
+            "sprite": "charjabug.png",
+            "evos": [
+                "Vikavolt"
+            ]
         },
         "Vikavolt": {
             "number": 738,
@@ -3832,7 +4148,10 @@
             "generation": 7,
             "legendary": false,
             "stage": 0,
-            "sprite": "crabrawler.png"
+            "sprite": "crabrawler.png",
+            "evos": [
+                "Crabominable"
+            ]
         },
         "Crabominable": {
             "number": 740,
@@ -3958,7 +4277,10 @@
             "generation": 7,
             "legendary": false,
             "stage": 0,
-            "sprite": "cutiefly.png"
+            "sprite": "cutiefly.png",
+            "evos": [
+                "Ribombee"
+            ]
         },
         "Ribombee": {
             "number": 743,
@@ -4120,7 +4442,10 @@
             "generation": 7,
             "legendary": false,
             "stage": 0,
-            "sprite": "mareanie.png"
+            "sprite": "mareanie.png",
+            "evos": [
+                "Toxapex"
+            ]
         },
         "Toxapex": {
             "number": 748,
@@ -4161,7 +4486,10 @@
             "generation": 7,
             "legendary": false,
             "stage": 0,
-            "sprite": "mudbray.png"
+            "sprite": "mudbray.png",
+            "evos": [
+                "Mudsdale"
+            ]
         },
         "Mudsdale": {
             "number": 750,
@@ -4202,7 +4530,10 @@
             "generation": 7,
             "legendary": false,
             "stage": 0,
-            "sprite": "dewpider.png"
+            "sprite": "dewpider.png",
+            "evos": [
+                "Araquanid"
+            ]
         },
         "Araquanid": {
             "number": 752,
@@ -4243,7 +4574,10 @@
             "generation": 7,
             "legendary": false,
             "stage": 0,
-            "sprite": "fomantis.png"
+            "sprite": "fomantis.png",
+            "evos": [
+                "Lurantis"
+            ]
         },
         "Lurantis": {
             "number": 754,
@@ -4284,7 +4618,10 @@
             "generation": 7,
             "legendary": false,
             "stage": 0,
-            "sprite": "morelull.png"
+            "sprite": "morelull.png",
+            "evos": [
+                "Shiinotic"
+            ]
         },
         "Shiinotic": {
             "number": 756,
@@ -4326,7 +4663,10 @@
             "generation": 7,
             "legendary": false,
             "stage": 0,
-            "sprite": "salandit.png"
+            "sprite": "salandit.png",
+            "evos": [
+                "Salazzle"
+            ]
         },
         "Salazzle": {
             "number": 758,
@@ -4368,7 +4708,10 @@
             "generation": 7,
             "legendary": false,
             "stage": 0,
-            "sprite": "stufful.png"
+            "sprite": "stufful.png",
+            "evos": [
+                "Bewear"
+            ]
         },
         "Bewear": {
             "number": 760,
@@ -4409,7 +4752,10 @@
             "generation": 7,
             "legendary": false,
             "stage": 0,
-            "sprite": "bounsweet.png"
+            "sprite": "bounsweet.png",
+            "evos": [
+                "Steenee"
+            ]
         },
         "Steenee": {
             "number": 762,
@@ -4429,7 +4775,10 @@
             "generation": 7,
             "legendary": false,
             "stage": 1,
-            "sprite": "steenee.png"
+            "sprite": "steenee.png",
+            "evos": [
+                "Tsareena"
+            ]
         },
         "Tsareena": {
             "number": 763,
@@ -4531,7 +4880,10 @@
             "generation": 7,
             "legendary": false,
             "stage": 0,
-            "sprite": "wimpod.png"
+            "sprite": "wimpod.png",
+            "evos": [
+                "Golisopod"
+            ]
         },
         "Golisopod": {
             "number": 768,
@@ -4573,7 +4925,10 @@
             "generation": 7,
             "legendary": false,
             "stage": 0,
-            "sprite": "sandygast.png"
+            "sprite": "sandygast.png",
+            "evos": [
+                "Palossand"
+            ]
         },
         "Palossand": {
             "number": 770,
@@ -4862,7 +5217,10 @@
             "generation": 7,
             "legendary": false,
             "stage": 0,
-            "sprite": "jangmo-o.png"
+            "sprite": "jangmo-o.png",
+            "evos": [
+                "Hakamo-o"
+            ]
         },
         "Hakamo-o": {
             "number": 783,
@@ -4883,7 +5241,10 @@
             "generation": 7,
             "legendary": false,
             "stage": 1,
-            "sprite": "hakamo-o.png"
+            "sprite": "hakamo-o.png",
+            "evos": [
+                "Kommo-o"
+            ]
         },
         "Kommo-o": {
             "number": 784,
@@ -5008,7 +5369,10 @@
             "generation": 7,
             "legendary": true,
             "stage": 0,
-            "sprite": "cosmog.png"
+            "sprite": "cosmog.png",
+            "evos": [
+                "Cosmoem"
+            ]
         },
         "Cosmoem": {
             "number": 790,
@@ -5028,7 +5392,11 @@
             "generation": 7,
             "legendary": true,
             "stage": 1,
-            "sprite": "cosmoem.png"
+            "sprite": "cosmoem.png",
+            "evos": [
+                "Solgaleo",
+                "Lunala"
+            ]
         },
         "Solgaleo": {
             "number": 791,
@@ -5361,7 +5729,10 @@
             "generation": 7,
             "legendary": false,
             "stage": 0,
-            "sprite": "poipole.png"
+            "sprite": "poipole.png",
+            "evos": [
+                "Naganadel"
+            ]
         },
         "Naganadel": {
             "number": 804,
@@ -5466,7 +5837,10 @@
             "generation": 8,
             "legendary": false,
             "stage": 0,
-            "sprite": "meowth-galar.png"
+            "sprite": "meowth-galar.png",
+            "evos": [
+                "Galarian Persian"
+            ]
         },
         "Galarian Ponyta": {
             "number": 77,
@@ -5487,7 +5861,10 @@
             "generation": 8,
             "legendary": false,
             "stage": 0,
-            "sprite": "ponyta-galar.png"
+            "sprite": "ponyta-galar.png",
+            "evos": [
+                "Galarian Rapidash"
+            ]
         },
         "Galarian Rapidash": {
             "number": 78,
@@ -5528,7 +5905,10 @@
             "generation": 8,
             "legendary": false,
             "stage": 0,
-            "sprite": "slowpoke-galar.png"
+            "sprite": "slowpoke-galar.png",
+            "evos": [
+                "Galarian Slowbro"
+            ]
         },
         "Galarian Slowbro": {
             "number": 80,
@@ -5880,7 +6260,10 @@
             "generation": 8,
             "legendary": false,
             "stage": 0,
-            "sprite": "grookey.png"
+            "sprite": "grookey.png",
+            "evos": [
+                "Thwackey"
+            ]
         },
         "Thwackey": {
             "number": 811,
@@ -5900,7 +6283,10 @@
             "generation": 8,
             "legendary": false,
             "stage": 1,
-            "sprite": "thwackey.png"
+            "sprite": "thwackey.png",
+            "evos": [
+                "Rillaboom"
+            ]
         },
         "Rillaboom": {
             "number": 812,
@@ -5940,7 +6326,10 @@
             "generation": 8,
             "legendary": false,
             "stage": 0,
-            "sprite": "scorbunny.png"
+            "sprite": "scorbunny.png",
+            "evos": [
+                "Raboot"
+            ]
         },
         "Raboot": {
             "number": 814,
@@ -5960,7 +6349,10 @@
             "generation": 8,
             "legendary": false,
             "stage": 1,
-            "sprite": "raboot.png"
+            "sprite": "raboot.png",
+            "evos": [
+                "Cinderace"
+            ]
         },
         "Cinderace": {
             "number": 815,
@@ -6000,7 +6392,10 @@
             "generation": 8,
             "legendary": false,
             "stage": 0,
-            "sprite": "sobble.png"
+            "sprite": "sobble.png",
+            "evos": [
+                "Drizzile"
+            ]
         },
         "Drizzile": {
             "number": 817,
@@ -6020,7 +6415,10 @@
             "generation": 8,
             "legendary": false,
             "stage": 1,
-            "sprite": "drizzile.png"
+            "sprite": "drizzile.png",
+            "evos": [
+                "Inteleon"
+            ]
         },
         "Inteleon": {
             "number": 818,
@@ -6060,7 +6458,10 @@
             "generation": 8,
             "legendary": false,
             "stage": 0,
-            "sprite": "skwovet.png"
+            "sprite": "skwovet.png",
+            "evos": [
+                "Greedent"
+            ]
         },
         "Greedent": {
             "number": 820,
@@ -6100,7 +6501,10 @@
             "generation": 8,
             "legendary": false,
             "stage": 0,
-            "sprite": "rookidee.png"
+            "sprite": "rookidee.png",
+            "evos": [
+                "Corvisquire"
+            ]
         },
         "Corvisquire": {
             "number": 822,
@@ -6120,7 +6524,10 @@
             "generation": 8,
             "legendary": false,
             "stage": 1,
-            "sprite": "corvisquire.png"
+            "sprite": "corvisquire.png",
+            "evos": [
+                "Corviknight"
+            ]
         },
         "Corviknight": {
             "number": 823,
@@ -6161,7 +6568,10 @@
             "generation": 8,
             "legendary": false,
             "stage": 0,
-            "sprite": "blipbug.png"
+            "sprite": "blipbug.png",
+            "evos": [
+                "Dottler"
+            ]
         },
         "Dottler": {
             "number": 825,
@@ -6182,7 +6592,10 @@
             "generation": 8,
             "legendary": false,
             "stage": 1,
-            "sprite": "dottler.png"
+            "sprite": "dottler.png",
+            "evos": [
+                "Orbeetle"
+            ]
         },
         "Orbeetle": {
             "number": 826,
@@ -6223,7 +6636,10 @@
             "generation": 8,
             "legendary": false,
             "stage": 0,
-            "sprite": "nickit.png"
+            "sprite": "nickit.png",
+            "evos": [
+                "Thievul"
+            ]
         },
         "Thievul": {
             "number": 828,
@@ -6263,7 +6679,10 @@
             "generation": 8,
             "legendary": false,
             "stage": 0,
-            "sprite": "gossifleur.png"
+            "sprite": "gossifleur.png",
+            "evos": [
+                "Eldegoss"
+            ]
         },
         "Eldegoss": {
             "number": 830,
@@ -6303,7 +6722,10 @@
             "generation": 8,
             "legendary": false,
             "stage": 0,
-            "sprite": "wooloo.png"
+            "sprite": "wooloo.png",
+            "evos": [
+                "Dubwool"
+            ]
         },
         "Dubwool": {
             "number": 832,
@@ -6343,7 +6765,10 @@
             "generation": 8,
             "legendary": false,
             "stage": 0,
-            "sprite": "chewtle.png"
+            "sprite": "chewtle.png",
+            "evos": [
+                "Drednaw"
+            ]
         },
         "Drednaw": {
             "number": 834,
@@ -6384,7 +6809,10 @@
             "generation": 8,
             "legendary": false,
             "stage": 0,
-            "sprite": "yamper.png"
+            "sprite": "yamper.png",
+            "evos": [
+                "Boltund"
+            ]
         },
         "Boltund": {
             "number": 836,
@@ -6424,7 +6852,10 @@
             "generation": 8,
             "legendary": false,
             "stage": 0,
-            "sprite": "rolycoly.png"
+            "sprite": "rolycoly.png",
+            "evos": [
+                "Carkol"
+            ]
         },
         "Carkol": {
             "number": 838,
@@ -6445,7 +6876,10 @@
             "generation": 8,
             "legendary": false,
             "stage": 1,
-            "sprite": "carkol.png"
+            "sprite": "carkol.png",
+            "evos": [
+                "Coalossal"
+            ]
         },
         "Coalossal": {
             "number": 839,
@@ -6487,7 +6921,11 @@
             "generation": 8,
             "legendary": false,
             "stage": 0,
-            "sprite": "applin.png"
+            "sprite": "applin.png",
+            "evos": [
+                "Flapple",
+                "Appletun"
+            ]
         },
         "Flapple": {
             "number": 841,
@@ -6549,7 +6987,10 @@
             "generation": 8,
             "legendary": false,
             "stage": 0,
-            "sprite": "silicobra.png"
+            "sprite": "silicobra.png",
+            "evos": [
+                "Sandaconda"
+            ]
         },
         "Sandaconda": {
             "number": 844,
@@ -6610,7 +7051,10 @@
             "generation": 8,
             "legendary": false,
             "stage": 0,
-            "sprite": "arrokuda.png"
+            "sprite": "arrokuda.png",
+            "evos": [
+                "Barraskewda"
+            ]
         },
         "Barraskewda": {
             "number": 847,
@@ -6714,7 +7158,10 @@
             "generation": 8,
             "legendary": false,
             "stage": 0,
-            "sprite": "sizzlipede.png"
+            "sprite": "sizzlipede.png",
+            "evos": [
+                "Centiskorch"
+            ]
         },
         "Centiskorch": {
             "number": 851,
@@ -6755,7 +7202,10 @@
             "generation": 8,
             "legendary": false,
             "stage": 0,
-            "sprite": "clobbopus.png"
+            "sprite": "clobbopus.png",
+            "evos": [
+                "Grapploct"
+            ]
         },
         "Grapploct": {
             "number": 853,
@@ -6795,7 +7245,10 @@
             "generation": 8,
             "legendary": false,
             "stage": 0,
-            "sprite": "sinistea.png"
+            "sprite": "sinistea.png",
+            "evos": [
+                "Polteageist"
+            ]
         },
         "Polteageist": {
             "number": 855,
@@ -6835,7 +7288,10 @@
             "generation": 8,
             "legendary": false,
             "stage": 0,
-            "sprite": "hatenna.png"
+            "sprite": "hatenna.png",
+            "evos": [
+                "Hattrem"
+            ]
         },
         "Hattrem": {
             "number": 857,
@@ -6855,7 +7311,10 @@
             "generation": 8,
             "legendary": false,
             "stage": 1,
-            "sprite": "hattrem.png"
+            "sprite": "hattrem.png",
+            "evos": [
+                "Hatterene"
+            ]
         },
         "Hatterene": {
             "number": 858,
@@ -6897,7 +7356,10 @@
             "generation": 8,
             "legendary": false,
             "stage": 0,
-            "sprite": "impidimp.png"
+            "sprite": "impidimp.png",
+            "evos": [
+                "Morgrem"
+            ]
         },
         "Morgrem": {
             "number": 860,
@@ -6918,7 +7380,10 @@
             "generation": 8,
             "legendary": false,
             "stage": 1,
-            "sprite": "morgrem.png"
+            "sprite": "morgrem.png",
+            "evos": [
+                "Grimmsnarl"
+            ]
         },
         "Grimmsnarl": {
             "number": 861,
@@ -7082,7 +7547,10 @@
             "generation": 8,
             "legendary": false,
             "stage": 0,
-            "sprite": "milcery.png"
+            "sprite": "milcery.png",
+            "evos": [
+                "Alcremie"
+            ]
         },
         "Alcremie": {
             "number": 869,
@@ -7163,7 +7631,10 @@
             "generation": 8,
             "legendary": false,
             "stage": 0,
-            "sprite": "snom.png"
+            "sprite": "snom.png",
+            "evos": [
+                "Frosmoth"
+            ]
         },
         "Frosmoth": {
             "number": 873,
@@ -7348,7 +7819,10 @@
             "generation": 8,
             "legendary": false,
             "stage": 0,
-            "sprite": "cufant.png"
+            "sprite": "cufant.png",
+            "evos": [
+                "Copperajah"
+            ]
         },
         "Copperajah": {
             "number": 879,
@@ -7494,7 +7968,10 @@
             "generation": 8,
             "legendary": false,
             "stage": 0,
-            "sprite": "dreepy.png"
+            "sprite": "dreepy.png",
+            "evos": [
+                "Drakloak"
+            ]
         },
         "Drakloak": {
             "number": 886,
@@ -7515,7 +7992,10 @@
             "generation": 8,
             "legendary": false,
             "stage": 1,
-            "sprite": "drakloak.png"
+            "sprite": "drakloak.png",
+            "evos": [
+                "Dragapult"
+            ]
         },
         "Dragapult": {
             "number": 887,
@@ -7929,7 +8409,10 @@
             "generation": 2,
             "legendary": false,
             "stage": 0,
-            "sprite": "chikorita.png"
+            "sprite": "chikorita.png",
+            "evos": [
+                "Bayleef"
+            ]
         },
         "Bayleef": {
             "number": 153,
@@ -7949,7 +8432,10 @@
             "generation": 2,
             "legendary": false,
             "stage": 1,
-            "sprite": "bayleef.png"
+            "sprite": "bayleef.png",
+            "evos": [
+                "Meganium"
+            ]
         },
         "Meganium": {
             "number": 154,
@@ -7989,7 +8475,10 @@
             "generation": 2,
             "legendary": false,
             "stage": 0,
-            "sprite": "cyndaquil.png"
+            "sprite": "cyndaquil.png",
+            "evos": [
+                "Quilava"
+            ]
         },
         "Quilava": {
             "number": 156,
@@ -8009,7 +8498,10 @@
             "generation": 2,
             "legendary": false,
             "stage": 1,
-            "sprite": "quilava.png"
+            "sprite": "quilava.png",
+            "evos": [
+                "Typhlosion"
+            ]
         },
         "Typhlosion": {
             "number": 157,
@@ -8049,7 +8541,10 @@
             "generation": 2,
             "legendary": false,
             "stage": 0,
-            "sprite": "totodile.png"
+            "sprite": "totodile.png",
+            "evos": [
+                "Croconaw"
+            ]
         },
         "Croconaw": {
             "number": 159,
@@ -8069,7 +8564,10 @@
             "generation": 2,
             "legendary": false,
             "stage": 1,
-            "sprite": "croconaw.png"
+            "sprite": "croconaw.png",
+            "evos": [
+                "Feraligatr"
+            ]
         },
         "Feraligatr": {
             "number": 160,
@@ -8109,7 +8607,10 @@
             "generation": 2,
             "legendary": false,
             "stage": 0,
-            "sprite": "sentret.png"
+            "sprite": "sentret.png",
+            "evos": [
+                "Furret"
+            ]
         },
         "Furret": {
             "number": 162,
@@ -8150,7 +8651,10 @@
             "generation": 2,
             "legendary": false,
             "stage": 0,
-            "sprite": "hoothoot.png"
+            "sprite": "hoothoot.png",
+            "evos": [
+                "Noctowl"
+            ]
         },
         "Noctowl": {
             "number": 164,
@@ -8192,7 +8696,10 @@
             "generation": 2,
             "legendary": false,
             "stage": 0,
-            "sprite": "ledyba.png"
+            "sprite": "ledyba.png",
+            "evos": [
+                "Ledian"
+            ]
         },
         "Ledian": {
             "number": 166,
@@ -8234,7 +8741,10 @@
             "generation": 2,
             "legendary": false,
             "stage": 0,
-            "sprite": "spinarak.png"
+            "sprite": "spinarak.png",
+            "evos": [
+                "Ariados"
+            ]
         },
         "Ariados": {
             "number": 168,
@@ -8297,7 +8807,10 @@
             "generation": 2,
             "legendary": false,
             "stage": 0,
-            "sprite": "chinchou.png"
+            "sprite": "chinchou.png",
+            "evos": [
+                "Lanturn"
+            ]
         },
         "Lanturn": {
             "number": 171,
@@ -8338,7 +8851,10 @@
             "generation": 2,
             "legendary": false,
             "stage": -1,
-            "sprite": "pichu.png"
+            "sprite": "pichu.png",
+            "evos": [
+                "Pikachu"
+            ]
         },
         "Cleffa": {
             "number": 173,
@@ -8358,7 +8874,10 @@
             "generation": 2,
             "legendary": false,
             "stage": -1,
-            "sprite": "cleffa.png"
+            "sprite": "cleffa.png",
+            "evos": [
+                "Clefairy"
+            ]
         },
         "Igglybuff": {
             "number": 174,
@@ -8379,7 +8898,10 @@
             "generation": 2,
             "legendary": false,
             "stage": -1,
-            "sprite": "igglybuff.png"
+            "sprite": "igglybuff.png",
+            "evos": [
+                "Jigglypuff"
+            ]
         },
         "Togepi": {
             "number": 175,
@@ -8399,7 +8921,10 @@
             "generation": 2,
             "legendary": false,
             "stage": -1,
-            "sprite": "togepi.png"
+            "sprite": "togepi.png",
+            "evos": [
+                "Togetic"
+            ]
         },
         "Togetic": {
             "number": 176,
@@ -8420,7 +8945,10 @@
             "generation": 2,
             "legendary": false,
             "stage": 0,
-            "sprite": "togetic.png"
+            "sprite": "togetic.png",
+            "evos": [
+                "Togekiss"
+            ]
         },
         "Natu": {
             "number": 177,
@@ -8441,7 +8969,10 @@
             "generation": 2,
             "legendary": false,
             "stage": 0,
-            "sprite": "natu.png"
+            "sprite": "natu.png",
+            "evos": [
+                "Xatu"
+            ]
         },
         "Xatu": {
             "number": 178,
@@ -8482,7 +9013,10 @@
             "generation": 2,
             "legendary": false,
             "stage": 0,
-            "sprite": "mareep.png"
+            "sprite": "mareep.png",
+            "evos": [
+                "Flaaffy"
+            ]
         },
         "Flaaffy": {
             "number": 180,
@@ -8502,7 +9036,10 @@
             "generation": 2,
             "legendary": false,
             "stage": 1,
-            "sprite": "flaaffy.png"
+            "sprite": "flaaffy.png",
+            "evos": [
+                "Ampharos"
+            ]
         },
         "Ampharos": {
             "number": 181,
@@ -8563,7 +9100,10 @@
             "generation": 2,
             "legendary": false,
             "stage": 0,
-            "sprite": "marill.png"
+            "sprite": "marill.png",
+            "evos": [
+                "Azumarill"
+            ]
         },
         "Azumarill": {
             "number": 184,
@@ -8645,7 +9185,10 @@
             "generation": 2,
             "legendary": false,
             "stage": 0,
-            "sprite": "hoppip.png"
+            "sprite": "hoppip.png",
+            "evos": [
+                "Skiploom"
+            ]
         },
         "Skiploom": {
             "number": 188,
@@ -8666,7 +9209,10 @@
             "generation": 2,
             "legendary": false,
             "stage": 1,
-            "sprite": "skiploom.png"
+            "sprite": "skiploom.png",
+            "evos": [
+                "Jumpluff"
+            ]
         },
         "Jumpluff": {
             "number": 189,
@@ -8707,7 +9253,10 @@
             "generation": 2,
             "legendary": false,
             "stage": 0,
-            "sprite": "aipom.png"
+            "sprite": "aipom.png",
+            "evos": [
+                "Ambipom"
+            ]
         },
         "Sunkern": {
             "number": 191,
@@ -8727,7 +9276,10 @@
             "generation": 2,
             "legendary": false,
             "stage": 0,
-            "sprite": "sunkern.png"
+            "sprite": "sunkern.png",
+            "evos": [
+                "Sunflora"
+            ]
         },
         "Sunflora": {
             "number": 192,
@@ -8768,7 +9320,10 @@
             "generation": 2,
             "legendary": false,
             "stage": 0,
-            "sprite": "yanma.png"
+            "sprite": "yanma.png",
+            "evos": [
+                "Yanmega"
+            ]
         },
         "Wooper": {
             "number": 194,
@@ -8789,7 +9344,10 @@
             "generation": 2,
             "legendary": false,
             "stage": 0,
-            "sprite": "wooper.png"
+            "sprite": "wooper.png",
+            "evos": [
+                "Quagsire"
+            ]
         },
         "Quagsire": {
             "number": 195,
@@ -8871,7 +9429,10 @@
             "generation": 2,
             "legendary": false,
             "stage": 0,
-            "sprite": "murkrow.png"
+            "sprite": "murkrow.png",
+            "evos": [
+                "Honchkrow"
+            ]
         },
         "Slowking": {
             "number": 199,
@@ -8912,7 +9473,10 @@
             "generation": 2,
             "legendary": false,
             "stage": 0,
-            "sprite": "misdreavus.png"
+            "sprite": "misdreavus.png",
+            "evos": [
+                "Mismagius"
+            ]
         },
         "Unown": {
             "number": 201,
@@ -8993,7 +9557,10 @@
             "generation": 2,
             "legendary": false,
             "stage": 0,
-            "sprite": "pineco.png"
+            "sprite": "pineco.png",
+            "evos": [
+                "Forretress"
+            ]
         },
         "Forretress": {
             "number": 205,
@@ -9055,7 +9622,10 @@
             "generation": 2,
             "legendary": false,
             "stage": 0,
-            "sprite": "gligar.png"
+            "sprite": "gligar.png",
+            "evos": [
+                "Gliscor"
+            ]
         },
         "Steelix": {
             "number": 208,
@@ -9096,7 +9666,10 @@
             "generation": 2,
             "legendary": false,
             "stage": 0,
-            "sprite": "snubbull.png"
+            "sprite": "snubbull.png",
+            "evos": [
+                "Granbull"
+            ]
         },
         "Granbull": {
             "number": 210,
@@ -9221,7 +9794,10 @@
             "generation": 2,
             "legendary": false,
             "stage": 0,
-            "sprite": "sneasel.png"
+            "sprite": "sneasel.png",
+            "evos": [
+                "Weavile"
+            ]
         },
         "Teddiursa": {
             "number": 216,
@@ -9241,7 +9817,10 @@
             "generation": 2,
             "legendary": false,
             "stage": 0,
-            "sprite": "teddiursa.png"
+            "sprite": "teddiursa.png",
+            "evos": [
+                "Ursaring"
+            ]
         },
         "Ursaring": {
             "number": 217,
@@ -9281,7 +9860,10 @@
             "generation": 2,
             "legendary": false,
             "stage": 0,
-            "sprite": "slugma.png"
+            "sprite": "slugma.png",
+            "evos": [
+                "Magcargo"
+            ]
         },
         "Magcargo": {
             "number": 219,
@@ -9323,7 +9905,10 @@
             "generation": 2,
             "legendary": false,
             "stage": 0,
-            "sprite": "swinub.png"
+            "sprite": "swinub.png",
+            "evos": [
+                "Piloswine"
+            ]
         },
         "Piloswine": {
             "number": 221,
@@ -9344,7 +9929,10 @@
             "generation": 2,
             "legendary": false,
             "stage": 1,
-            "sprite": "piloswine.png"
+            "sprite": "piloswine.png",
+            "evos": [
+                "Mamoswine"
+            ]
         },
         "Corsola": {
             "number": 222,
@@ -9385,7 +9973,10 @@
             "generation": 2,
             "legendary": false,
             "stage": 0,
-            "sprite": "remoraid.png"
+            "sprite": "remoraid.png",
+            "evos": [
+                "Octillery"
+            ]
         },
         "Octillery": {
             "number": 224,
@@ -9489,7 +10080,10 @@
             "generation": 2,
             "legendary": false,
             "stage": 0,
-            "sprite": "houndour.png"
+            "sprite": "houndour.png",
+            "evos": [
+                "Houndoom"
+            ]
         },
         "Houndoom": {
             "number": 229,
@@ -9551,7 +10145,10 @@
             "generation": 2,
             "legendary": false,
             "stage": 0,
-            "sprite": "phanpy.png"
+            "sprite": "phanpy.png",
+            "evos": [
+                "Donphan"
+            ]
         },
         "Donphan": {
             "number": 232,
@@ -9591,7 +10188,10 @@
             "generation": 2,
             "legendary": false,
             "stage": 1,
-            "sprite": "porygon2.png"
+            "sprite": "porygon2.png",
+            "evos": [
+                "Porygon-Z"
+            ]
         },
         "Stantler": {
             "number": 234,
@@ -9651,7 +10251,12 @@
             "generation": 2,
             "legendary": false,
             "stage": -1,
-            "sprite": "tyrogue.png"
+            "sprite": "tyrogue.png",
+            "evos": [
+                "Hitmonlee",
+                "Hitmonchan",
+                "Hitmontop"
+            ]
         },
         "Hitmontop": {
             "number": 237,
@@ -9692,7 +10297,10 @@
             "generation": 2,
             "legendary": false,
             "stage": -1,
-            "sprite": "smoochum.png"
+            "sprite": "smoochum.png",
+            "evos": [
+                "Jynx"
+            ]
         },
         "Elekid": {
             "number": 239,
@@ -9712,7 +10320,10 @@
             "generation": 2,
             "legendary": false,
             "stage": -1,
-            "sprite": "elekid.png"
+            "sprite": "elekid.png",
+            "evos": [
+                "Electabuzz"
+            ]
         },
         "Magby": {
             "number": 240,
@@ -9732,7 +10343,10 @@
             "generation": 2,
             "legendary": false,
             "stage": -1,
-            "sprite": "magby.png"
+            "sprite": "magby.png",
+            "evos": [
+                "Magmar"
+            ]
         },
         "Miltank": {
             "number": 241,
@@ -9853,7 +10467,10 @@
             "generation": 2,
             "legendary": false,
             "stage": 0,
-            "sprite": "larvitar.png"
+            "sprite": "larvitar.png",
+            "evos": [
+                "Pupitar"
+            ]
         },
         "Pupitar": {
             "number": 247,
@@ -9874,7 +10491,10 @@
             "generation": 2,
             "legendary": false,
             "stage": 1,
-            "sprite": "pupitar.png"
+            "sprite": "pupitar.png",
+            "evos": [
+                "Tyranitar"
+            ]
         },
         "Tyranitar": {
             "number": 248,
@@ -9980,7 +10600,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "treecko.png"
+            "sprite": "treecko.png",
+            "evos": [
+                "Grovyle"
+            ]
         },
         "Grovyle": {
             "number": 253,
@@ -10000,7 +10623,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 1,
-            "sprite": "grovyle.png"
+            "sprite": "grovyle.png",
+            "evos": [
+                "Sceptile"
+            ]
         },
         "Sceptile": {
             "number": 254,
@@ -10040,7 +10666,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "torchic.png"
+            "sprite": "torchic.png",
+            "evos": [
+                "Combusken"
+            ]
         },
         "Combusken": {
             "number": 256,
@@ -10061,7 +10690,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 1,
-            "sprite": "combusken.png"
+            "sprite": "combusken.png",
+            "evos": [
+                "Blaziken"
+            ]
         },
         "Blaziken": {
             "number": 257,
@@ -10102,7 +10734,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "mudkip.png"
+            "sprite": "mudkip.png",
+            "evos": [
+                "Marshtomp"
+            ]
         },
         "Marshtomp": {
             "number": 259,
@@ -10123,7 +10758,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 1,
-            "sprite": "marshtomp.png"
+            "sprite": "marshtomp.png",
+            "evos": [
+                "Swampert"
+            ]
         },
         "Swampert": {
             "number": 260,
@@ -10164,7 +10802,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "poochyena.png"
+            "sprite": "poochyena.png",
+            "evos": [
+                "Mightyena"
+            ]
         },
         "Mightyena": {
             "number": 262,
@@ -10204,7 +10845,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "zigzagoon.png"
+            "sprite": "zigzagoon.png",
+            "evos": [
+                "Linoone"
+            ]
         },
         "Linoone": {
             "number": 264,
@@ -10244,7 +10888,11 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "wurmple.png"
+            "sprite": "wurmple.png",
+            "evos": [
+                "Silcoon",
+                "Cascoon"
+            ]
         },
         "Silcoon": {
             "number": 266,
@@ -10264,7 +10912,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 1,
-            "sprite": "silcoon.png"
+            "sprite": "silcoon.png",
+            "evos": [
+                "Beautifly"
+            ]
         },
         "Beautifly": {
             "number": 267,
@@ -10305,7 +10956,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 1,
-            "sprite": "cascoon.png"
+            "sprite": "cascoon.png",
+            "evos": [
+                "Dustox"
+            ]
         },
         "Dustox": {
             "number": 269,
@@ -10347,7 +11001,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "lotad.png"
+            "sprite": "lotad.png",
+            "evos": [
+                "Lombre"
+            ]
         },
         "Lombre": {
             "number": 271,
@@ -10368,7 +11025,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 1,
-            "sprite": "lombre.png"
+            "sprite": "lombre.png",
+            "evos": [
+                "Ludicolo"
+            ]
         },
         "Ludicolo": {
             "number": 272,
@@ -10409,7 +11069,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "seedot.png"
+            "sprite": "seedot.png",
+            "evos": [
+                "Nuzleaf"
+            ]
         },
         "Nuzleaf": {
             "number": 274,
@@ -10430,7 +11093,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 1,
-            "sprite": "nuzleaf.png"
+            "sprite": "nuzleaf.png",
+            "evos": [
+                "Shiftry"
+            ]
         },
         "Shiftry": {
             "number": 275,
@@ -10472,7 +11138,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "taillow.png"
+            "sprite": "taillow.png",
+            "evos": [
+                "Swellow"
+            ]
         },
         "Swellow": {
             "number": 277,
@@ -10514,7 +11183,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "wingull.png"
+            "sprite": "wingull.png",
+            "evos": [
+                "Pelipper"
+            ]
         },
         "Pelipper": {
             "number": 279,
@@ -10556,7 +11228,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "ralts.png"
+            "sprite": "ralts.png",
+            "evos": [
+                "Kirlia"
+            ]
         },
         "Kirlia": {
             "number": 281,
@@ -10577,7 +11252,11 @@
             "generation": 3,
             "legendary": false,
             "stage": 1,
-            "sprite": "kirlia.png"
+            "sprite": "kirlia.png",
+            "evos": [
+                "Gardevoir",
+                "Gallade"
+            ]
         },
         "Gardevoir": {
             "number": 282,
@@ -10619,7 +11298,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "surskit.png"
+            "sprite": "surskit.png",
+            "evos": [
+                "Masquerain"
+            ]
         },
         "Masquerain": {
             "number": 284,
@@ -10660,7 +11342,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "shroomish.png"
+            "sprite": "shroomish.png",
+            "evos": [
+                "Breloom"
+            ]
         },
         "Breloom": {
             "number": 286,
@@ -10701,7 +11386,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "slakoth.png"
+            "sprite": "slakoth.png",
+            "evos": [
+                "Vigoroth"
+            ]
         },
         "Vigoroth": {
             "number": 288,
@@ -10721,7 +11409,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 1,
-            "sprite": "vigoroth.png"
+            "sprite": "vigoroth.png",
+            "evos": [
+                "Slaking"
+            ]
         },
         "Slaking": {
             "number": 289,
@@ -10762,7 +11453,11 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "nincada.png"
+            "sprite": "nincada.png",
+            "evos": [
+                "Ninjask",
+                "Shedinja"
+            ]
         },
         "Ninjask": {
             "number": 291,
@@ -10824,7 +11519,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "whismur.png"
+            "sprite": "whismur.png",
+            "evos": [
+                "Loudred"
+            ]
         },
         "Loudred": {
             "number": 294,
@@ -10844,7 +11542,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 1,
-            "sprite": "loudred.png"
+            "sprite": "loudred.png",
+            "evos": [
+                "Exploud"
+            ]
         },
         "Exploud": {
             "number": 295,
@@ -10884,7 +11585,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "makuhita.png"
+            "sprite": "makuhita.png",
+            "evos": [
+                "Hariyama"
+            ]
         },
         "Hariyama": {
             "number": 297,
@@ -10925,7 +11629,10 @@
             "generation": 3,
             "legendary": false,
             "stage": -1,
-            "sprite": "azurill.png"
+            "sprite": "azurill.png",
+            "evos": [
+                "Marill"
+            ]
         },
         "Nosepass": {
             "number": 299,
@@ -10945,7 +11652,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "nosepass.png"
+            "sprite": "nosepass.png",
+            "evos": [
+                "Probopass"
+            ]
         },
         "Skitty": {
             "number": 300,
@@ -10965,7 +11675,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "skitty.png"
+            "sprite": "skitty.png",
+            "evos": [
+                "Delcatty"
+            ]
         },
         "Delcatty": {
             "number": 301,
@@ -11048,7 +11761,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "aron.png"
+            "sprite": "aron.png",
+            "evos": [
+                "Lairon"
+            ]
         },
         "Lairon": {
             "number": 305,
@@ -11069,7 +11785,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 1,
-            "sprite": "lairon.png"
+            "sprite": "lairon.png",
+            "evos": [
+                "Aggron"
+            ]
         },
         "Aggron": {
             "number": 306,
@@ -11111,7 +11830,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "meditite.png"
+            "sprite": "meditite.png",
+            "evos": [
+                "Medicham"
+            ]
         },
         "Medicham": {
             "number": 308,
@@ -11152,7 +11874,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "electrike.png"
+            "sprite": "electrike.png",
+            "evos": [
+                "Manectric"
+            ]
         },
         "Manectric": {
             "number": 310,
@@ -11273,7 +11998,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "roselia.png"
+            "sprite": "roselia.png",
+            "evos": [
+                "Roserade"
+            ]
         },
         "Gulpin": {
             "number": 316,
@@ -11293,7 +12021,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "gulpin.png"
+            "sprite": "gulpin.png",
+            "evos": [
+                "Swalot"
+            ]
         },
         "Swalot": {
             "number": 317,
@@ -11334,7 +12065,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "carvanha.png"
+            "sprite": "carvanha.png",
+            "evos": [
+                "Sharpedo"
+            ]
         },
         "Sharpedo": {
             "number": 319,
@@ -11375,7 +12109,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "wailmer.png"
+            "sprite": "wailmer.png",
+            "evos": [
+                "Wailord"
+            ]
         },
         "Wailord": {
             "number": 321,
@@ -11416,7 +12153,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "numel.png"
+            "sprite": "numel.png",
+            "evos": [
+                "Camerupt"
+            ]
         },
         "Camerupt": {
             "number": 323,
@@ -11477,7 +12217,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "spoink.png"
+            "sprite": "spoink.png",
+            "evos": [
+                "Grumpig"
+            ]
         },
         "Grumpig": {
             "number": 326,
@@ -11537,7 +12280,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "trapinch.png"
+            "sprite": "trapinch.png",
+            "evos": [
+                "Vibrava"
+            ]
         },
         "Vibrava": {
             "number": 329,
@@ -11558,7 +12304,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 1,
-            "sprite": "vibrava.png"
+            "sprite": "vibrava.png",
+            "evos": [
+                "Flygon"
+            ]
         },
         "Flygon": {
             "number": 330,
@@ -11599,7 +12348,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "cacnea.png"
+            "sprite": "cacnea.png",
+            "evos": [
+                "Cacturne"
+            ]
         },
         "Cacturne": {
             "number": 332,
@@ -11641,7 +12393,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "swablu.png"
+            "sprite": "swablu.png",
+            "evos": [
+                "Altaria"
+            ]
         },
         "Altaria": {
             "number": 334,
@@ -11765,7 +12520,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "barboach.png"
+            "sprite": "barboach.png",
+            "evos": [
+                "Whiscash"
+            ]
         },
         "Whiscash": {
             "number": 340,
@@ -11806,7 +12564,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "corphish.png"
+            "sprite": "corphish.png",
+            "evos": [
+                "Crawdaunt"
+            ]
         },
         "Crawdaunt": {
             "number": 342,
@@ -11848,7 +12609,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "baltoy.png"
+            "sprite": "baltoy.png",
+            "evos": [
+                "Claydol"
+            ]
         },
         "Claydol": {
             "number": 344,
@@ -11890,7 +12654,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "lileep.png"
+            "sprite": "lileep.png",
+            "evos": [
+                "Cradily"
+            ]
         },
         "Cradily": {
             "number": 346,
@@ -11932,7 +12699,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "anorith.png"
+            "sprite": "anorith.png",
+            "evos": [
+                "Armaldo"
+            ]
         },
         "Armaldo": {
             "number": 348,
@@ -11973,7 +12743,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "feebas.png"
+            "sprite": "feebas.png",
+            "evos": [
+                "Milotic"
+            ]
         },
         "Milotic": {
             "number": 350,
@@ -12053,7 +12826,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "shuppet.png"
+            "sprite": "shuppet.png",
+            "evos": [
+                "Banette"
+            ]
         },
         "Banette": {
             "number": 354,
@@ -12093,7 +12869,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "duskull.png"
+            "sprite": "duskull.png",
+            "evos": [
+                "Dusclops"
+            ]
         },
         "Dusclops": {
             "number": 356,
@@ -12113,7 +12892,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 1,
-            "sprite": "dusclops.png"
+            "sprite": "dusclops.png",
+            "evos": [
+                "Dusknoir"
+            ]
         },
         "Tropius": {
             "number": 357,
@@ -12194,7 +12976,10 @@
             "generation": 3,
             "legendary": false,
             "stage": -1,
-            "sprite": "wynaut.png"
+            "sprite": "wynaut.png",
+            "evos": [
+                "Wobbuffet"
+            ]
         },
         "Snorunt": {
             "number": 361,
@@ -12214,7 +12999,11 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "snorunt.png"
+            "sprite": "snorunt.png",
+            "evos": [
+                "Glalie",
+                "Froslass"
+            ]
         },
         "Glalie": {
             "number": 362,
@@ -12255,7 +13044,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "spheal.png"
+            "sprite": "spheal.png",
+            "evos": [
+                "Sealeo"
+            ]
         },
         "Sealeo": {
             "number": 364,
@@ -12276,7 +13068,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 1,
-            "sprite": "sealeo.png"
+            "sprite": "sealeo.png",
+            "evos": [
+                "Walrein"
+            ]
         },
         "Walrein": {
             "number": 365,
@@ -12317,7 +13112,11 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "clamperl.png"
+            "sprite": "clamperl.png",
+            "evos": [
+                "Huntail",
+                "Gorebyss"
+            ]
         },
         "Huntail": {
             "number": 367,
@@ -12418,7 +13217,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "bagon.png"
+            "sprite": "bagon.png",
+            "evos": [
+                "Shelgon"
+            ]
         },
         "Shelgon": {
             "number": 372,
@@ -12438,7 +13240,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 1,
-            "sprite": "shelgon.png"
+            "sprite": "shelgon.png",
+            "evos": [
+                "Salamence"
+            ]
         },
         "Salamence": {
             "number": 373,
@@ -12480,7 +13285,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 0,
-            "sprite": "beldum.png"
+            "sprite": "beldum.png",
+            "evos": [
+                "Metang"
+            ]
         },
         "Metang": {
             "number": 375,
@@ -12501,7 +13309,10 @@
             "generation": 3,
             "legendary": false,
             "stage": 1,
-            "sprite": "metang.png"
+            "sprite": "metang.png",
+            "evos": [
+                "Metagross"
+            ]
         },
         "Metagross": {
             "number": 376,
@@ -12849,7 +13660,10 @@
             "generation": 4,
             "legendary": false,
             "stage": 0,
-            "sprite": "turtwig.png"
+            "sprite": "turtwig.png",
+            "evos": [
+                "Grotle"
+            ]
         },
         "Grotle": {
             "number": 388,
@@ -12869,7 +13683,10 @@
             "generation": 4,
             "legendary": false,
             "stage": 1,
-            "sprite": "grotle.png"
+            "sprite": "grotle.png",
+            "evos": [
+                "Torterra"
+            ]
         },
         "Torterra": {
             "number": 389,
@@ -12910,7 +13727,10 @@
             "generation": 4,
             "legendary": false,
             "stage": 0,
-            "sprite": "chimchar.png"
+            "sprite": "chimchar.png",
+            "evos": [
+                "Monferno"
+            ]
         },
         "Monferno": {
             "number": 391,
@@ -12931,7 +13751,10 @@
             "generation": 4,
             "legendary": false,
             "stage": 1,
-            "sprite": "monferno.png"
+            "sprite": "monferno.png",
+            "evos": [
+                "Infernape"
+            ]
         },
         "Infernape": {
             "number": 392,
@@ -12972,7 +13795,10 @@
             "generation": 4,
             "legendary": false,
             "stage": 0,
-            "sprite": "piplup.png"
+            "sprite": "piplup.png",
+            "evos": [
+                "Prinplup"
+            ]
         },
         "Prinplup": {
             "number": 394,
@@ -12992,7 +13818,10 @@
             "generation": 4,
             "legendary": false,
             "stage": 1,
-            "sprite": "prinplup.png"
+            "sprite": "prinplup.png",
+            "evos": [
+                "Empoleon"
+            ]
         },
         "Empoleon": {
             "number": 395,
@@ -13034,7 +13863,10 @@
             "generation": 4,
             "legendary": false,
             "stage": 0,
-            "sprite": "starly.png"
+            "sprite": "starly.png",
+            "evos": [
+                "Staravia"
+            ]
         },
         "Staravia": {
             "number": 397,
@@ -13055,7 +13887,10 @@
             "generation": 4,
             "legendary": false,
             "stage": 1,
-            "sprite": "staravia.png"
+            "sprite": "staravia.png",
+            "evos": [
+                "Staraptor"
+            ]
         },
         "Staraptor": {
             "number": 398,
@@ -13096,7 +13931,10 @@
             "generation": 4,
             "legendary": false,
             "stage": 0,
-            "sprite": "bidoof.png"
+            "sprite": "bidoof.png",
+            "evos": [
+                "Bibarel"
+            ]
         },
         "Bibarel": {
             "number": 400,
@@ -13137,7 +13975,10 @@
             "generation": 4,
             "legendary": false,
             "stage": 0,
-            "sprite": "kricketot.png"
+            "sprite": "kricketot.png",
+            "evos": [
+                "Kricketune"
+            ]
         },
         "Kricketune": {
             "number": 402,
@@ -13177,7 +14018,10 @@
             "generation": 4,
             "legendary": false,
             "stage": 0,
-            "sprite": "shinx.png"
+            "sprite": "shinx.png",
+            "evos": [
+                "Luxio"
+            ]
         },
         "Luxio": {
             "number": 404,
@@ -13197,7 +14041,10 @@
             "generation": 4,
             "legendary": false,
             "stage": 1,
-            "sprite": "luxio.png"
+            "sprite": "luxio.png",
+            "evos": [
+                "Luxray"
+            ]
         },
         "Luxray": {
             "number": 405,
@@ -13238,7 +14085,10 @@
             "generation": 4,
             "legendary": false,
             "stage": -1,
-            "sprite": "budew.png"
+            "sprite": "budew.png",
+            "evos": [
+                "Roselia"
+            ]
         },
         "Roserade": {
             "number": 407,
@@ -13279,7 +14129,10 @@
             "generation": 4,
             "legendary": false,
             "stage": 0,
-            "sprite": "cranidos.png"
+            "sprite": "cranidos.png",
+            "evos": [
+                "Rampardos"
+            ]
         },
         "Rampardos": {
             "number": 409,
@@ -13320,7 +14173,10 @@
             "generation": 4,
             "legendary": false,
             "stage": 0,
-            "sprite": "shieldon.png"
+            "sprite": "shieldon.png",
+            "evos": [
+                "Bastiodon"
+            ]
         },
         "Bastiodon": {
             "number": 411,
@@ -13361,7 +14217,10 @@
             "generation": 4,
             "legendary": false,
             "stage": 0,
-            "sprite": "burmy.png"
+            "sprite": "burmy.png",
+            "evos": [
+                "Mothim"
+            ]
         },
         "Wormadam Plant Cloak": {
             "number": 413,
@@ -13466,7 +14325,10 @@
             "generation": 4,
             "legendary": false,
             "stage": 0,
-            "sprite": "combee.png"
+            "sprite": "combee.png",
+            "evos": [
+                "Vespiquen"
+            ]
         },
         "Vespiquen": {
             "number": 416,
@@ -13527,7 +14389,10 @@
             "generation": 4,
             "legendary": false,
             "stage": 0,
-            "sprite": "buizel.png"
+            "sprite": "buizel.png",
+            "evos": [
+                "Floatzel"
+            ]
         },
         "Floatzel": {
             "number": 419,
@@ -13567,7 +14432,10 @@
             "generation": 4,
             "legendary": false,
             "stage": 0,
-            "sprite": "cherubi.png"
+            "sprite": "cherubi.png",
+            "evos": [
+                "Cherrim"
+            ]
         },
         "Cherrim": {
             "number": 421,
@@ -13607,7 +14475,10 @@
             "generation": 4,
             "legendary": false,
             "stage": 0,
-            "sprite": "shellos.png"
+            "sprite": "shellos.png",
+            "evos": [
+                "Gastrodon"
+            ]
         },
         "Gastrodon": {
             "number": 423,
@@ -13669,7 +14540,10 @@
             "generation": 4,
             "legendary": false,
             "stage": 0,
-            "sprite": "drifloon.png"
+            "sprite": "drifloon.png",
+            "evos": [
+                "Drifblim"
+            ]
         },
         "Drifblim": {
             "number": 426,
@@ -13710,7 +14584,10 @@
             "generation": 4,
             "legendary": false,
             "stage": 0,
-            "sprite": "buneary.png"
+            "sprite": "buneary.png",
+            "evos": [
+                "Lopunny"
+            ]
         },
         "Lopunny": {
             "number": 428,
@@ -13791,7 +14668,10 @@
             "generation": 4,
             "legendary": false,
             "stage": 0,
-            "sprite": "glameow.png"
+            "sprite": "glameow.png",
+            "evos": [
+                "Purugly"
+            ]
         },
         "Purugly": {
             "number": 432,
@@ -13831,7 +14711,10 @@
             "generation": 4,
             "legendary": false,
             "stage": -1,
-            "sprite": "chingling.png"
+            "sprite": "chingling.png",
+            "evos": [
+                "Chimecho"
+            ]
         },
         "Stunky": {
             "number": 434,
@@ -13852,7 +14735,10 @@
             "generation": 4,
             "legendary": false,
             "stage": 0,
-            "sprite": "stunky.png"
+            "sprite": "stunky.png",
+            "evos": [
+                "Skuntank"
+            ]
         },
         "Skuntank": {
             "number": 435,
@@ -13894,7 +14780,10 @@
             "generation": 4,
             "legendary": false,
             "stage": 0,
-            "sprite": "bronzor.png"
+            "sprite": "bronzor.png",
+            "evos": [
+                "Bronzong"
+            ]
         },
         "Bronzong": {
             "number": 437,
@@ -13935,7 +14824,10 @@
             "generation": 4,
             "legendary": false,
             "stage": -1,
-            "sprite": "bonsly.png"
+            "sprite": "bonsly.png",
+            "evos": [
+                "Sudowoodo"
+            ]
         },
         "Mime Jr.": {
             "number": 439,
@@ -13976,7 +14868,10 @@
             "generation": 4,
             "legendary": false,
             "stage": -1,
-            "sprite": "happiny.png"
+            "sprite": "happiny.png",
+            "evos": [
+                "Chansey"
+            ]
         },
         "Chatot": {
             "number": 441,
@@ -14039,7 +14934,10 @@
             "generation": 4,
             "legendary": false,
             "stage": 0,
-            "sprite": "gible.png"
+            "sprite": "gible.png",
+            "evos": [
+                "Gabite"
+            ]
         },
         "Gabite": {
             "number": 444,
@@ -14060,7 +14958,10 @@
             "generation": 4,
             "legendary": false,
             "stage": 1,
-            "sprite": "gabite.png"
+            "sprite": "gabite.png",
+            "evos": [
+                "Garchomp"
+            ]
         },
         "Garchomp": {
             "number": 445,
@@ -14101,7 +15002,10 @@
             "generation": 4,
             "legendary": false,
             "stage": -1,
-            "sprite": "munchlax.png"
+            "sprite": "munchlax.png",
+            "evos": [
+                "Snorlax"
+            ]
         },
         "Riolu": {
             "number": 447,
@@ -14121,7 +15025,10 @@
             "generation": 4,
             "legendary": false,
             "stage": -1,
-            "sprite": "riolu.png"
+            "sprite": "riolu.png",
+            "evos": [
+                "Lucario"
+            ]
         },
         "Lucario": {
             "number": 448,
@@ -14162,7 +15069,10 @@
             "generation": 4,
             "legendary": false,
             "stage": 0,
-            "sprite": "hippopotas.png"
+            "sprite": "hippopotas.png",
+            "evos": [
+                "Hippowdon"
+            ]
         },
         "Hippowdon": {
             "number": 450,
@@ -14203,7 +15113,10 @@
             "generation": 4,
             "legendary": false,
             "stage": 0,
-            "sprite": "skorupi.png"
+            "sprite": "skorupi.png",
+            "evos": [
+                "Drapion"
+            ]
         },
         "Drapion": {
             "number": 452,
@@ -14245,7 +15158,10 @@
             "generation": 4,
             "legendary": false,
             "stage": 0,
-            "sprite": "croagunk.png"
+            "sprite": "croagunk.png",
+            "evos": [
+                "Toxicroak"
+            ]
         },
         "Toxicroak": {
             "number": 454,
@@ -14306,7 +15222,10 @@
             "generation": 4,
             "legendary": false,
             "stage": 0,
-            "sprite": "finneon.png"
+            "sprite": "finneon.png",
+            "evos": [
+                "Lumineon"
+            ]
         },
         "Lumineon": {
             "number": 457,
@@ -14347,7 +15266,10 @@
             "generation": 4,
             "legendary": false,
             "stage": -1,
-            "sprite": "mantyke.png"
+            "sprite": "mantyke.png",
+            "evos": [
+                "Mantine"
+            ]
         },
         "Snover": {
             "number": 459,
@@ -14368,7 +15290,10 @@
             "generation": 4,
             "legendary": false,
             "stage": 0,
-            "sprite": "snover.png"
+            "sprite": "snover.png",
+            "evos": [
+                "Abomasnow"
+            ]
         },
         "Abomasnow": {
             "number": 460,
@@ -15254,7 +16179,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "snivy.png"
+            "sprite": "snivy.png",
+            "evos": [
+                "Servine"
+            ]
         },
         "Servine": {
             "number": 496,
@@ -15274,7 +16202,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 1,
-            "sprite": "servine.png"
+            "sprite": "servine.png",
+            "evos": [
+                "Serperior"
+            ]
         },
         "Serperior": {
             "number": 497,
@@ -15314,7 +16245,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "tepig.png"
+            "sprite": "tepig.png",
+            "evos": [
+                "Pignite"
+            ]
         },
         "Pignite": {
             "number": 499,
@@ -15335,7 +16269,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 1,
-            "sprite": "pignite.png"
+            "sprite": "pignite.png",
+            "evos": [
+                "Emboar"
+            ]
         },
         "Emboar": {
             "number": 500,
@@ -15376,7 +16313,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "oshawott.png"
+            "sprite": "oshawott.png",
+            "evos": [
+                "Dewott"
+            ]
         },
         "Dewott": {
             "number": 502,
@@ -15396,7 +16336,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 1,
-            "sprite": "dewott.png"
+            "sprite": "dewott.png",
+            "evos": [
+                "Samurott"
+            ]
         },
         "Samurott": {
             "number": 503,
@@ -15436,7 +16379,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "patrat.png"
+            "sprite": "patrat.png",
+            "evos": [
+                "Watchog"
+            ]
         },
         "Watchog": {
             "number": 505,
@@ -15476,7 +16422,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "lillipup.png"
+            "sprite": "lillipup.png",
+            "evos": [
+                "Herdier"
+            ]
         },
         "Herdier": {
             "number": 507,
@@ -15496,7 +16445,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 1,
-            "sprite": "herdier.png"
+            "sprite": "herdier.png",
+            "evos": [
+                "Stoutland"
+            ]
         },
         "Stoutland": {
             "number": 508,
@@ -15536,7 +16488,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "purrloin.png"
+            "sprite": "purrloin.png",
+            "evos": [
+                "Liepard"
+            ]
         },
         "Liepard": {
             "number": 510,
@@ -15576,7 +16531,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "pansage.png"
+            "sprite": "pansage.png",
+            "evos": [
+                "Simisage"
+            ]
         },
         "Simisage": {
             "number": 512,
@@ -15616,7 +16574,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "pansear.png"
+            "sprite": "pansear.png",
+            "evos": [
+                "Simisear"
+            ]
         },
         "Simisear": {
             "number": 514,
@@ -15656,7 +16617,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "panpour.png"
+            "sprite": "panpour.png",
+            "evos": [
+                "Simipour"
+            ]
         },
         "Simipour": {
             "number": 516,
@@ -15696,7 +16660,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "munna.png"
+            "sprite": "munna.png",
+            "evos": [
+                "Musharna"
+            ]
         },
         "Musharna": {
             "number": 518,
@@ -15737,7 +16704,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "pidove.png"
+            "sprite": "pidove.png",
+            "evos": [
+                "Tranquill"
+            ]
         },
         "Tranquill": {
             "number": 520,
@@ -15758,7 +16728,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 1,
-            "sprite": "tranquill.png"
+            "sprite": "tranquill.png",
+            "evos": [
+                "Unfezant"
+            ]
         },
         "Unfezant": {
             "number": 521,
@@ -15799,7 +16772,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "blitzle.png"
+            "sprite": "blitzle.png",
+            "evos": [
+                "Zebstrika"
+            ]
         },
         "Zebstrika": {
             "number": 523,
@@ -15839,7 +16815,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "roggenrola.png"
+            "sprite": "roggenrola.png",
+            "evos": [
+                "Boldore"
+            ]
         },
         "Boldore": {
             "number": 525,
@@ -15859,7 +16838,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 1,
-            "sprite": "boldore.png"
+            "sprite": "boldore.png",
+            "evos": [
+                "Gigalith"
+            ]
         },
         "Gigalith": {
             "number": 526,
@@ -15900,7 +16882,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "woobat.png"
+            "sprite": "woobat.png",
+            "evos": [
+                "Swoobat"
+            ]
         },
         "Swoobat": {
             "number": 528,
@@ -15941,7 +16926,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "drilbur.png"
+            "sprite": "drilbur.png",
+            "evos": [
+                "Excadrill"
+            ]
         },
         "Excadrill": {
             "number": 530,
@@ -16002,7 +16990,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "timburr.png"
+            "sprite": "timburr.png",
+            "evos": [
+                "Gurdurr"
+            ]
         },
         "Gurdurr": {
             "number": 533,
@@ -16022,7 +17013,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 1,
-            "sprite": "gurdurr.png"
+            "sprite": "gurdurr.png",
+            "evos": [
+                "Conkeldurr"
+            ]
         },
         "Conkeldurr": {
             "number": 534,
@@ -16062,7 +17056,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "tympole.png"
+            "sprite": "tympole.png",
+            "evos": [
+                "Palpitoad"
+            ]
         },
         "Palpitoad": {
             "number": 536,
@@ -16083,7 +17080,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 1,
-            "sprite": "palpitoad.png"
+            "sprite": "palpitoad.png",
+            "evos": [
+                "Seismitoad"
+            ]
         },
         "Seismitoad": {
             "number": 537,
@@ -16165,7 +17165,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "sewaddle.png"
+            "sprite": "sewaddle.png",
+            "evos": [
+                "Swadloon"
+            ]
         },
         "Swadloon": {
             "number": 541,
@@ -16186,7 +17189,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 1,
-            "sprite": "swadloon.png"
+            "sprite": "swadloon.png",
+            "evos": [
+                "Leavanny"
+            ]
         },
         "Leavanny": {
             "number": 542,
@@ -16228,7 +17234,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "venipede.png"
+            "sprite": "venipede.png",
+            "evos": [
+                "Whirlipede"
+            ]
         },
         "Whirlipede": {
             "number": 544,
@@ -16249,7 +17258,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 1,
-            "sprite": "whirlipede.png"
+            "sprite": "whirlipede.png",
+            "evos": [
+                "Scolipede"
+            ]
         },
         "Scolipede": {
             "number": 545,
@@ -16291,7 +17303,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "cottonee.png"
+            "sprite": "cottonee.png",
+            "evos": [
+                "Whimsicott"
+            ]
         },
         "Whimsicott": {
             "number": 547,
@@ -16332,7 +17347,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "petilil.png"
+            "sprite": "petilil.png",
+            "evos": [
+                "Lilligant"
+            ]
         },
         "Lilligant": {
             "number": 549,
@@ -16393,7 +17411,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "sandile.png"
+            "sprite": "sandile.png",
+            "evos": [
+                "Krokorok"
+            ]
         },
         "Krokorok": {
             "number": 552,
@@ -16414,7 +17435,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 1,
-            "sprite": "krokorok.png"
+            "sprite": "krokorok.png",
+            "evos": [
+                "Krookodile"
+            ]
         },
         "Krookodile": {
             "number": 553,
@@ -16537,7 +17561,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "dwebble.png"
+            "sprite": "dwebble.png",
+            "evos": [
+                "Crustle"
+            ]
         },
         "Crustle": {
             "number": 558,
@@ -16579,7 +17606,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "scraggy.png"
+            "sprite": "scraggy.png",
+            "evos": [
+                "Scrafty"
+            ]
         },
         "Scrafty": {
             "number": 560,
@@ -16641,7 +17671,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "yamask.png"
+            "sprite": "yamask.png",
+            "evos": [
+                "Cofagrigus"
+            ]
         },
         "Cofagrigus": {
             "number": 563,
@@ -16682,7 +17715,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "tirtouga.png"
+            "sprite": "tirtouga.png",
+            "evos": [
+                "Carracosta"
+            ]
         },
         "Carracosta": {
             "number": 565,
@@ -16724,7 +17760,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "archen.png"
+            "sprite": "archen.png",
+            "evos": [
+                "Archeops"
+            ]
         },
         "Archeops": {
             "number": 567,
@@ -16765,7 +17804,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "trubbish.png"
+            "sprite": "trubbish.png",
+            "evos": [
+                "Garbodor"
+            ]
         },
         "Garbodor": {
             "number": 569,
@@ -16805,7 +17847,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "zorua.png"
+            "sprite": "zorua.png",
+            "evos": [
+                "Zoroark"
+            ]
         },
         "Zoroark": {
             "number": 571,
@@ -16845,7 +17890,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "minccino.png"
+            "sprite": "minccino.png",
+            "evos": [
+                "Cinccino"
+            ]
         },
         "Cinccino": {
             "number": 573,
@@ -16885,7 +17933,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "gothita.png"
+            "sprite": "gothita.png",
+            "evos": [
+                "Gothorita"
+            ]
         },
         "Gothorita": {
             "number": 575,
@@ -16905,7 +17956,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 1,
-            "sprite": "gothorita.png"
+            "sprite": "gothorita.png",
+            "evos": [
+                "Gothitelle"
+            ]
         },
         "Gothitelle": {
             "number": 576,
@@ -16945,7 +17999,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "solosis.png"
+            "sprite": "solosis.png",
+            "evos": [
+                "Duosion"
+            ]
         },
         "Duosion": {
             "number": 578,
@@ -16965,7 +18022,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 1,
-            "sprite": "duosion.png"
+            "sprite": "duosion.png",
+            "evos": [
+                "Reuniclus"
+            ]
         },
         "Reuniclus": {
             "number": 579,
@@ -17006,7 +18066,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "ducklett.png"
+            "sprite": "ducklett.png",
+            "evos": [
+                "Swanna"
+            ]
         },
         "Swanna": {
             "number": 581,
@@ -17047,7 +18110,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "vanillite.png"
+            "sprite": "vanillite.png",
+            "evos": [
+                "Vanillish"
+            ]
         },
         "Vanillish": {
             "number": 583,
@@ -17067,7 +18133,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 1,
-            "sprite": "vanillish.png"
+            "sprite": "vanillish.png",
+            "evos": [
+                "Vanilluxe"
+            ]
         },
         "Vanilluxe": {
             "number": 584,
@@ -17108,7 +18177,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "deerling.png"
+            "sprite": "deerling.png",
+            "evos": [
+                "Sawsbuck"
+            ]
         },
         "Sawsbuck": {
             "number": 586,
@@ -17170,7 +18242,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "karrablast.png"
+            "sprite": "karrablast.png",
+            "evos": [
+                "Escavalier"
+            ]
         },
         "Escavalier": {
             "number": 589,
@@ -17212,7 +18287,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "foongus.png"
+            "sprite": "foongus.png",
+            "evos": [
+                "Amoonguss"
+            ]
         },
         "Amoonguss": {
             "number": 591,
@@ -17254,7 +18332,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "frillish.png"
+            "sprite": "frillish.png",
+            "evos": [
+                "Jellicent"
+            ]
         },
         "Jellicent": {
             "number": 593,
@@ -17316,7 +18397,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "joltik.png"
+            "sprite": "joltik.png",
+            "evos": [
+                "Galvantula"
+            ]
         },
         "Galvantula": {
             "number": 596,
@@ -17358,7 +18442,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "ferroseed.png"
+            "sprite": "ferroseed.png",
+            "evos": [
+                "Ferrothorn"
+            ]
         },
         "Ferrothorn": {
             "number": 598,
@@ -17399,7 +18486,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "klink.png"
+            "sprite": "klink.png",
+            "evos": [
+                "Klang"
+            ]
         },
         "Klang": {
             "number": 600,
@@ -17419,7 +18509,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 1,
-            "sprite": "klang.png"
+            "sprite": "klang.png",
+            "evos": [
+                "Klinklang"
+            ]
         },
         "Klinklang": {
             "number": 601,
@@ -17459,7 +18552,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "tynamo.png"
+            "sprite": "tynamo.png",
+            "evos": [
+                "Eelektrik"
+            ]
         },
         "Eelektrik": {
             "number": 603,
@@ -17479,7 +18575,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 1,
-            "sprite": "eelektrik.png"
+            "sprite": "eelektrik.png",
+            "evos": [
+                "Eelektross"
+            ]
         },
         "Eelektross": {
             "number": 604,
@@ -17519,7 +18618,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "elgyem.png"
+            "sprite": "elgyem.png",
+            "evos": [
+                "Beheeyem"
+            ]
         },
         "Beheeyem": {
             "number": 606,
@@ -17560,7 +18662,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "litwick.png"
+            "sprite": "litwick.png",
+            "evos": [
+                "Lampent"
+            ]
         },
         "Lampent": {
             "number": 608,
@@ -17581,7 +18686,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 1,
-            "sprite": "lampent.png"
+            "sprite": "lampent.png",
+            "evos": [
+                "Chandelure"
+            ]
         },
         "Chandelure": {
             "number": 609,
@@ -17622,7 +18730,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "axew.png"
+            "sprite": "axew.png",
+            "evos": [
+                "Fraxure"
+            ]
         },
         "Fraxure": {
             "number": 611,
@@ -17642,7 +18753,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 1,
-            "sprite": "fraxure.png"
+            "sprite": "fraxure.png",
+            "evos": [
+                "Haxorus"
+            ]
         },
         "Haxorus": {
             "number": 612,
@@ -17682,7 +18796,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "cubchoo.png"
+            "sprite": "cubchoo.png",
+            "evos": [
+                "Beartic"
+            ]
         },
         "Beartic": {
             "number": 614,
@@ -17742,7 +18859,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "shelmet.png"
+            "sprite": "shelmet.png",
+            "evos": [
+                "Accelgor"
+            ]
         },
         "Accelgor": {
             "number": 617,
@@ -17803,7 +18923,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "mienfoo.png"
+            "sprite": "mienfoo.png",
+            "evos": [
+                "Mienshao"
+            ]
         },
         "Mienshao": {
             "number": 620,
@@ -17864,7 +18987,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "golett.png"
+            "sprite": "golett.png",
+            "evos": [
+                "Golurk"
+            ]
         },
         "Golurk": {
             "number": 623,
@@ -17906,7 +19032,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "pawniard.png"
+            "sprite": "pawniard.png",
+            "evos": [
+                "Bisharp"
+            ]
         },
         "Bisharp": {
             "number": 625,
@@ -17968,7 +19097,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "rufflet.png"
+            "sprite": "rufflet.png",
+            "evos": [
+                "Braviary"
+            ]
         },
         "Braviary": {
             "number": 628,
@@ -18010,7 +19142,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "vullaby.png"
+            "sprite": "vullaby.png",
+            "evos": [
+                "Mandibuzz"
+            ]
         },
         "Mandibuzz": {
             "number": 630,
@@ -18093,7 +19228,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "deino.png"
+            "sprite": "deino.png",
+            "evos": [
+                "Zweilous"
+            ]
         },
         "Zweilous": {
             "number": 634,
@@ -18114,7 +19252,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 1,
-            "sprite": "zweilous.png"
+            "sprite": "zweilous.png",
+            "evos": [
+                "Hydreigon"
+            ]
         },
         "Hydreigon": {
             "number": 635,
@@ -18156,7 +19297,10 @@
             "generation": 5,
             "legendary": false,
             "stage": 0,
-            "sprite": "larvesta.png"
+            "sprite": "larvesta.png",
+            "evos": [
+                "Volcarona"
+            ]
         },
         "Volcarona": {
             "number": 637,
@@ -18596,7 +19740,10 @@
             "generation": 6,
             "legendary": false,
             "stage": 0,
-            "sprite": "chespin.png"
+            "sprite": "chespin.png",
+            "evos": [
+                "Quilladin"
+            ]
         },
         "Quilladin": {
             "number": 651,
@@ -18616,7 +19763,10 @@
             "generation": 6,
             "legendary": false,
             "stage": 1,
-            "sprite": "quilladin.png"
+            "sprite": "quilladin.png",
+            "evos": [
+                "Chesnaught"
+            ]
         },
         "Chesnaught": {
             "number": 652,
@@ -18657,7 +19807,10 @@
             "generation": 6,
             "legendary": false,
             "stage": 0,
-            "sprite": "fennekin.png"
+            "sprite": "fennekin.png",
+            "evos": [
+                "Braixen"
+            ]
         },
         "Braixen": {
             "number": 654,
@@ -18677,7 +19830,10 @@
             "generation": 6,
             "legendary": false,
             "stage": 1,
-            "sprite": "braixen.png"
+            "sprite": "braixen.png",
+            "evos": [
+                "Delphox"
+            ]
         },
         "Delphox": {
             "number": 655,
@@ -18718,7 +19874,10 @@
             "generation": 6,
             "legendary": false,
             "stage": 0,
-            "sprite": "froakie.png"
+            "sprite": "froakie.png",
+            "evos": [
+                "Frogadier"
+            ]
         },
         "Frogadier": {
             "number": 657,
@@ -18738,7 +19897,10 @@
             "generation": 6,
             "legendary": false,
             "stage": 1,
-            "sprite": "frogadier.png"
+            "sprite": "frogadier.png",
+            "evos": [
+                "Greninja"
+            ]
         },
         "Greninja": {
             "number": 658,
@@ -18800,7 +19962,10 @@
             "generation": 6,
             "legendary": false,
             "stage": 0,
-            "sprite": "bunnelby.png"
+            "sprite": "bunnelby.png",
+            "evos": [
+                "Diggersby"
+            ]
         },
         "Diggersby": {
             "number": 660,
@@ -18842,7 +20007,10 @@
             "generation": 6,
             "legendary": false,
             "stage": 0,
-            "sprite": "fletchling.png"
+            "sprite": "fletchling.png",
+            "evos": [
+                "Fletchinder"
+            ]
         },
         "Fletchinder": {
             "number": 662,
@@ -18863,7 +20031,10 @@
             "generation": 6,
             "legendary": false,
             "stage": 1,
-            "sprite": "fletchinder.png"
+            "sprite": "fletchinder.png",
+            "evos": [
+                "Talonflame"
+            ]
         },
         "Talonflame": {
             "number": 663,
@@ -18904,7 +20075,10 @@
             "generation": 6,
             "legendary": false,
             "stage": 0,
-            "sprite": "scatterbug.png"
+            "sprite": "scatterbug.png",
+            "evos": [
+                "Spewpa"
+            ]
         },
         "Spewpa": {
             "number": 665,
@@ -18924,7 +20098,10 @@
             "generation": 6,
             "legendary": false,
             "stage": 1,
-            "sprite": "spewpa.png"
+            "sprite": "spewpa.png",
+            "evos": [
+                "Vivillon"
+            ]
         },
         "Vivillon": {
             "number": 666,
@@ -18966,7 +20143,10 @@
             "generation": 6,
             "legendary": false,
             "stage": 0,
-            "sprite": "litleo.png"
+            "sprite": "litleo.png",
+            "evos": [
+                "Pyroar"
+            ]
         },
         "Pyroar": {
             "number": 668,
@@ -19027,7 +20207,10 @@
             "generation": 6,
             "legendary": false,
             "stage": 1,
-            "sprite": "floette.png"
+            "sprite": "floette.png",
+            "evos": [
+                "Florges"
+            ]
         },
         "Florges": {
             "number": 671,
@@ -19067,7 +20250,10 @@
             "generation": 6,
             "legendary": false,
             "stage": 0,
-            "sprite": "skiddo.png"
+            "sprite": "skiddo.png",
+            "evos": [
+                "Gogoat"
+            ]
         },
         "Gogoat": {
             "number": 673,
@@ -19107,7 +20293,10 @@
             "generation": 6,
             "legendary": false,
             "stage": 0,
-            "sprite": "pancham.png"
+            "sprite": "pancham.png",
+            "evos": [
+                "Pangoro"
+            ]
         },
         "Pangoro": {
             "number": 675,
@@ -19229,7 +20418,10 @@
             "generation": 6,
             "legendary": false,
             "stage": 0,
-            "sprite": "honedge.png"
+            "sprite": "honedge.png",
+            "evos": [
+                "Doublade"
+            ]
         },
         "Doublade": {
             "number": 680,
@@ -19312,7 +20504,10 @@
             "generation": 6,
             "legendary": false,
             "stage": 0,
-            "sprite": "spritzee.png"
+            "sprite": "spritzee.png",
+            "evos": [
+                "Aromatisse"
+            ]
         },
         "Aromatisse": {
             "number": 683,
@@ -19352,7 +20547,10 @@
             "generation": 6,
             "legendary": false,
             "stage": 1,
-            "sprite": "swirlix.png"
+            "sprite": "swirlix.png",
+            "evos": [
+                "Slurpuff"
+            ]
         },
         "Slurpuff": {
             "number": 685,
@@ -19393,7 +20591,10 @@
             "generation": 6,
             "legendary": false,
             "stage": 0,
-            "sprite": "inkay.png"
+            "sprite": "inkay.png",
+            "evos": [
+                "Malamar"
+            ]
         },
         "Malamar": {
             "number": 687,
@@ -19435,7 +20636,10 @@
             "generation": 6,
             "legendary": false,
             "stage": 0,
-            "sprite": "binacle.png"
+            "sprite": "binacle.png",
+            "evos": [
+                "Barbaracle"
+            ]
         },
         "Barbaracle": {
             "number": 689,
@@ -19477,7 +20681,10 @@
             "generation": 6,
             "legendary": false,
             "stage": 0,
-            "sprite": "skrelp.png"
+            "sprite": "skrelp.png",
+            "evos": [
+                "Dragalge"
+            ]
         },
         "Dragalge": {
             "number": 691,
@@ -19518,7 +20725,10 @@
             "generation": 6,
             "legendary": false,
             "stage": 0,
-            "sprite": "clauncher.png"
+            "sprite": "clauncher.png",
+            "evos": [
+                "Clawitzer"
+            ]
         },
         "Clawitzer": {
             "number": 693,
@@ -19559,7 +20769,10 @@
             "generation": 6,
             "legendary": false,
             "stage": 0,
-            "sprite": "helioptile.png"
+            "sprite": "helioptile.png",
+            "evos": [
+                "Heliolisk"
+            ]
         },
         "Heliolisk": {
             "number": 695,
@@ -19601,7 +20814,10 @@
             "generation": 6,
             "legendary": false,
             "stage": 0,
-            "sprite": "tyrunt.png"
+            "sprite": "tyrunt.png",
+            "evos": [
+                "Tyrantrum"
+            ]
         },
         "Tyrantrum": {
             "number": 697,
@@ -19643,7 +20859,10 @@
             "generation": 6,
             "legendary": false,
             "stage": 0,
-            "sprite": "amaura.png"
+            "sprite": "amaura.png",
+            "evos": [
+                "Aurorus"
+            ]
         },
         "Aurorus": {
             "number": 699,
@@ -19767,7 +20986,10 @@
             "generation": 6,
             "legendary": false,
             "stage": 0,
-            "sprite": "goomy.png"
+            "sprite": "goomy.png",
+            "evos": [
+                "Sliggoo"
+            ]
         },
         "Sliggoo": {
             "number": 705,
@@ -19787,7 +21009,10 @@
             "generation": 6,
             "legendary": false,
             "stage": 1,
-            "sprite": "sliggoo.png"
+            "sprite": "sliggoo.png",
+            "evos": [
+                "Goodra"
+            ]
         },
         "Goodra": {
             "number": 706,
@@ -19849,7 +21074,10 @@
             "generation": 6,
             "legendary": false,
             "stage": 0,
-            "sprite": "phantump.png"
+            "sprite": "phantump.png",
+            "evos": [
+                "Trevenant"
+            ]
         },
         "Trevenant": {
             "number": 709,
@@ -20058,7 +21286,10 @@
             "generation": 6,
             "legendary": false,
             "stage": 0,
-            "sprite": "bergmite.png"
+            "sprite": "bergmite.png",
+            "evos": [
+                "Avalugg"
+            ]
         },
         "Avalugg": {
             "number": 713,
@@ -20099,7 +21330,10 @@
             "generation": 6,
             "legendary": false,
             "stage": 0,
-            "sprite": "noibat.png"
+            "sprite": "noibat.png",
+            "evos": [
+                "Noivern"
+            ]
         },
         "Noivern": {
             "number": 715,
