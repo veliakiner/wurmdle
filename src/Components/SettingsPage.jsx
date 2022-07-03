@@ -18,6 +18,13 @@ function SettingsPage(props) {
           setGenRange([values[0], values[1] - 1]);
         }}
       />
+      <BooleanSettingsOption
+        label="Only fully evolved??"
+        settings={settings}
+        prop="onlyFullyEvolved"
+        setSettings={setSettings}
+        disable={gameInProgress}
+      />
       <div className="settings-option-container">
         <BooleanSettingsOption
           label="Colour-blind friendly?"
@@ -46,13 +53,14 @@ SettingsPage.propTypes = {
 
 function BooleanSettingsOption(props) {
   const {
-    label, settings, setSettings, prop,
+    label, settings, setSettings, prop, disable,
   } = props;
   return (
     <div className="settings-option">
       <label>
         <span style={{ padding: '5px' }}>{label}</span>
         <input
+          disabled={disable}
           type="checkbox"
           checked={settings[prop]}
           onChange={() => {
@@ -70,6 +78,9 @@ BooleanSettingsOption.propTypes = {
   settings: propTypes.objectOf(propTypes.bool).isRequired,
   setSettings: propTypes.func.isRequired,
   prop: propTypes.string.isRequired,
+  disable: propTypes.bool,
 };
-
+BooleanSettingsOption.defaultProps = {
+  disable: false,
+};
 export default SettingsPage;

@@ -20,8 +20,8 @@ import SettingsContext from './SettingsContext';
 const defaultGenRange = [1, 3];
 console.log('No cheating!');
 console.log = process.env.NODE_ENV === 'development' ? console.log : () => {}; // implement better logging solution
-function genState(genRange) {
-  const monsList = getMonsList(genRange);
+function genState(genRange, onlyFullyEvolved) {
+  const monsList = getMonsList(genRange, onlyFullyEvolved);
   const fuse = monsFuse(monsList);
   return {
     genRange,
@@ -93,10 +93,12 @@ class Board extends React.Component {
       this.state = startState();
       this.state.answer = toTitleCase(props.answer) || '';
     }
-    const { genRange, setGameInProgress, forceGameOver } = props;
+    const {
+      genRange, setGameInProgress, forceGameOver, onlyFullyEvolved,
+    } = props;
     this.setGameInProgress = setGameInProgress;
     updateLocalStorageGameState(this.state);
-    Object.assign(this.state, genState(genRange));
+    Object.assign(this.state, genState(genRange, onlyFullyEvolved));
     const { monsList } = this.state;
     this.maxGuesses = calcGuesses(monsList);
 
@@ -285,6 +287,7 @@ Board.propTypes = {
   answer: propTypes.string.isRequired,
   setGameInProgress: propTypes.func.isRequired,
   genRange: propTypes.arrayOf(propTypes.number).isRequired,
+  onlyFullyEvolved: propTypes.bool.isRequired,
   // TODO: incorrect, and probably shouldn't be passing in arbitrary objects
   parsedState: propTypes.objectOf(propTypes.string).isRequired,
   forceGameOver: propTypes.bool,
@@ -303,6 +306,7 @@ function BoardWrapper(props) {
     : defaultGenRange;
   const [toggleSettings, setToggleSettings] = useState(force.settings || false);
   const [genRange, setGenRange] = useState(initialGenRange);
+  const [onlyFullyEvolved, setOnlyFullyEvolved] = useState(false);
   const [settings, setSettings] = useState(
     JSON.parse(localStorage.getItem('settings')) || {},
   );
@@ -315,6 +319,7 @@ function BoardWrapper(props) {
     document.body.classList.remove('dark-mode');
   }
   localStorage.setItem('gens', genRange);
+  localStorage.setItem('onlyFullyEvolved', onlyFullyEvolved);
   console.log('Show settings', toggleSettings);
   console.log('Gen range', genRange);
   return (
@@ -342,6 +347,7 @@ function BoardWrapper(props) {
         {toggleSettings ? (
           <SettingsPage
             setGenRange={setGenRange}
+            setOnlyFullyEvolved={setOnlyFullyEvolved}
             genRange={genRange}
             gameInProgress={gameInProgress}
             settings={settings}
@@ -352,6 +358,7 @@ function BoardWrapper(props) {
             answer={answer || ''}
             genRange={genRange}
             setGameInProgress={setGameInProgress}
+            onlyFullyEvolved={settings.onlyFullyEvolved}
             parsedState={parsedState}
             forceGameOver={force.gameOver}
           />
