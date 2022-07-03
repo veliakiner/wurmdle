@@ -13,7 +13,7 @@ function Instructions(props) {
         {' '}
         guesses.
         <div>
-          Report issues
+          Report issues or suggest improvements/features
           {' '}
           <a href="https://github.com/veliakiner/wurmdle/issues">here</a>
           .
