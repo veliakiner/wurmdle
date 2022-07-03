@@ -1,5 +1,5 @@
 import Fuse from 'fuse.js';
-import genData from './PokemonData';
+import genData, {isFullyEvolved} from './PokemonData';
 
 export function getGenRange(upperAndLower) {
   const [minGen, maxGen] = upperAndLower;
@@ -14,6 +14,16 @@ export function getMonsList(genRange, onlyFullyEvolved) {
   console.log('Getting list for gens ', genRange);
   const gens = getGenRange(genRange);
   const stats = genData(gens); // can just filter stats by gens or something
+  if (onlyFullyEvolved) {
+    let fullyEvoStats = {}
+    const pokemonNames = Object.keys(stats)
+    pokemonNames.forEach((mon) => {
+      if (isFullyEvolved(stats[mon], stats)){
+        fullyEvoStats[mon] = stats;
+      }
+    });
+    return Object.keys(fullyEvoStats)
+  }
   return Object.keys(stats);
 }
 
