@@ -19,7 +19,7 @@ function SettingsPage(props) {
         }}
       />
       <BooleanSettingsOption
-        label="Only fully evolved??"
+        label="Only fully-evolved?"
         settings={settings}
         prop="onlyFullyEvolved"
         setSettings={setSettings}
